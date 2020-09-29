@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Evgenia Alfimova](https://up.htmlacademy.ru/react/5/user/1033161).
-* Наставник: `Неизвестно`.
+* Наставник: [Дмитрий Марков](https://up.htmlacademy.ru/react/5/user/83550).
 
 ---
 
