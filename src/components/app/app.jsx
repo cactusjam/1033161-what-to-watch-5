@@ -4,21 +4,21 @@ import Main from "../main/main";
 
 
 const App = (props) => {
-  const {movieTitle, movieGenre, releaseYear} = props;
+  const {movieDetails} = props;
 
   return (
     <Main
-      title = {movieTitle}
-      genre = {movieGenre}
-      year = {releaseYear}
+    movieDetails = {movieDetails}
     />
   );
 };
 
 App.propTypes = {
-  movieTitle: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.string.isRequired,
+  movieDetails: PropTypes.shape({
+    title: PropTypes.string.isRequired,
+    genre: PropTypes.string.isRequired,
+    releaseYear: PropTypes.string.isRequired
+  }).isRequired
 };
 
 
