@@ -10,7 +10,7 @@ const Details = {
 
 ReactDOM.render(
     <App
-    movieDetails = {Details}
+      movieDetails = {Details}
     />,
     document.querySelector(`#root`)
 );

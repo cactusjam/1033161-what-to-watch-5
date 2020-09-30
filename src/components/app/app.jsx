@@ -8,7 +8,7 @@ const App = (props) => {
 
   return (
     <Main
-    movieDetails = {movieDetails}
+      movieDetails = {movieDetails}
     />
   );
 };
