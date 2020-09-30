@@ -1,14 +1,17 @@
+"use strict"
 const path = require('path');
+const publicDirPath = path.resolve(__dirname, `public`);
 
 module.exports = {
     entry: './src/index.js',
     output: {
         filename: 'bundle.js',
-        path: path.resolve(__dirname, 'public')
+        path: publicDirPath
     },
     devServer: {
-        contentBase: path.resolve(__dirname, 'public'),
-        open: false,
+        contentBase: publicDirPath,
+        open: true,
+        compress: true,
         port: 1337,
     },
     module: {
