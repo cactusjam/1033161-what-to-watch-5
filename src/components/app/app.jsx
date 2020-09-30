@@ -8,9 +8,9 @@ const App = (props) => {
 
   return (
     <Main
-      title={movieTitle}
-      genre={movieGenre}
-      year={releaseYear}
+      title = {movieTitle}
+      genre = {movieGenre}
+      year = {releaseYear}
     />
   );
 };

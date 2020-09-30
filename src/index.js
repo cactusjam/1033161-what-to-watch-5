@@ -9,15 +9,16 @@ const details = {
 };
 
 ReactDOM.render(
-    <App movieTitle = {
-      details.movieTitle
-    }
-    movieGenre = {
-      details.movieGenre
-    }
-    releaseYear = {
-      details.releaseYear
-    }
+    <App
+      movieTitle = {
+        details.movieTitle
+      }
+      movieGenre = {
+        details.movieGenre
+      }
+      releaseYear = {
+        details.releaseYear
+      }
     />,
     document.querySelector(`#root`)
 );
