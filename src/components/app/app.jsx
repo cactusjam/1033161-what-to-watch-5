@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import { BrowserRouter, Switch, Route} from "react-router-dom";
-import Main from "../main/main";
+import {BrowserRouter, Switch, Route} from "react-router-dom";
+import Main from "../main-screen/main-screen";
 
 const App = (props) => {
   const {movieDetails} = props;
