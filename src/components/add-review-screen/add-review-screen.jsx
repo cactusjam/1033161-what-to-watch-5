@@ -5,7 +5,7 @@ const AddReviewScreen = () => {
     <section className="movie-card movie-card--full">
       <div className="movie-card__header">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -32,13 +32,14 @@ const AddReviewScreen = () => {
 
           <div className="user-block">
             <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
             </div>
           </div>
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
-          <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+          <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+            height="327" />
         </div>
       </div>
 
@@ -46,7 +47,7 @@ const AddReviewScreen = () => {
         <form action="#" className="add-review__form">
           <div className="rating">
             <div className="rating__stars">
-              <input className="rating__input" id="star-1" type="radio" name="rating" value="1"/>
+              <input className="rating__input" id="star-1" type="radio" name="rating" value="1" />
               <label className="rating__label" htmlFor="star-1">Rating 1</label>
 
               <input className="rating__input" id="star-2" type="radio" name="rating" value="2" />
@@ -64,7 +65,8 @@ const AddReviewScreen = () => {
           </div>
 
           <div className="add-review__text">
-            <textarea className="add-review__textarea" name="review-text" id="review-text" placeholder="Review text"></textarea>
+            <textarea className="add-review__textarea" name="review-text" id="review-text"
+              placeholder="Review text" />
             <div className="add-review__submit">
               <button className="add-review__btn" type="submit">Post</button>
             </div>
@@ -72,7 +74,6 @@ const AddReviewScreen = () => {
           </div>
         </form>
       </div>
-
     </section>
   );
 };
