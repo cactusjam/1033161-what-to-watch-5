@@ -3,10 +3,7 @@ export default [
     title: `Aviator`,
     genre: `Biography, Drama`,
     releaseYear: 2004,
-    image: {
-      preview: `img/aviator.jpg`,
-      poster: `img/aviator.jpg`
-    },
+    poster: `img/aviator.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.9,
@@ -22,10 +19,7 @@ export default [
     title: `Bohemian Rhapsody`,
     genre: `Biography, Drama, Music`,
     releaseYear: 2018,
-    image: {
-      preview: `img/bohemian-rhapsody.jpg`,
-      poster: `img/bohemian-rhapsody.jpg`
-    },
+    poster: `img/bohemian-rhapsody.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.0,
@@ -41,10 +35,7 @@ export default [
     title: `Revenant`,
     genre: `Action, Adventure, Drama`,
     releaseYear: 2015,
-    image: {
-      preview: `img/revenant.jpg`,
-      poster: `img/revenant.jpg`
-    },
+    poster: `img/revenant.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.0,
@@ -60,10 +51,7 @@ export default [
     title: `Pulp Fiction`,
     genre: `Crime, Drama`,
     releaseYear: 1994,
-    image: {
-      preview: `img/pulp-fiction.jpg`,
-      poster: `img/pulp-fiction.jpg`
-    },
+    poster: `img/pulp-fiction.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.9,
@@ -79,10 +67,7 @@ export default [
     title: `Mindhunter`,
     genre: `Crime, Drama, Thriller`,
     releaseYear: 2017,
-    image: {
-      preview: `img/mindhunter.jpg`,
-      poster: `img/mindhunter.jpg`
-    },
+    poster: `img/mindhunter.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 8.7,
@@ -97,11 +82,7 @@ export default [
   {
     title: `War of the Worlds`,
     genre: `Adventure, Sci-Fi, Thriller`,
-    releaseYear: 2005,
-    image: {
-      preview: `img/war-of-the-worlds.jpg`,
-      poster: `img/war-of-the-worlds.jpg`
-    },
+    poster: `img/war-of-the-worlds.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 6.5,
@@ -117,10 +98,7 @@ export default [
     title: `Seven Years in Tibet`,
     genre: `Adventure, Biography, Drama`,
     releaseYear: 1997,
-    image: {
-      preview: `img/seven-years-in-tibet.jpg`,
-      poster: `img/seven-years-in-tibet.jpg`
-    },
+    poster: `img/seven-years-in-tibet.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     cover: `img/bg-the-grand-budapest-hotel.jpg`,
     rating: {
@@ -131,16 +109,13 @@ export default [
     description: `True story of Heinrich Harrer, an Austrian mountain climber who became friends with the Dalai Lama at the time of China's takeover of Tibet`,
     director: `Jean-Jacques Annaud`,
     starring: [`Brad Pitt`, `David Thewlis`, `BD Wong`],
-    duration: ` 2h 16min`
+    duration: `2h 16min`
   },
   {
     title: `Moonrise Kingdom`,
     genre: `Comedy, Drama, Romance`,
     releaseYear: 2012,
-    image: {
-      preview: `img/moonrise-kingdom.jpg`,
-      poster: `img/moonrise-kingdom.jpg`
-    },
+    poster: `img/moonrise-kingdom.jpg`,
     promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
     rating: {
       score: 7.7,
