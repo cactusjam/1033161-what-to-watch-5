@@ -1,5 +1,4 @@
 import React from "react";
-import PropTypes from "prop-types";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import MainScreen from "../main-screen/main-screen";
 import LoginScreen from "../login-screen/login-screen";
@@ -7,15 +6,19 @@ import MovieScreen from "../movie-screen/movie-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
+import MovieTypes from "../../types/types";
 
 const App = (props) => {
-  const {movieDetails} = props;
+  const {promoMovie, movies, userMovies} = props;
 
   return (
     <BrowserRouter>
       <Switch>
         <Route exact path="/">
-          <MainScreen movieDetails = {movieDetails} />
+          <MainScreen
+            promoMovie={promoMovie}
+            movies={movies}
+          />
         </Route>
 
         <Route exact path="/login">
@@ -23,7 +26,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/mylist">
-          <MyListScreen/>
+          <MyListScreen userMovies={userMovies}/>
         </Route>
 
         <Route exact path="/films/:id">
@@ -44,11 +47,9 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  movieDetails: PropTypes.shape({
-    title: PropTypes.string.isRequired,
-    genre: PropTypes.string.isRequired,
-    releaseYear: PropTypes.number.isRequired
-  }).isRequired
+  promoMovie: MovieTypes.promoItem,
+  movies: MovieTypes.list,
+  userMovies: MovieTypes.list,
 };
 
 

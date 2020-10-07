@@ -4,17 +4,14 @@ import App from "./components/app/app";
 import films from "./mocks/films";
 import reviews from "./mocks/reviews";
 
-const Details = {
-  title: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  releaseYear: 2014
-};
+const {promo, list} = films;
 
 ReactDOM.render(
     <App
-      movieDetails = {Details}
-      films = {films}
+      promoMovie={promo}
+      movies = {list}
       reviews = {reviews}
+      userMovies={list.slice(0, 9)}
     />,
     document.querySelector(`#root`)
 );
