@@ -1,6 +1,11 @@
 import React from "react";
+import MoviesList from "../movies-list/movies-list";
+import {MovieTypes} from "../../types/types";
+import PropTypes from 'prop-types';
+import {Link} from "react-router-dom";
 
-const MovieScreen = () => {
+const MovieScreen = (props) => {
+  const {similarMovies, onPlayButtonClick} = props;
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
@@ -36,7 +41,7 @@ const MovieScreen = () => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick()}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -48,7 +53,7 @@ const MovieScreen = () => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link to="/films/:id/review" className="btn movie-card__button">Add review</Link>
               </div>
             </div>
           </div>
@@ -100,44 +105,7 @@ const MovieScreen = () => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <MoviesList movies={similarMovies} />
         </section>
 
         <footer className="page-footer">
@@ -156,6 +124,11 @@ const MovieScreen = () => {
       </div>
     </React.Fragment>
   );
+};
+
+MovieScreen.propTypes = {
+  similarMovies: MovieTypes.list,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MovieScreen;

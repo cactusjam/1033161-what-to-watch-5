@@ -9,18 +9,18 @@ import PlayerScreen from "../player-screen/player-screen";
 import MovieTypes from "../../types/types";
 
 const App = (props) => {
-  const {promoMovie, movies, userMovies} = props;
+  const {promoMovie, movies, userMovies, similarMovies, reviews} = props;
 
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/">
+        <Route path="/" exact render={({history}) => (
           <MainScreen
             promoMovie={promoMovie}
             movies={movies}
+            onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
-        </Route>
-
+        )} />
         <Route exact path="/login">
           <LoginScreen/>
         </Route>
@@ -29,12 +29,20 @@ const App = (props) => {
           <MyListScreen userMovies={userMovies}/>
         </Route>
 
-        <Route exact path="/films/:id">
-          <MovieScreen/>
-        </Route>
+        <Route path="/films/:id" exact render={({history}) => (
+          <MovieScreen
+            similarMovies={similarMovies}
+            reviews={reviews}
+            movies={movies}
+            onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
+          />
+        )} />
 
         <Route exact path="/films/:id/review">
-          <AddReviewScreen/>
+          <AddReviewScreen
+            movies={movies}
+            reviews={reviews}
+          />
         </Route>
 
         <Route exact path="/player/:id">
@@ -50,6 +58,8 @@ App.propTypes = {
   promoMovie: MovieTypes.promoItem,
   movies: MovieTypes.list,
   userMovies: MovieTypes.list,
+  similarMovies: MovieTypes.list,
+  reviews: MovieTypes.reviewList
 };
 
 

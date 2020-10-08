@@ -1,9 +1,10 @@
 import React from "react";
 import MoviesList from "../movies-list/movies-list";
+import PropTypes from 'prop-types';
 import {MovieTypes} from "../../types/types";
 
 const MainScreen = (props) => {
-  const {promoMovie, movies} = props;
+  const {promoMovie, movies, onPlayButtonClick} = props;
   const {title, genre, poster, releaseYear, cover} = promoMovie;
   return (
     <React.Fragment>
@@ -44,7 +45,7 @@ const MainScreen = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -126,7 +127,8 @@ const MainScreen = (props) => {
 
 MainScreen.propTypes = {
   promoMovie: MovieTypes.promoItem,
-  movies: MovieTypes.list
+  movies: MovieTypes.list,
+  onPlayButtonClick: PropTypes.func.isRequired
 };
 
 export default MainScreen;

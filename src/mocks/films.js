@@ -22,7 +22,8 @@ export default {
       description: `A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`,
       director: `Martin Scorsese`,
       starring: `Leonardo DiCaprio, Cate Blanchett, Kate Beckinsale`,
-      duration: `2h 50min`
+      duration: `2h 50min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 2,
@@ -39,7 +40,8 @@ export default {
       description: `The story of the legendary British rock band Queen and lead singer Freddie Mercury, leading up to their famous performance at Live Aid (1985)`,
       director: `Bryan Singer`,
       starring: `Rami Malek, Lucy Boynton, Gwilym Lee`,
-      duration: `2h 14min`
+      duration: `2h 14min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 3,
@@ -56,7 +58,8 @@ export default {
       description: `A frontiersman on a fur trading expedition in the 1820s fights for survival after being mauled by a bear and left for dead by members of his own hunting team`,
       director: `Alejandro G. Iñárritu`,
       starring: `Leonardo DiCaprio, Tom Hardy, Will Poulter`,
-      duration: `2h 36min`
+      duration: `2h 36min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 4,
@@ -73,7 +76,8 @@ export default {
       description: `The lives of two mob hitmen, a boxer, a gangster and his wife, and a pair of diner bandits intertwine in four tales of violence and redemption`,
       director: `Quentin Tarantino`,
       starring: `John Travolta, Uma Thurman, Samuel L. Jackson`,
-      duration: `2h 34min`
+      duration: `2h 34min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 5,
@@ -90,7 +94,8 @@ export default {
       description: `Set in the late 1970s, two FBI agents are tasked with interviewing serial killers to solve open cases`,
       director: `Joe Penhall`,
       starring: `Jonathan Groff, Holt McCallany, Anna Torv`,
-      duration: `1h`
+      duration: `1h`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 6,
@@ -107,7 +112,8 @@ export default {
       description: `As Earth is invaded by alien tripod fighting machines, one family fights for survival in this sci-fi action film`,
       director: `Steven Spielberg`,
       starring: `Tom Cruise, Dakota Fanning, Tim Robbins`,
-      duration: `1h 27min`
+      duration: `1h 27min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 7,
@@ -116,7 +122,6 @@ export default {
       releaseYear: 1997,
       poster: `img/seven-years-in-tibet.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
-      cover: `img/bg-the-grand-budapest-hotel.jpg`,
       rating: {
         score: 7.1,
         level: `Good`,
@@ -125,7 +130,8 @@ export default {
       description: `True story of Heinrich Harrer, an Austrian mountain climber who became friends with the Dalai Lama at the time of China's takeover of Tibet`,
       director: `Jean-Jacques Annaud`,
       starring: `Brad Pitt, David Thewlis, BD Wong`,
-      duration: `2h 16min`
+      duration: `2h 16min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
       id: 8,
@@ -142,7 +148,8 @@ export default {
       description: `A pair of young lovers flee their New England town, which causes a local search party to fan out to find them`,
       director: `Wes Anderson`,
       starring: `Jared Gilman, Kara Hayward, Bruce Willis`,
-      duration: `1h 34min`
+      duration: `1h 34min`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`
     }
   ],
 };

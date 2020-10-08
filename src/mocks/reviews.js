@@ -18,5 +18,4 @@ export default [
     date: `2015-11-18`,
     rating: 8.0,
   }
-
 ];
