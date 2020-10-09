@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {MovieTypes} from "../../types/types";
+import {movieDetails} from "../../types/types";
+import {Link} from "react-router-dom";
 
 const MovieCard = (props) => {
   const {movie, onCardOver, onCardLeave} = props;
-  const {id, title, poster} = movie;
+  const {id, poster, title} = movie;
   return (
     <article id={id} className="small-movie-card catalog__movies-card"
       onMouseOver={() => onCardOver(movie)}
@@ -14,14 +15,14 @@ const MovieCard = (props) => {
         <img src={`/` + poster} alt={title} width="280" height="175" />
       </div>
       <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{title}</a>
+        <Link to={`/films/` + id} className="small-movie-card__link">{title}</Link>
       </h3>
     </article>
   );
 };
 
 MovieCard.propTypes = {
-  movie: MovieTypes.item,
+  movie: movieDetails,
   onCardOver: PropTypes.func.isRequired,
   onCardLeave: PropTypes.func.isRequired,
 };

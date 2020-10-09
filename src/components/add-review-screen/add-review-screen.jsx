@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import {Link} from 'react-router-dom';
-import {MovieTypes} from "../../types/types";
+import {movieDetails} from "../../types/types";
+import PropTypes from "prop-types";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
@@ -22,9 +23,8 @@ export default class AddReviewScreen extends PureComponent {
   }
 
   handleFieldChange(evt) {
-    this.setState({
-      text: evt.target.value
-    });
+    const {name, value} = evt.target;
+    this.setState({[name]: value});
   }
 
   render() {
@@ -81,12 +81,7 @@ export default class AddReviewScreen extends PureComponent {
                     <React.Fragment key={rating}>
                       <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={`${rating}`}
                         checked={rating === this.state.rating}
-                        onChange={(evt) => {
-                          const value = evt.target.value;
-                          this.setState({
-                            rating: value,
-                          });
-                        }}
+                        onChange={this.handleFieldChange}
                       />
                       <label className="rating__label" htmlFor={`star-${rating}`}>{`Rating ${rating}`}</label>
                     </React.Fragment>
@@ -111,5 +106,5 @@ export default class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
-  movies: MovieTypes.list
+  movies: PropTypes.arrayOf(movieDetails).isRequired
 };

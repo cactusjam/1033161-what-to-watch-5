@@ -1,11 +1,11 @@
 import React from "react";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
-import {MovieTypes} from "../../types/types";
+import {promoMovieDetails} from "../../types/types";
 
 const MainScreen = (props) => {
-  const {promoMovie, movies, onPlayButtonClick} = props;
-  const {title, genre, poster, releaseYear, cover} = promoMovie;
+  const {movies, promoMovie, onPlayButtonClick} = props;
+  const {cover, genre, poster, releaseYear, title} = promoMovie;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -126,8 +126,8 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  promoMovie: MovieTypes.promoItem,
-  movies: MovieTypes.list,
+  movies: promoMovieDetails,
+  promoMovie: promoMovieDetails,
   onPlayButtonClick: PropTypes.func.isRequired
 };
 

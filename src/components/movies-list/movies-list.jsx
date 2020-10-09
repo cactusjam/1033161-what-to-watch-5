@@ -1,6 +1,7 @@
 import React, {PureComponent} from "react";
 import MovieCard from '../movie-card/movie-card.jsx';
-import {MovieTypes} from "../../types/types";
+import {movieDetails} from "../../types/types";
+import PropTypes from "prop-types";
 
 export default class MoviesList extends PureComponent {
   constructor(props) {
@@ -37,5 +38,5 @@ export default class MoviesList extends PureComponent {
 }
 
 MoviesList.propTypes = {
-  movies: MovieTypes.list
+  movies: PropTypes.arrayOf(movieDetails).isRequired
 };

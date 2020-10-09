@@ -6,7 +6,9 @@ import MovieScreen from "../movie-screen/movie-screen";
 import MyListScreen from "../my-list-screen/my-list-screen";
 import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
-import MovieTypes from "../../types/types";
+import PropTypes from "prop-types";
+import {promoMovieDetails, movieDetails, reviewDetails} from "../../types/types";
+import {getRandomElement} from "../../utils/utils";
 
 const App = (props) => {
   const {promoMovie, movies, userMovies, similarMovies, reviews} = props;
@@ -33,7 +35,7 @@ const App = (props) => {
           <MovieScreen
             similarMovies={similarMovies}
             reviews={reviews}
-            movies={movies}
+            movies={getRandomElement(movies, 8)}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />
@@ -46,7 +48,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/player/:id">
-          <PlayerScreen/>
+          <PlayerScreen movies={movies}/>
         </Route>
 
       </Switch>
@@ -55,11 +57,11 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  promoMovie: MovieTypes.promoItem,
-  movies: MovieTypes.list,
-  userMovies: MovieTypes.list,
-  similarMovies: MovieTypes.list,
-  reviews: MovieTypes.reviewList
+  movies: promoMovieDetails,
+  promoMovie: promoMovieDetails,
+  userMovies: PropTypes.arrayOf(movieDetails).isRequired,
+  similarMovies: PropTypes.arrayOf(movieDetails).isRequired,
+  reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 
 
