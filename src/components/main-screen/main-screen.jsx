@@ -5,7 +5,7 @@ import {promoMovieDetails} from "../../types/types";
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick} = props;
-  const {cover, genre, poster, releaseYear, title} = promoMovie;
+  const {cover, id, genre, poster, releaseYear, title} = promoMovie;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -45,7 +45,7 @@ const MainScreen = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

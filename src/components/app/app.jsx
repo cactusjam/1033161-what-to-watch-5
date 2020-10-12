@@ -8,7 +8,7 @@ import AddReviewScreen from "../add-review-screen/add-review-screen";
 import PlayerScreen from "../player-screen/player-screen";
 import PropTypes from "prop-types";
 import {promoMovieDetails, movieDetails, reviewDetails} from "../../types/types";
-import {getRandomElement} from "../../utils/utils";
+import {getRandomElements} from "../../utils/utils";
 
 const App = (props) => {
   const {promoMovie, movies, userMovies, similarMovies, reviews} = props;
@@ -35,7 +35,7 @@ const App = (props) => {
           <MovieScreen
             similarMovies={similarMovies}
             reviews={reviews}
-            movies={getRandomElement(movies, 8)}
+            movies={getRandomElements(movies)}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />

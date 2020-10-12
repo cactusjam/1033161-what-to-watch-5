@@ -1,4 +1,4 @@
-export const getRandomElement = (array)=> {
+export const getRandomElements = (array)=> {
   let randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
 };
