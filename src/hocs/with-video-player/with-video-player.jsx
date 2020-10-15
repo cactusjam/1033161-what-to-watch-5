@@ -1,8 +1,8 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 
-const videoPlayer = (Component) => {
-  class VideoPlayer extends PureComponent {
+const withVideoPlayer = (Component) => {
+  class WithVideoPlayer extends PureComponent {
     constructor(props) {
       super(props);
 
@@ -77,16 +77,14 @@ const videoPlayer = (Component) => {
     }
   }
 
-  VideoPlayer.propTypes = {
+  WithVideoPlayer.propTypes = {
     isPlaying: PropTypes.bool.isRequired,
     isMuted: PropTypes.bool.isRequired,
     poster: PropTypes.string.isRequired,
     src: PropTypes.string.isRequired,
   };
 
-  return VideoPlayer;
+  return WithVideoPlayer;
 };
 
-export default videoPlayer;
-
-
+export default withVideoPlayer;
