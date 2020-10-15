@@ -1,4 +1,4 @@
-import React, {PureComponent } from "react";
+import React, {PureComponent} from "react";
 import MovieCard from '../movie-card/movie-card.jsx';
 import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
@@ -25,7 +25,7 @@ export default class MoviesList extends PureComponent {
       </div>
     );
   }
-};
+}
 
 
 MoviesList.propTypes = {
