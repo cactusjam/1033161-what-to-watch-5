@@ -4,7 +4,7 @@ import {movieDetails} from "../../types/types";
 import {Link} from "react-router-dom";
 
 const MovieCard = (props) => {
-  const {movie, children, onPlayChange} = props;
+  const {movie, onPlayChange, children} = props;
   const {id, title} = movie;
   let timeout;
 
@@ -29,10 +29,7 @@ const MovieCard = (props) => {
 MovieCard.propTypes = {
   movie: movieDetails,
   onPlayChange: PropTypes.func.isRequired,
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  children: PropTypes.element.isRequired
 };
 
 export default MovieCard;
