@@ -1,9 +1,11 @@
 import React from "react";
+import {movieDetails} from "../../types/types";
 
-const PlayerScreen = () => {
+const PlayerScreen = (props) => {
+  const {movies} = props;
   return (
     <div className="player">
-      <video src="#" className="player__video" poster="/img/player-poster.jpg" />
+      <video src={movies.promo} className="player__video" autoPlay muted poster={movies.poster} />
 
       <button type="button" className="player__exit">Exit</button>
 
@@ -35,6 +37,10 @@ const PlayerScreen = () => {
       </div>
     </div>
   );
+};
+
+PlayerScreen.propTypes = {
+  movies: movieDetails,
 };
 
 export default PlayerScreen;

@@ -48,7 +48,7 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/player/:id">
-          <PlayerScreen movies={movies}/>
+          <PlayerScreen movies={getRandomElements(movies)}/>
         </Route>
 
       </Switch>
@@ -57,7 +57,7 @@ const App = (props) => {
 };
 
 App.propTypes = {
-  movies: promoMovieDetails,
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
   promoMovie: promoMovieDetails,
   userMovies: PropTypes.arrayOf(movieDetails).isRequired,
   similarMovies: PropTypes.arrayOf(movieDetails).isRequired,

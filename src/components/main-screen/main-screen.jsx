@@ -2,6 +2,8 @@ import React from "react";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
 import {promoMovieDetails} from "../../types/types";
+import {movieDetails} from "../../types/types";
+import {Link} from "react-router-dom";
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick} = props;
@@ -17,11 +19,11 @@ const MainScreen = (props) => {
 
         <header className="page-header movie-card__head">
           <div className="logo">
-            <a className="logo__link">
+            <Link className="logo__link" to="/">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </a>
+            </Link>
           </div>
 
           <div className="user-block">
@@ -100,7 +102,7 @@ const MainScreen = (props) => {
             </li>
           </ul>
 
-          <MoviesList movies={movies}/>
+          <MoviesList movies={movies} onClick={onPlayButtonClick}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -126,7 +128,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movies: promoMovieDetails,
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
   promoMovie: promoMovieDetails,
   onPlayButtonClick: PropTypes.func.isRequired
 };
