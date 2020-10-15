@@ -3,7 +3,7 @@ import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
 import {promoMovieDetails} from "../../types/types";
 import {movieDetails} from "../../types/types";
-import {Link} from "react-router-dom";
+import Header from "../header/header";
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick} = props;
@@ -17,21 +17,7 @@ const MainScreen = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <Link className="logo__link" to="/">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
