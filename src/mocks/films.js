@@ -1,5 +1,6 @@
 export default {
   promo: {
+    id: 1,
     title: `The Grand Budapest Hotel`,
     genre: `Drama`,
     releaseYear: 2014,
@@ -8,7 +9,7 @@ export default {
   },
   list: [
     {
-      id: 1,
+      id: 2,
       title: `Aviator`,
       genre: `Biography, Drama`,
       releaseYear: 2004,
@@ -26,7 +27,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 2,
+      id: 3,
       title: `Bohemian Rhapsody`,
       genre: `Biography, Drama, Music`,
       releaseYear: 2018,
@@ -44,7 +45,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 3,
+      id: 4,
       title: `Revenant`,
       genre: `Action, Adventure, Drama`,
       releaseYear: 2015,
@@ -62,7 +63,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 4,
+      id: 5,
       title: `Pulp Fiction`,
       genre: `Crime, Drama`,
       releaseYear: 1994,
@@ -80,7 +81,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 5,
+      id: 6,
       title: `Mindhunter`,
       genre: `Crime, Drama, Thriller`,
       releaseYear: 2017,
@@ -98,7 +99,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 6,
+      id: 7,
       title: `War of the Worlds`,
       genre: `Adventure, Sci-Fi, Thriller`,
       releaseYear: 2014,
@@ -116,7 +117,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 7,
+      id: 8,
       title: `Seven Years in Tibet`,
       genre: `Adventure, Biography, Drama`,
       releaseYear: 1997,
@@ -134,7 +135,7 @@ export default {
       cover: `img/bg-the-grand-budapest-hotel.jpg`
     },
     {
-      id: 8,
+      id: 9,
       title: `Moonrise Kingdom`,
       genre: `Comedy, Drama, Romance`,
       releaseYear: 2012,

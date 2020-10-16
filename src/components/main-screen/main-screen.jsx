@@ -2,10 +2,12 @@ import React from "react";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
 import {promoMovieDetails} from "../../types/types";
+import {movieDetails} from "../../types/types";
+import Header from "../header/header";
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick} = props;
-  const {cover, genre, poster, releaseYear, title} = promoMovie;
+  const {cover, id, genre, poster, releaseYear, title} = promoMovie;
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -15,21 +17,7 @@ const MainScreen = (props) => {
 
         <h1 className="visually-hidden">WTW</h1>
 
-        <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
-        </header>
+        <Header />
 
         <div className="movie-card__wrap">
           <div className="movie-card__info">
@@ -45,7 +33,7 @@ const MainScreen = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={onPlayButtonClick}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -100,7 +88,7 @@ const MainScreen = (props) => {
             </li>
           </ul>
 
-          <MoviesList movies={movies}/>
+          <MoviesList movies={movies} onClick={onPlayButtonClick}/>
 
           <div className="catalog__more">
             <button className="catalog__button" type="button">Show more</button>
@@ -126,7 +114,7 @@ const MainScreen = (props) => {
 };
 
 MainScreen.propTypes = {
-  movies: promoMovieDetails,
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
   promoMovie: promoMovieDetails,
   onPlayButtonClick: PropTypes.func.isRequired
 };

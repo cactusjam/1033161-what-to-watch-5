@@ -4,15 +4,20 @@ import {movieDetails} from "../../types/types";
 import {Link} from "react-router-dom";
 
 const MovieCard = (props) => {
-  const {movie, onCardOver, onCardLeave} = props;
-  const {id, poster, title} = movie;
+  const {movie, onPlayChange, children} = props;
+  const {id, title} = movie;
+  let timeout;
+
   return (
-    <article id={id} className="small-movie-card catalog__movies-card"
-      onMouseOver={() => onCardOver(movie)}
-      onMouseLeave={() => onCardLeave()}
-    >
-      <div className="small-movie-card__image">
-        <img src={`/` + poster} alt={title} width="280" height="175" />
+    <article id={id} className="small-movie-card catalog__movies-card">
+      <div className="small-movie-card__image"
+        onMouseOver={() => {
+          timeout = setTimeout(onPlayChange, 1000);
+        }} onMouseLeave={() => {
+          clearTimeout(timeout);
+          onPlayChange();
+        }}>
+        {children}
       </div>
       <h3 className="small-movie-card__title">
         <Link to={`/films/` + id} className="small-movie-card__link">{title}</Link>
@@ -23,8 +28,8 @@ const MovieCard = (props) => {
 
 MovieCard.propTypes = {
   movie: movieDetails,
-  onCardOver: PropTypes.func.isRequired,
-  onCardLeave: PropTypes.func.isRequired,
+  onPlayChange: PropTypes.func.isRequired,
+  children: PropTypes.element.isRequired
 };
 
 export default MovieCard;
