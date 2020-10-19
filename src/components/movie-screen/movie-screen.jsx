@@ -7,11 +7,16 @@ import Header from "../header/header";
 import Tabs from "../tabs/tabs.jsx";
 import Tab from "../tabs/tab.jsx";
 import TabsName from "../../constants/constants.js";
+import getSimilarMovies from "../../utils/utils";
+
 
 const MovieScreen = (props) => {
-  const {similarMovies, onPlayButtonClick, movies, reviews} = props;
-  const {description, director, id, genre, poster, rating, releaseYear, starring, title, duration} = movies;
+  const {onPlayButtonClick, movies, currentMovie, reviews} = props;
+  const {description, director, id, genre, poster, rating, releaseYear, starring, title, duration} = currentMovie;
   const {score, level, countOfVotes} = rating;
+  const genres = genre.join(`, `);
+
+  const similarMovies = getSimilarMovies(movies, genre, title).slice(0, 4);
 
   return (
     <React.Fragment>
@@ -34,7 +39,7 @@ const MovieScreen = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(movies.id)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(currentMovie.id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -96,7 +101,7 @@ const MovieScreen = (props) => {
                     </p>
                     <p className="movie-card__details-item">
                       <strong className="movie-card__details-name">Genre</strong>
-                      <span className="movie-card__details-value">{genre}</span>
+                      <span className="movie-card__details-value">{genres}</span>
                     </p>
                     <p className="movie-card__details-item">
                       <strong className="movie-card__details-name">Released</strong>
@@ -153,9 +158,9 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
-  similarMovies: PropTypes.arrayOf(movieDetails).isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  movies: movieDetails,
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
+  currentMovie: movieDetails,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 

@@ -11,7 +11,7 @@ import {promoMovieDetails, movieDetails, reviewDetails} from "../../types/types"
 import {getRandomElements} from "../../utils/utils";
 
 const App = (props) => {
-  const {promoMovie, movies, userMovies, similarMovies, reviews} = props;
+  const {promoMovie, movies, userMovies, reviews} = props;
 
   return (
     <BrowserRouter>
@@ -33,9 +33,9 @@ const App = (props) => {
 
         <Route path="/films/:id" exact render={({history}) => (
           <MovieScreen
-            similarMovies={similarMovies}
             reviews={reviews}
-            movies={getRandomElements(movies)}
+            movies={movies}
+            currentMovie={getRandomElements(movies)}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />
@@ -48,9 +48,9 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/player/:id">
-          <PlayerScreen movies={getRandomElements(movies)}/>
+          <PlayerScreen
+            currentMovie={getRandomElements(movies)}/>
         </Route>
-
       </Switch>
     </BrowserRouter>
   );
@@ -60,7 +60,6 @@ App.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   promoMovie: promoMovieDetails,
   userMovies: PropTypes.arrayOf(movieDetails).isRequired,
-  similarMovies: PropTypes.arrayOf(movieDetails).isRequired,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 

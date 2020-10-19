@@ -12,7 +12,6 @@ ReactDOM.render(
       movies = {list}
       reviews = {reviews}
       userMovies={list.slice(0, 9)}
-      similarMovies={list.slice(0, 4)}
     />,
     document.querySelector(`#root`)
 );
