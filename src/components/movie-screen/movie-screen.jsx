@@ -1,13 +1,16 @@
 import React from "react";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails} from "../../types/types";
+import {movieDetails, reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
+import Tabs from "../tabs/tabs.jsx";
+import Tab from "../tabs/tab.jsx";
+import TabsName from "../../constants/constants.js";
 
 const MovieScreen = (props) => {
-  const {similarMovies, onPlayButtonClick, movies} = props;
-  const {description, director, id, genre, poster, rating, releaseYear, starring, title} = movies;
+  const {similarMovies, onPlayButtonClick, movies, reviews} = props;
+  const {description, director, id, genre, poster, rating, releaseYear, starring, title, duration} = movies;
   const {score, level, countOfVotes} = rating;
 
   return (
@@ -55,37 +58,72 @@ const MovieScreen = (props) => {
               <img src={poster} alt={title + `poster`} width="218" height="327" />
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+            <Tabs>
+              <Tab title={TabsName.OVERVIEW}>
+                <div className="movie-rating">
+                  <div className="movie-rating__score">{score}</div>
+                  <p className="movie-rating__meta">
+                    <span className="movie-rating__level">{level}</span>
+                    <span className="movie-rating__count">{countOfVotes}</span>
+                  </p>
+                </div>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{score}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{level}</span>
-                  <span className="movie-rating__count">{countOfVotes}</span>
-                </p>
-              </div>
+                <div className="movie-card__text">
+                  <p>{description}</p>
 
-              <div className="movie-card__text">
-                <p>{description}</p>
+                  <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
+                  <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
+                </div>
+              </Tab>
+              <Tab title={TabsName.DETAILS}>
+                <div className="movie-card__text movie-card__row">
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Director</strong>
+                      <span className="movie-card__details-value">{director}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Starring</strong>
+                      <span className="movie-card__details-value"> {starring}</span>
+                    </p>
+                  </div>
 
-                <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-              </div>
-            </div>
+                  <div className="movie-card__text-col">
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Run Time</strong>
+                      <span className="movie-card__details-value">{duration}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Genre</strong>
+                      <span className="movie-card__details-value">{genre}</span>
+                    </p>
+                    <p className="movie-card__details-item">
+                      <strong className="movie-card__details-name">Released</strong>
+                      <span className="movie-card__details-value">{releaseYear}</span>
+                    </p>
+                  </div>
+                </div>
+              </Tab>
+              <Tab title={TabsName.REVIEWS}>
+                <div className="movie-card__reviews movie-card__row">
+                  <div className="movie-card__reviews-col">
+                    {reviews.map((review) => <div key={review.author} className="review">
+                      <blockquote className="review__quote">
+                        <p className="review__text">{review.text}</p>
+
+                        <footer className="review__details">
+                          <cite className="review__author">{review.author}</cite>
+                          <time className="review__date" dateTime="2016-12-24">{review.date}</time>
+                        </footer>
+                      </blockquote>
+
+                      <div className="review__rating">{review.rating}</div>
+                    </div>)}
+                  </div>
+                </div>
+              </Tab>
+            </Tabs>
           </div>
         </div>
       </section>
@@ -117,7 +155,8 @@ const MovieScreen = (props) => {
 MovieScreen.propTypes = {
   similarMovies: PropTypes.arrayOf(movieDetails).isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  movies: movieDetails
+  movies: movieDetails,
+  reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 
 export default MovieScreen;
