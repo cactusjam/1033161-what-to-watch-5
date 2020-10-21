@@ -1,7 +1,8 @@
-const TabsName = {
+const TabName = {
   OVERVIEW: `Overview`,
   DETAILS: `Details`,
   REVIEWS: `Reviews`,
 };
 
-export default TabsName;
+
+export {TabName};

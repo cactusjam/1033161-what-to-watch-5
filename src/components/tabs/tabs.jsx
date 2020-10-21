@@ -1,4 +1,10 @@
 import React, {PureComponent} from "react";
+import {movieDetails} from "../../types/types";
+import {TabName} from "../../constants/constants.js";
+import MovieOverview from "../movie-overview/movie-overview";
+import MovieDetails from "../movie-details/movie-details";
+import MovieReviews from "../movie-reviews/movie-reviews";
+import {reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 
 export default class Tabs extends PureComponent {
@@ -6,7 +12,7 @@ export default class Tabs extends PureComponent {
     super(props);
 
     this.state = {
-      activeTab: 0
+      activeTab: TabName.OVERVIEW,
     };
 
     this.handleTabClick = this.handleTabClick.bind(this);
@@ -16,40 +22,45 @@ export default class Tabs extends PureComponent {
     this.setState({activeTab: id});
   }
 
-  render() {
-    const {children} = this.props;
-    const {activeTab} = this.state;
+  renderTab() {
+    const {movie, reviews} = this.props;
+    const activeTab = this.state.activeTab;
 
+    switch (activeTab) {
+      case TabName.OVERVIEW:
+        return <MovieOverview movie={movie} />;
+      case TabName.DETAILS:
+        return <MovieDetails movie={movie} />;
+      case TabName.REVIEWS:
+        return <MovieReviews reviews={reviews} />;
+    }
+
+    return null;
+  }
+
+  render() {
     return (
       <div className="movie-card__desc">
         <nav className="movie-nav movie-card__nav">
           <ul className="movie-nav__list">
-            {children.map((child, id) => {
-              const {title} = child.props;
+            {Object.entries(TabName).map(([key, value]) => {
 
-              return <li key={`${id}`}
-                className={`movie-nav__item ${(activeTab === id) ? `movie-nav__item--active` : ``}`}
-                onClick={() => {
-                  this.handleTabClick(id);
-                }}>
-                <a className="movie-nav__link">{title}</a>
+              return <li key={`${key}`}
+                className={`movie-nav__item ${(this.state.activeTab === value) ? `movie-nav__item--active` : ``}`}>
+                <a className="movie-nav__link" onClick={() => {
+                  this.handleTabClick(value);
+                }}>{value}</a>
               </li>;
             })}
           </ul>
         </nav>
-        {children.map((child, index) => {
-          const {children: content} = child.props;
-
-          return index === activeTab ? content : null;
-        })}
+        {this.renderTab()}
       </div>
     );
   }
 }
 
 Tabs.propTypes = {
-  children: PropTypes.oneOfType([
-    PropTypes.arrayOf(PropTypes.node),
-    PropTypes.node,
-  ]).isRequired,
+  movie: movieDetails,
+  reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
