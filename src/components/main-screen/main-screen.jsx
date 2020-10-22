@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
 import {promoMovieDetails} from "../../types/types";
@@ -9,7 +9,7 @@ const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick} = props;
   const {cover, id, genre, poster, releaseYear, title} = promoMovie;
   return (
-    <React.Fragment>
+    <Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
           <img src={cover} alt={title} />
@@ -109,7 +109,7 @@ const MainScreen = (props) => {
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
