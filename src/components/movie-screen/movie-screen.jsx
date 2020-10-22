@@ -1,14 +1,18 @@
 import React from "react";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails} from "../../types/types";
+import {movieDetails, reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
+import Tabs from "../tabs/tabs.jsx";
+import getSimilarMovies from "../../utils/utils";
 
 const MovieScreen = (props) => {
-  const {similarMovies, onPlayButtonClick, movies} = props;
-  const {description, director, id, genre, poster, rating, releaseYear, starring, title} = movies;
-  const {score, level, countOfVotes} = rating;
+  const {onPlayButtonClick, movies, reviews, currentMovie} = props;
+  const {id, genre, poster, releaseYear, title} = currentMovie;
+  const genres = genre.join(`, `);
+
+  const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
     <React.Fragment>
@@ -26,12 +30,12 @@ const MovieScreen = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{title + `poster`}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
+                <span className="movie-card__genre">{genres}</span>
                 <span className="movie-card__year">{releaseYear}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(movies.id)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(currentMovie.id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s" />
                   </svg>
@@ -55,37 +59,8 @@ const MovieScreen = (props) => {
               <img src={poster} alt={title + `poster`} width="218" height="327" />
             </div>
 
-            <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+            <Tabs movie={currentMovie} reviews={reviews}/>
 
-              <div className="movie-rating">
-                <div className="movie-rating__score">{score}</div>
-                <p className="movie-rating__meta">
-                  <span className="movie-rating__level">{level}</span>
-                  <span className="movie-rating__count">{countOfVotes}</span>
-                </p>
-              </div>
-
-              <div className="movie-card__text">
-                <p>{description}</p>
-
-                <p className="movie-card__director"><strong>Director: {director}</strong></p>
-
-                <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
-              </div>
-            </div>
           </div>
         </div>
       </section>
@@ -115,9 +90,10 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
-  similarMovies: PropTypes.arrayOf(movieDetails).isRequired,
   onPlayButtonClick: PropTypes.func.isRequired,
-  movies: movieDetails
+  movies: PropTypes.arrayOf(movieDetails).isRequired,
+  currentMovie: movieDetails,
+  reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 
 export default MovieScreen;
