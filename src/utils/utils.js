@@ -1,4 +1,4 @@
-import {GenresFilter} from "../../constants/constants";
+import {GenresFilter} from "../constants/constants";
 
 export const getRandomElements = (array)=> {
   let randomIndex = Math.floor(Math.random() * array.length);
@@ -17,12 +17,12 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export const getFilmsByGenre = ({films, genreFilter}) =>{
+export const getFilmsByGenre = ({movies, genreFilter}) =>{
   if (genreFilter === GenresFilter.ALL) {
-    return films.slice();
+    return movies.slice();
   }
 
-  return films.filter((film)=>film.genre === genreFilter);
+  return movies.filter((movie)=>movie.genre === genreFilter);
 };
 
 export default getSimilarMovies;
