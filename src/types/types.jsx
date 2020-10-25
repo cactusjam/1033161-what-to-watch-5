@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const promoMovieDetails = PropTypes.shape({
   title: PropTypes.string.isRequired,
-  genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genre: PropTypes.string.isRequired,
   releaseYear: PropTypes.number.isRequired,
 });
 
@@ -16,7 +16,7 @@ export const reviewDetails = PropTypes.shape({
 export const movieDetails = PropTypes.shape({
   id: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
-  genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genre: PropTypes.string.isRequired,
   releaseYear: PropTypes.number.isRequired,
   poster: PropTypes.string.isRequired,
   promo: PropTypes.string.isRequired,

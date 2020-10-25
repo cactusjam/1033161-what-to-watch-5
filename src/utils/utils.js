@@ -17,12 +17,20 @@ export const extend = (a, b) => {
   return Object.assign({}, a, b);
 };
 
-export const getFilmsByGenre = ({movies, genreFilter}) =>{
-  if (genreFilter === GenresFilter.ALL) {
-    return movies.slice();
-  }
+export const getFilmsByGenre = (movies, genre) =>
+  (genre === GenresFilter.ALL) ? movies.slice() : movies.filter((movie)=>movie.genre === genre);
 
-  return movies.filter((movie)=>movie.genre === genreFilter);
+export const getGenresList = (films)=>{
+  const MAX_GENRES_COUNT = 9;
+  const genres = films.map((film)=>film.genre);
+
+  let uniqueGenres = [...new Set(genres)];
+
+  uniqueGenres.sort();
+  uniqueGenres = uniqueGenres.slice(0, MAX_GENRES_COUNT);
+  uniqueGenres.unshift(GenresFilter.ALL);
+
+  return uniqueGenres;
 };
 
 export default getSimilarMovies;

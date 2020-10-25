@@ -1,16 +1,16 @@
 const ActionType = {
-  CHANGE_FILTER_BY_GENRE: `CHANGE_FILTER_BY_GENRE`,
+  CHANGE_ACTIVE_GENRE: `CHANGE_ACTIVE_GENRE`,
   GET_FILMS_BY_GENRE: `GET_FILMS_BY_GENRE`,
 };
 
 const ActionCreator = {
-  changeGenreFilter: (filter)=>({
-    type: ActionType.CHANGE_FILTER_BY_GENRE,
-    payload: filter
+  changeGenreFilter: (genre)=>({
+    type: ActionType.CHANGE_ACTIVE_GENRE,
+    payload: genre
   }),
-  getFilmsByGenre: (films, genreFilter)=>({
+  getFilmsByGenre: (movies, genre)=>({
     type: ActionType.GET_FILMS_BY_GENRE,
-    payload: {films, genreFilter}
+    payload: {movies, genre}
   })
 };
 

@@ -2,7 +2,7 @@ export default {
   promo: {
     id: 1,
     title: `The Grand Budapest Hotel`,
-    genre: [`Drama`],
+    genre: `Drama`,
     releaseYear: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
     cover: `img/bg-the-grand-budapest-hotel.jpg`
@@ -11,7 +11,7 @@ export default {
     {
       id: 2,
       title: `Aviator`,
-      genre: [`Biography`, `Drama`],
+      genre: `Biography`,
       releaseYear: 2004,
       poster: `img/aviator.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -29,7 +29,7 @@ export default {
     {
       id: 3,
       title: `Bohemian Rhapsody`,
-      genre: [`Biography`, `Drama`, `Music`],
+      genre: `Biography`,
       releaseYear: 2018,
       poster: `img/bohemian-rhapsody.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -47,7 +47,7 @@ export default {
     {
       id: 4,
       title: `Revenant`,
-      genre: [`Action`, `Adventure`, `Drama`],
+      genre: `Drama`,
       releaseYear: 2015,
       poster: `img/revenant.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -65,7 +65,7 @@ export default {
     {
       id: 5,
       title: `Pulp Fiction`,
-      genre: [`Crime`, `Drama`],
+      genre: `Crime`,
       releaseYear: 1994,
       poster: `img/pulp-fiction.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -83,7 +83,7 @@ export default {
     {
       id: 6,
       title: `Mindhunter`,
-      genre: [`Crime`, `Drama`, `Thriller`],
+      genre: `Crime`,
       releaseYear: 2017,
       poster: `img/mindhunter.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -101,7 +101,7 @@ export default {
     {
       id: 7,
       title: `War of the Worlds`,
-      genre: [`Adventure`, `Sci-Fi`, `Thriller`],
+      genre: `Adventure`,
       releaseYear: 2014,
       poster: `img/war-of-the-worlds.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -119,7 +119,7 @@ export default {
     {
       id: 8,
       title: `Seven Years in Tibet`,
-      genre: [`Adventure`, `Biography`, `Drama`],
+      genre: `Adventure`,
       releaseYear: 1997,
       poster: `img/seven-years-in-tibet.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
@@ -137,7 +137,7 @@ export default {
     {
       id: 9,
       title: `Moonrise Kingdom`,
-      genre: [`Comedy`, `Drama`, `Romance`],
+      genre: `Comedy`,
       releaseYear: 2012,
       poster: `img/moonrise-kingdom.jpg`,
       promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,

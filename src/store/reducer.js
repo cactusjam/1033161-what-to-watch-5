@@ -1,24 +1,26 @@
-import {extend} from "../utils/utils";
+import {extend, getFilmsByGenre} from "../utils/utils";
 import {ActionType} from './action';
 import {GenresFilter} from "../constants/constants";
-import {getFilmsByGenre} from "../utils/utils";
 
 const initialState = {
-  genreFilter: GenresFilter.ALL,
-  films: []
+  activeFilterGenre: GenresFilter.ALL,
+  movies: []
 };
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
 
-    case ActionType.CHANGE_FILTER_BY_GENRE:
+    case ActionType.CHANGE_ACTIVE_GENRE:
       return extend(state, {
-        genreFilter: action.payload
+        activeFilterGenre: action.payload
       });
 
     case ActionType.GET_FILMS_BY_GENRE:
       return extend(state, {
-        films: getFilmsByGenre(action.payload)
+        movies: getFilmsByGenre(
+          action.payload.movies,
+          action.payload.genre,
+        )
       });
   }
 
