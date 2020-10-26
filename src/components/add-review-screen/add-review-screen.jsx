@@ -1,4 +1,4 @@
-import React, {PureComponent} from "react";
+import React, {Fragment, PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
@@ -78,13 +78,13 @@ export default class AddReviewScreen extends PureComponent {
               <div className="rating__stars">
                 {REVIEW_RATINGS.map((rating) => {
                   return (
-                    <React.Fragment key={rating}>
+                    <Fragment key={rating}>
                       <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={`${rating}`}
                         checked={rating === this.state.rating}
                         onChange={this.handleFieldChange}
                       />
                       <label className="rating__label" htmlFor={`star-${rating}`}>{`Rating ${rating}`}</label>
-                    </React.Fragment>
+                    </Fragment>
                   );
                 })}
               </div>

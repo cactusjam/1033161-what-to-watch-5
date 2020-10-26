@@ -1,4 +1,4 @@
-import React from "react";
+import React, {Fragment} from "react";
 import MoviesList from "../movies-list/movies-list";
 import {movieDetails, reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
@@ -15,7 +15,7 @@ const MovieScreen = (props) => {
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
-    <React.Fragment>
+    <Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
@@ -85,7 +85,7 @@ const MovieScreen = (props) => {
           </div>
         </footer>
       </div>
-    </React.Fragment>
+    </Fragment>
   );
 };
 
