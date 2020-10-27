@@ -1,5 +1,8 @@
 import React from "react";
 import {movieDetails} from "../../types/types";
+import {connect} from "react-redux";
+import {getRandomElements} from "../../utils/utils";
+
 
 const PlayerScreen = (props) => {
   const {currentMovie} = props;
@@ -43,4 +46,8 @@ PlayerScreen.propTypes = {
   currentMovie: movieDetails,
 };
 
-export default PlayerScreen;
+const mapStateToProps = (state) => ({
+  currentMovie: getRandomElements(state.movies),
+});
+
+export default connect(mapStateToProps)(PlayerScreen);

@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 import {BrowserRouter, Switch, Route} from "react-router-dom";
 import MainScreen from "../main-screen/main-screen";
 import LoginScreen from "../login-screen/login-screen";
@@ -18,8 +19,8 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact render={({history}) => (
           <MainScreen
-            promoMovie={promoMovie}
-            movies={movies}
+            // promoMovie={promoMovie}
+            // movies={movies}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />
@@ -28,33 +29,39 @@ const App = (props) => {
         </Route>
 
         <Route exact path="/mylist">
-          <MyListScreen userMovies={userMovies}/>
+          <MyListScreen/>
         </Route>
 
         <Route path="/films/:id" exact render={({history}) => (
           <MovieScreen
-            reviews={reviews}
-            movies={movies}
-            currentMovie={getRandomElements(movies)}
+            // reviews={reviews}
+            // movies={movies}
+            // currentMovie={getRandomElements(movies)}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />
 
         <Route exact path="/films/:id/review">
           <AddReviewScreen
-            movies={movies}
-            reviews={reviews}
+            // movies={movies}
+            // reviews={reviews}
           />
         </Route>
 
         <Route exact path="/player/:id">
-          <PlayerScreen
-            currentMovie={getRandomElements(movies)}/>
+          <PlayerScreen/>
         </Route>
       </Switch>
     </BrowserRouter>
   );
 };
+
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  promoMovie: state.promoMovie,
+  userMovies: state.userMovies,
+  reviews: state.reviews
+});
 
 App.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
@@ -63,5 +70,4 @@ App.propTypes = {
   reviews: PropTypes.arrayOf(reviewDetails).isRequired
 };
 
-
-export default App;
+export default connect(mapStateToProps)(App);

@@ -5,9 +5,9 @@ export const getRandomElements = (array)=> {
   return array[randomIndex];
 };
 
-const getSimilarMovies = (films, currentFilm, id) => {
-  const similarMovies = films.filter((movie) => {
-    return movie.genre.some((it) => it === currentFilm[0]) && movie.id !== id;
+export const getSimilarMovies = (movies, currentGenre, id) => {
+  const similarMovies = movies.filter((movie) => {
+    return movie.genre === currentGenre && movie.id !== id;
   });
 
   return similarMovies;

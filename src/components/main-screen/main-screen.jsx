@@ -99,14 +99,14 @@ MainScreen.propTypes = {
 
 const mapStateToProps = (state) => ({
   genreFilter: state.activeFilterGenre,
+  promoMovie: state.promoMovie,
+  movies: state.movies
 });
 
-const mapDispatchToProps = (dispatch, ownProps) => ({
+const mapDispatchToProps = (dispatch) => ({
   onGenreFilterChange(genreFilter) {
     dispatch(ActionCreator.changeGenreFilter(genreFilter));
-    dispatch(ActionCreator.getFilmsByGenre(ownProps.movies, genreFilter));
   },
 });
 
-export {MainScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MainScreen);

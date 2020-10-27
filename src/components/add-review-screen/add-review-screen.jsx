@@ -2,10 +2,11 @@ import React, {Fragment, PureComponent} from "react";
 import {Link} from 'react-router-dom';
 import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
+import {connect} from "react-redux";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
-export default class AddReviewScreen extends PureComponent {
+class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
 
@@ -108,3 +109,10 @@ export default class AddReviewScreen extends PureComponent {
 AddReviewScreen.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired
 };
+
+const mapStateToProps = (state) => ({
+  movies: state.movies,
+  reviews: state.reviews
+});
+
+export default connect(mapStateToProps)(AddReviewScreen);
