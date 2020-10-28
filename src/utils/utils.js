@@ -32,5 +32,3 @@ export const getGenresList = (films)=>{
 
   return uniqueGenres;
 };
-
-export default getSimilarMovies;
