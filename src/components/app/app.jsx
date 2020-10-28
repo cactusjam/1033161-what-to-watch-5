@@ -24,8 +24,9 @@ const App = () => {
           <MyListScreen/>
         </Route>
 
-        <Route path="/films/:id" exact render={({history}) => (
+        <Route path="/films/:id" exact render={({match, history}) => (
           <MovieScreen
+            currentMovieId={match.params.id}
             onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
           />
         )} />
@@ -35,9 +36,11 @@ const App = () => {
           />
         </Route>
 
-        <Route exact path="/player/:id">
-          <PlayerScreen/>
-        </Route>
+        <Route path="/player/:id" exact render={({match}) => (
+          <PlayerScreen
+            currentMovieId={match.params.id}
+          />
+        )} />
       </Switch>
     </BrowserRouter>
   );

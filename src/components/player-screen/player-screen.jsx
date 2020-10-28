@@ -1,7 +1,7 @@
 import React from "react";
 import {movieDetails} from "../../types/types";
 import {connect} from "react-redux";
-import {getRandomElements} from "../../utils/utils";
+import {findItemById} from "../../utils/utils";
 
 
 const PlayerScreen = (props) => {
@@ -46,8 +46,8 @@ PlayerScreen.propTypes = {
   currentMovie: movieDetails,
 };
 
-const mapStateToProps = (state) => ({
-  currentMovie: getRandomElements(state.movies),
+const mapStateToProps = (state, ownProps) => ({
+  currentMovie: findItemById(ownProps.currentMovieId, state.movies),
 });
 
 export default connect(mapStateToProps)(PlayerScreen);
