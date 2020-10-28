@@ -17,8 +17,8 @@ const MainScreen = (props) => {
   const filteredMovies = getFilmsByGenre(movies, genreFilter);
   const moviesList = filteredMovies.slice(0, visibleFilmsCount);
 
-  const handleMoreButtonClick = (incrementTo) => {
-    setVisibleFilmsCount(visibleFilmsCount + incrementTo);
+  const handleMoreButtonClick = () => {
+    setVisibleFilmsCount(visibleFilmsCount + defaultFilmsCount);
   };
 
   return (
