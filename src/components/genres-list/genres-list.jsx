@@ -18,7 +18,7 @@ const GenresList = (props) => {
           }`}
         >
           <a className="catalog__genres-link">{genre}</a>
-        </li>)};
+        </li>)}
     </ul>);
 };
 

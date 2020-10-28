@@ -7,8 +7,8 @@ const MovieReviews = (props) => {
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
-        {reviews.map((review) => (
-          <div key={review.author} className="review">
+        {reviews.map((review, index) => (
+          <div key={`review.author-${index}`} className="review">
             <blockquote className="review__quote">
               <p className="review__text">{review.text}</p>
 
