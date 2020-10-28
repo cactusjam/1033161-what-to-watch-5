@@ -17,5 +17,6 @@ const GenresFilter = {
   THRILLER: `Thrillers`,
 };
 
+const FILMS_COUNT_PER_CLICK = 8;
 
-export {TabName, GenresFilter};
+export {TabName, GenresFilter, FILMS_COUNT_PER_CLICK};

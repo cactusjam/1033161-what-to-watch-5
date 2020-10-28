@@ -1,16 +1,16 @@
 import React, {Fragment} from "react";
+import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
 import {movieDetails, reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs.jsx";
-import getSimilarMovies from "../../utils/utils";
+import {getSimilarMovies, findItemById} from "../../utils/utils";
 
 const MovieScreen = (props) => {
   const {onPlayButtonClick, movies, reviews, currentMovie} = props;
   const {id, genre, poster, releaseYear, title} = currentMovie;
-  const genres = genre.join(`, `);
 
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
@@ -28,9 +28,9 @@ const MovieScreen = (props) => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title + `poster`}</h2>
+              <h2 className="movie-card__title">{title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genres}</span>
+                <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{releaseYear}</span>
               </p>
 
@@ -93,8 +93,14 @@ MovieScreen.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   currentMovie: movieDetails,
-  reviews: PropTypes.arrayOf(reviewDetails).isRequired
+  reviews: PropTypes.arrayOf(reviewDetails).isRequired,
+  currentMovieId: PropTypes.string.isRequired
 };
 
-export default MovieScreen;
+const mapStateToProps = (state, ownProps) => ({
+  reviews: state.reviews,
+  movies: state.movies,
+  currentMovie: findItemById(ownProps.currentMovieId, state.movies),
+});
 
+export default connect(mapStateToProps)(MovieScreen);

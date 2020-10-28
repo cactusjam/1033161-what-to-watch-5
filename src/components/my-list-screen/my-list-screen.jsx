@@ -1,4 +1,5 @@
 import React from "react";
+import {connect} from "react-redux";
 import {Link} from "react-router-dom";
 import {movieDetails} from "../../types/types";
 import MoviesList from "../movies-list/movies-list";
@@ -53,4 +54,8 @@ MyListScreen.propTypes = {
   userMovies: PropTypes.arrayOf(movieDetails).isRequired,
 };
 
-export default MyListScreen;
+const mapStateToProps = (state) => ({
+  userMovies: state.userMovies
+});
+
+export default connect(mapStateToProps)(MyListScreen);

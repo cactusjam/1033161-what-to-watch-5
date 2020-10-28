@@ -4,7 +4,6 @@ import {movieDetails} from "../../types/types";
 const MovieDetails = (props) => {
   const {movie} = props;
   const {director, duration, genre, releaseYear, starring} = movie;
-  const genres = genre.join(`, `);
 
   return (
     <div className="movie-card__text movie-card__row">
@@ -26,7 +25,7 @@ const MovieDetails = (props) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
-          <span className="movie-card__details-value">{genres}</span>
+          <span className="movie-card__details-value">{genre}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Released</strong>
