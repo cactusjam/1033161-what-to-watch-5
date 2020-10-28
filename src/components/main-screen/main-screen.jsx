@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useState} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from 'prop-types';
@@ -8,18 +8,24 @@ import Header from "../header/header";
 import GenresList from "../genres-list/genres-list";
 import {getGenresList, getFilmsByGenre} from "../../utils/utils";
 import {ActionCreator} from "../../store/action";
+import MoreMoviesButton from "../more-movies-button/more-movies-button";
 
 const MainScreen = (props) => {
-  const {movies, promoMovie, onPlayButtonClick, onGenreFilterChange, genreFilter} = props;
-  const {cover, id, genre, poster, releaseYear, title} = promoMovie;
+  const {movies, promoMovie, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount} = props;
+  const [visibleFilmsCount, setVisibleFilmsCount] = useState(defaultFilmsCount);
   const genres = getGenresList(movies);
   const filteredMovies = getFilmsByGenre(movies, genreFilter);
+  const moviesList = filteredMovies.slice(0, visibleFilmsCount);
+
+  const handleMoreButtonClick = (incrementTo) => {
+    setVisibleFilmsCount(visibleFilmsCount + incrementTo);
+  };
 
   return (
     <Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={cover} alt={title} />
+          <img src={promoMovie.cover} alt={promoMovie.title} />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -29,18 +35,18 @@ const MainScreen = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src={poster} alt={title + ` poster`} width="218" height="327" />
+              <img src={promoMovie.poster} alt={promoMovie.title + ` poster`} width="218" height="327" />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{title}</h2>
+              <h2 className="movie-card__title">{promoMovie.title}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre}</span>
-                <span className="movie-card__year">{releaseYear}</span>
+                <span className="movie-card__genre">{promoMovie.genre}</span>
+                <span className="movie-card__year">{promoMovie.releaseYear}</span>
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(id)}>
+                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(promoMovie.id)}>
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>
@@ -64,11 +70,8 @@ const MainScreen = (props) => {
 
           <GenresList genres={genres} onFilterChange={onGenreFilterChange} activeFilter={genreFilter}/>
 
-          <MoviesList movies={filteredMovies} onClick={onPlayButtonClick}/>
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <MoviesList movies={moviesList} onClick={onPlayButtonClick}/>
+          {filteredMovies.length > moviesList.length ? <MoreMoviesButton handleMoreButtonClick={handleMoreButtonClick} /> : ``}
         </section>
 
         <footer className="page-footer">
@@ -94,13 +97,15 @@ MainScreen.propTypes = {
   promoMovie: promoMovieDetails,
   onPlayButtonClick: PropTypes.func.isRequired,
   onGenreFilterChange: PropTypes.func.isRequired,
-  genreFilter: PropTypes.string.isRequired
+  genreFilter: PropTypes.string.isRequired,
+  defaultFilmsCount: PropTypes.number.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   genreFilter: state.activeFilterGenre,
   promoMovie: state.promoMovie,
-  movies: state.movies
+  movies: state.movies,
+  defaultFilmsCount: state.defaultFilmsCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
