@@ -10,18 +10,20 @@ const MovieCard = (props) => {
 
   return (
     <article id={id} className="small-movie-card catalog__movies-card">
-      <div className="small-movie-card__image"
-        onMouseOver={() => {
-          timeout = setTimeout(onPlayChange, 1000);
-        }} onMouseLeave={() => {
-          clearTimeout(timeout);
-          onPlayChange();
-        }}>
-        {children}
-      </div>
-      <h3 className="small-movie-card__title">
-        <Link to={`/films/` + id} className="small-movie-card__link">{title}</Link>
-      </h3>
+      <Link to={`/films/` + id} className="small-movie-card__link">
+        <div className="small-movie-card__image"
+          onMouseOver={() => {
+            timeout = setTimeout(onPlayChange, 1000);
+          }} onMouseLeave={() => {
+            clearTimeout(timeout);
+            onPlayChange();
+          }}>
+          {children}
+        </div>
+        <h3 className="small-movie-card__title">
+          <span className="small-movie-card__link">{title}</span>
+        </h3>
+      </Link>
     </article>
   );
 };

@@ -5,9 +5,27 @@ export default {
     genre: `Drama`,
     releaseYear: 2014,
     poster: `img/the-grand-budapest-hotel-poster.jpg`,
-    cover: `img/bg-the-grand-budapest-hotel.jpg`
+    cover: `img/bg-the-grand-budapest-hotel.jpg`,
   },
   list: [
+    {
+      id: 1,
+      title: `The Grand Budapest Hotel`,
+      genre: `Drama`,
+      releaseYear: 2014,
+      poster: `img/the-grand-budapest-hotel-poster.jpg`,
+      cover: `img/bg-the-grand-budapest-hotel.jpg`,
+      promo: `https://download.blender.org/durian/trailer/sintel_trailer-480p.mp4`,
+      rating: {
+        score: 8.9,
+        level: `Very good`,
+        countOfVotes: 843,
+      },
+      description: `A biopic depicting the early years of legendary Director and aviator Howard Hughes' career from the late 1920s to the mid 1940s.`,
+      director: `Martin Scorsese`,
+      starring: `Leonardo DiCaprio, Cate Blanchett, Kate Beckinsale`,
+      duration: `2h 50min`
+    },
     {
       id: 2,
       title: `Aviator`,
