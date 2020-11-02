@@ -1,5 +1,4 @@
 import React, {PureComponent, createRef} from 'react';
-import PropTypes from 'prop-types';
 
 const withVideoPlayer = (Component) => {
   class WithVideoPlayer extends PureComponent {
@@ -7,82 +6,90 @@ const withVideoPlayer = (Component) => {
       super(props);
 
       this._videoRef = createRef();
+      this._progressRef = createRef();
+      this._pinProgressRef = createRef();
+      this._elapsedTimeRef = createRef();
 
       this.state = {
-        isLoading: true,
-        isPlaying: props.isPlaying,
+        isPlaying: false,
       };
+
+      this.handlePlayPauseClick = this.handlePlayPauseClick.bind(this);
+      this.handleFullScreenClick = this.handleFullScreenClick.bind(this);
+      this.progressLoop = this.progressLoop.bind(this);
     }
 
     componentDidMount() {
-      const {src, poster, isMuted} = this.props;
-      const video = this._videoRef.current;
+      this.movie = this._videoRef.current;
+      this.progress = this._progressRef.current;
+      this.pinProgress = this._pinProgressRef.current;
+      this.elapsedTime = this._elapsedTimeRef.current;
 
-      video.src = src;
-      video.poster = poster;
-      video.muted = isMuted;
-
-      video.oncanplaythrough = () => this.setState({
-        isLoading: false,
-      });
-
-      video.onplay = () => {
-        this.setState({
-          isLoading: true,
-        });
+      this.movie.oncanplay = () => {
+        this.handlePlayPauseClick();
+        this.progressLoop();
       };
 
-      video.onpause = () => {
-        video.load();
-        this.setState({
-          isPlaying: false,
-        });
+      this.movie.onended = () => {
+        this.handlePlayPauseClick();
       };
-    }
-
-    componentWillUnmount() {
-      let video = this._videoRef.current;
-
-      video.oncanplaythrough = null;
-      video.onplay = null;
-      video.onpause = null;
-      video.src = ``;
-    }
-
-    render() {
-      const {isLoading, isPlaying} = this.state;
-
-      return (
-        <Component
-          {...this.props}
-          isLoading={isLoading}
-          isPlaying={isPlaying}
-          onPlayChange={() => {
-            this.setState({isPlaying: !isPlaying});
-          }}>
-          <video width="280" height="175" ref={this._videoRef}/>
-        </Component>
-      );
     }
 
     componentDidUpdate() {
-      const {isPlaying} = this.state;
-      const video = this._videoRef.current;
+      this.progressLoop();
+    }
 
-      if (isPlaying) {
-        video.play();
-      } else {
-        video.pause();
+    componentWillUnmount() {
+    }
+
+    changeAction() {
+      switch (this.state.isPlaying) {
+        case true:
+          this.movie.play();
+          break;
+        case false:
+          this.movie.pause();
+          break;
       }
     }
-  }
 
-  WithVideoPlayer.propTypes = {
-    isPlaying: PropTypes.bool.isRequired,
-    isMuted: PropTypes.bool.isRequired,
-    poster: PropTypes.string.isRequired,
-    src: PropTypes.string.isRequired,
-  };
+    changeElapsedTime() {
+      const elapsed = this.movie.duration - this.movie.currentTime;
+      this.elapsedTime.textContent = new Date(elapsed * 1000).toISOString().substr(11, 8);
+    }
+
+    progressLoop() {
+      if (this.state.isPlaying === true) {
+        const percentage = Math.round((this.movie.currentTime / this.movie.duration) * 100);
+        this.progress.value = percentage;
+        this.pinProgress.style.left = `${percentage}% `;
+        this.changeElapsedTime();
+        requestAnimationFrame(this.progressLoop);
+      }
+    }
+
+    handlePlayPauseClick() {
+      this.setState({isPlaying: !this.state.isPlaying}, this.changeAction);
+    }
+
+    handleFullScreenClick() {
+      this.movie.requestFullscreen();
+    }
+
+    render() {
+      return <Component
+        {...this.props}
+        videoRef = {this._videoRef}
+        progressRef = {this._progressRef}
+        pinProgressRef = {this._pinProgressRef}
+        elapsedTimeRef = {this._elapsedTimeRef}
+        isPlaying = {this.state.isPlaying}
+        onPlayPauseClick = {this.handlePlayPauseClick}
+        onFullscreenClick = {this.handleFullScreenClick}
+        // onPlayerClose = {this.handleEscClick}
+      />;
+    }
+  }
 
   return WithVideoPlayer;
 };

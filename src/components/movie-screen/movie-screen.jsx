@@ -5,8 +5,10 @@ import {movieDetails, reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
-import Tabs from "../tabs/tabs.jsx";
+import Tabs from "../tabs/tabs";
 import {getSimilarMovies, findItemById} from "../../utils/utils";
+import withActiveMovie from '../../hocs/with-active-movie/with-active-movie';
+const TabWrapped = withActiveMovie(Tabs);
 
 const MovieScreen = (props) => {
   const {onPlayButtonClick, movies, reviews, currentMovie} = props;
@@ -59,7 +61,7 @@ const MovieScreen = (props) => {
               <img src={poster} alt={title + `poster`} width="218" height="327" />
             </div>
 
-            <Tabs movie={currentMovie} reviews={reviews}/>
+            <TabWrapped movie={currentMovie} reviews={reviews}/>
 
           </div>
         </div>
