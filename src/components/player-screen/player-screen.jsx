@@ -3,9 +3,9 @@ import {movieDetails} from "../../types/types";
 import {connect} from "react-redux";
 import {findItemById} from "../../utils/utils";
 import withVideoPlayer from "../../hocs/with-video-player/with-video-player";
-import VideoPlayerBig from "../video-player-big/video-player-big";
+import VideoPlayer from "../video-player/video-player";
 
-const VideoPlayerWrapper = withVideoPlayer(VideoPlayerBig);
+const VideoPlayerWrapper = withVideoPlayer(VideoPlayer);
 
 const PlayerScreen = (props) => {
   const {currentMovie} = props;

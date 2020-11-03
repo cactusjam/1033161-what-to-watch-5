@@ -1,7 +1,7 @@
 import React from 'react';
 import {movieDetails} from "../../types/types";
 import {Link} from "react-router-dom";
-import VideoPlayer from "../video-player/video-player";
+import VideoPlayerSmall from "../video-player-small/video-player-small";
 
 const MovieCard = (props) => {
   const {movie} = props;
@@ -9,7 +9,7 @@ const MovieCard = (props) => {
   return (
     <article id={movie.id} className="small-movie-card catalog__movies-card">
       <Link to={`/films/` + movie.id} className="small-movie-card__link">
-        <VideoPlayer
+        <VideoPlayerSmall
           movie = {movie}
         />
         <h3 className="small-movie-card__title">

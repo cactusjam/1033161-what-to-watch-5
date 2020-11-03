@@ -1,63 +1,64 @@
-import React, {PureComponent, createRef} from "react";
-import PropTypes from "prop-types";
+import React, {Fragment} from "react";
+import {Link} from "react-router-dom";
+import {movieDetails} from "../../types/types";
+import PropTypes from 'prop-types';
 
-class VideoPlayer extends PureComponent {
-  constructor(props) {
-    super(props);
+const VideoPlayer = (props) => {
+  const {
+    currentMovie,
+    elapsedTimeRef,
+    isPlaying,
+    onPlayPauseClick,
+    onFullscreenClick,
+    progressRef,
+    pinProgressRef,
+    videoRef
+  } = props;
 
-    this._videoRef = createRef();
+  return (
+    <Fragment>
+      <video src={currentMovie.promo} className="player__video" autoPlay muted poster={currentMovie.poster} ref={videoRef}/>
+      <Link type="button" className="player__exit" to={`/films/${currentMovie.id}`}>Exit</Link>
 
-    this.handleHoverPlayer = this.handleHoverPlayer.bind(this);
-    this.handleUnhoverPlayer = this.handleUnhoverPlayer.bind(this);
-  }
+      <div className="player__controls">
+        <div className="player__controls-row">
+          <div className="player__time">
+            <progress className="player__progress" value="30" max="100" ref={progressRef}/>
+            <div className="player__toggler" style={{left: `30%`}} ref={pinProgressRef}>Toggler</div>
+          </div>
+          <div className="player__time-value" ref={elapsedTimeRef}>1:30:29</div>
+        </div>
 
-  componentWillUnmount() {
-    if (this.filmTimeout) {
-      clearTimeout(this.filmTimeout);
-    }
-  }
+        <div className="player__controls-row">
+          <button type="button" className="player__play" onClick={onPlayPauseClick}>
+            <svg viewBox="0 0 19 19" width="19" height="19">
+              <use xlinkHref={isPlaying ? `#pause` : `#play-s`}/>
+            </svg>
+            <span>{isPlaying ? `Pause` : `Play`}</span>
+          </button>
+          <div className="player__name">{currentMovie.title}</div>
 
-  handleHoverPlayer() {
-    const movie = this._videoRef.current;
-    this.filmTimeout = setTimeout(() => {
-      movie.play();
-    }, 1000);
-  }
-
-  handleUnhoverPlayer() {
-    const movie = this._videoRef.current;
-    if (this.filmTimeout) {
-      clearTimeout(this.filmTimeout);
-    }
-    movie.load();
-  }
-
-  render() {
-    const {movie} = this.props;
-
-    return (
-      <div
-        className="small-movie-card__image"
-        onMouseEnter={this.handleHoverPlayer}
-        onMouseLeave={this.handleUnhoverPlayer}
-      >
-        <video
-          ref={this._videoRef}
-          autoPlay={false}
-          poster={movie.poster}
-          src={movie.promo}
-          width="280"
-          height="175"
-          muted
-        >
-        </video>
+          <button type="button" className="player__full-screen" onClick={onFullscreenClick}>
+            <svg viewBox="0 0 27 27" width="27" height="27">
+              <use xlinkHref="#full-screen" />
+            </svg>
+            <span>Full screen</span>
+          </button>
+        </div>
       </div>
-    );
-  }
-}
+    </Fragment>
+  );
+};
 
 VideoPlayer.propTypes = {
-  movie: PropTypes.object.isRequired,
+  currentMovie: movieDetails,
+  isPlaying: PropTypes.bool.isRequired,
+  videoRef: PropTypes.object.isRequired,
+  progressRef: PropTypes.object.isRequired,
+  pinProgressRef: PropTypes.object.isRequired,
+  elapsedTimeRef: PropTypes.object.isRequired,
+  onPlayPauseClick: PropTypes.func.isRequired,
+  onFullscreenClick: PropTypes.func.isRequired,
 };
 
 export default VideoPlayer;

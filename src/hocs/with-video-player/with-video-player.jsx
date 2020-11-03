@@ -86,7 +86,6 @@ const withVideoPlayer = (Component) => {
         isPlaying = {this.state.isPlaying}
         onPlayPauseClick = {this.handlePlayPauseClick}
         onFullscreenClick = {this.handleFullScreenClick}
-        // onPlayerClose = {this.handleEscClick}
       />;
     }
   }

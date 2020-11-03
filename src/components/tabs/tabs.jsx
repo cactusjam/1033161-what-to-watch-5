@@ -10,9 +10,9 @@ const Tabs = (props) => {
     <div className="movie-card__desc">
       <nav className="movie-nav movie-card__nav">
         <ul className="movie-nav__list">
-          {tabs.map((tab, index) =>
-            <li key={index} className={`movie-nav__item ${(activeTab === tab) ? `movie-nav__item--active` : ``}`}>
-              <a className="movie-nav__link" onClick={() => onActiveMovieChange(tab)}>{tab.charAt(0) + tab.slice(1).toLowerCase()}</a>
+          {tabs.map(([key, value]) =>
+            <li key={`${key}`} className={`movie-nav__item ${(activeTab === value) ? `movie-nav__item--active` : ``}`}>
+              <a className="movie-nav__link" onClick={() => onActiveMovieChange(value)}>{value}</a>
             </li>
           )}
         </ul>
@@ -22,13 +22,12 @@ const Tabs = (props) => {
   );
 };
 
-
 Tabs.propTypes = {
   movie: movieDetails,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   onActiveMovieChange: PropTypes.func.isRequired,
   activeTab: PropTypes.string.isRequired,
-  tabs: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  tabs: PropTypes.arrayOf(PropTypes.array).isRequired,
   tabToRender: PropTypes.element.isRequired,
 };
 

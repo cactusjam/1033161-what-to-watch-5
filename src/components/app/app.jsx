@@ -40,7 +40,6 @@ const App = () => {
           <PlayerScreen
             currentMovieId={match.params.id}
             isPlaying={false}
-            // onPlayerClose={() => history.goBack()}
           />
         )} />
       </Switch>

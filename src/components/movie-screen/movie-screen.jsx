@@ -7,8 +7,8 @@ import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs";
 import {getSimilarMovies, findItemById} from "../../utils/utils";
-import withActiveMovie from '../../hocs/with-active-movie/with-active-movie';
-const TabWrapped = withActiveMovie(Tabs);
+import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
+const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
   const {onPlayButtonClick, movies, reviews, currentMovie} = props;
