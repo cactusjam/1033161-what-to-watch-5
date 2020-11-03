@@ -9,7 +9,6 @@ import GenresList from "../genres-list/genres-list";
 import {getGenresList, getFilmsByGenre} from "../../utils/utils";
 import {ActionCreator} from "../../store/action";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
-import {Link} from 'react-router-dom';
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount} = props;
@@ -77,11 +76,11 @@ const MainScreen = (props) => {
 
         <footer className="page-footer">
           <div className="logo">
-            <Link className="logo__link logo__link--light" to="/">
+            <a className="logo__link logo__link--light">
               <span className="logo__letter logo__letter--1">W</span>
               <span className="logo__letter logo__letter--2">T</span>
               <span className="logo__letter logo__letter--3">W</span>
-            </Link>
+            </a>
           </div>
 
           <div className="copyright">
