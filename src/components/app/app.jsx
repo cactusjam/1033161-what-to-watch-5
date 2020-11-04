@@ -39,6 +39,7 @@ const App = () => {
         <Route path="/player/:id" exact render={({match}) => (
           <PlayerScreen
             currentMovieId={match.params.id}
+            isPlaying={false}
           />
         )} />
       </Switch>

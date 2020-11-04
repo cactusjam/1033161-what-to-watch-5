@@ -1,35 +1,27 @@
 import React from 'react';
-import PropTypes from 'prop-types';
 import {movieDetails} from "../../types/types";
 import {Link} from "react-router-dom";
+import VideoPlayerSmall from "../video-player-small/video-player-small";
 
 const MovieCard = (props) => {
-  const {movie, onPlayChange, children} = props;
-  const {id, title} = movie;
-  let timeout;
+  const {movie} = props;
 
   return (
-    <article id={id} className="small-movie-card catalog__movies-card">
-      <div className="small-movie-card__image"
-        onMouseOver={() => {
-          timeout = setTimeout(onPlayChange, 1000);
-        }} onMouseLeave={() => {
-          clearTimeout(timeout);
-          onPlayChange();
-        }}>
-        {children}
-      </div>
-      <h3 className="small-movie-card__title">
-        <Link to={`/films/` + id} className="small-movie-card__link">{title}</Link>
-      </h3>
+    <article id={movie.id} className="small-movie-card catalog__movies-card">
+      <Link to={`/films/` + movie.id} className="small-movie-card__link">
+        <VideoPlayerSmall
+          movie = {movie}
+        />
+        <h3 className="small-movie-card__title">
+          <span className="small-movie-card__link">{movie.title}</span>
+        </h3>
+      </Link>
     </article>
   );
 };
 
 MovieCard.propTypes = {
-  movie: movieDetails,
-  onPlayChange: PropTypes.func.isRequired,
-  children: PropTypes.element.isRequired
+  movie: movieDetails
 };
 
 export default MovieCard;
