@@ -11,6 +11,7 @@ const withVideoPlayer = (Component) => {
       this._elapsedTimeRef = createRef();
 
       this.state = {
+        duration: 0,
         isPlaying: false,
       };
 
@@ -37,9 +38,6 @@ const withVideoPlayer = (Component) => {
 
     componentDidUpdate() {
       this.progressLoop();
-    }
-
-    componentWillUnmount() {
     }
 
     changeAction() {
@@ -84,6 +82,7 @@ const withVideoPlayer = (Component) => {
         pinProgressRef = {this._pinProgressRef}
         elapsedTimeRef = {this._elapsedTimeRef}
         isPlaying = {this.state.isPlaying}
+        duration={this.state.duration}
         onPlayPauseClick = {this.handlePlayPauseClick}
         onFullscreenClick = {this.handleFullScreenClick}
       />;

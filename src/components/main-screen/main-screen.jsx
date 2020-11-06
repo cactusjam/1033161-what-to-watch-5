@@ -7,7 +7,7 @@ import {movieDetails} from "../../types/types";
 import Header from "../header/header";
 import GenresList from "../genres-list/genres-list";
 import {getGenresList, getFilmsByGenre} from "../../utils/utils";
-import {ActionCreator} from "../../store/action";
+import {changeGenreFilter} from "../../store/action";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
 
 const MainScreen = (props) => {
@@ -101,16 +101,16 @@ MainScreen.propTypes = {
   defaultFilmsCount: PropTypes.number.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  genreFilter: state.activeFilterGenre,
-  promoMovie: state.promoMovie,
-  movies: state.movies,
-  defaultFilmsCount: state.defaultFilmsCount
+const mapStateToProps = ({MOVIES, GENRES}) => ({
+  genreFilter: GENRES.activeFilterGenre,
+  promoMovie: MOVIES.promoMovie,
+  movies: MOVIES.movies,
+  defaultFilmsCount: MOVIES.defaultFilmsCount
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreFilterChange(genreFilter) {
-    dispatch(ActionCreator.changeGenreFilter(genreFilter));
+    dispatch(changeGenreFilter(genreFilter));
   },
 });
 

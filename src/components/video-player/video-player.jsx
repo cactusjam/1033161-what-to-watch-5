@@ -8,6 +8,7 @@ const VideoPlayer = (props) => {
     currentMovie,
     elapsedTimeRef,
     isPlaying,
+    duration,
     onPlayPauseClick,
     onFullscreenClick,
     progressRef,
@@ -26,7 +27,7 @@ const VideoPlayer = (props) => {
             <progress className="player__progress" value="30" max="100" ref={progressRef}/>
             <div className="player__toggler" style={{left: `30%`}} ref={pinProgressRef}>Toggler</div>
           </div>
-          <div className="player__time-value" ref={elapsedTimeRef}>1:30:29</div>
+          <div className="player__time-value" ref={elapsedTimeRef}>{duration}</div>
         </div>
 
         <div className="player__controls-row">
@@ -59,6 +60,7 @@ VideoPlayer.propTypes = {
   elapsedTimeRef: PropTypes.object.isRequired,
   onPlayPauseClick: PropTypes.func.isRequired,
   onFullscreenClick: PropTypes.func.isRequired,
+  duration: PropTypes.number.isRequired
 };
 
 export default VideoPlayer;

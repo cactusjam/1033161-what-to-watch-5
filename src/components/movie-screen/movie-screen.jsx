@@ -99,10 +99,10 @@ MovieScreen.propTypes = {
   currentMovieId: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  reviews: state.reviews,
-  movies: state.movies,
-  currentMovie: findItemById(ownProps.currentMovieId, state.movies),
+const mapStateToProps = ({MOVIES}, ownProps) => ({
+  reviews: MOVIES.reviews,
+  movies: MOVIES.movies,
+  currentMovie: findItemById(ownProps.currentMovieId, MOVIES.movies),
 });
 
 export default connect(mapStateToProps)(MovieScreen);

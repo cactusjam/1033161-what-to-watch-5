@@ -23,8 +23,8 @@ PlayerScreen.propTypes = {
   currentMovie: movieDetails,
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  currentMovie: findItemById(ownProps.currentMovieId, state.movies),
+const mapStateToProps = ({MOVIES}, ownProps) => ({
+  currentMovie: findItemById(ownProps.currentMovieId, MOVIES.movies),
 });
 
 export default connect(mapStateToProps)(PlayerScreen);
