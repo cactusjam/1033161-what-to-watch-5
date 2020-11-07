@@ -1,13 +1,12 @@
 import {extend} from "../../../utils/utils";
 import {ActionType} from "../../action";
-import {GenresFilter, FILMS_COUNT_PER_CLICK} from "../../../constants/constants";
+import {FILMS_COUNT_PER_CLICK} from "../../../constants/constants";
 import films from "../../../mocks/films";
 import reviews from "../../../mocks/reviews";
 
 const {promo, list} = films;
 
 const initialState = {
-  activeFilterGenre: GenresFilter.ALL,
   movies: list,
   promoMovie: promo,
   reviews,
@@ -28,6 +27,10 @@ const moviesData = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         reviews: action.payload
+      });
+    case ActionType.SET_MOVIES_COUNT:
+      return extend(state, {
+        defaultFilmsCount: action.payload
       });
   }
 

@@ -1,9 +1,12 @@
+import {FILMS_COUNT_PER_CLICK} from "../constants/constants";
+
 const ActionType = {
   CHANGE_ACTIVE_GENRE: `CHANGE_ACTIVE_GENRE`,
   LOAD_MOVIES: `LOAD_MOVIES`,
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SHOW_MORE_MOVIES: `SHOW_MORE_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
+  SET_MOVIES_COUNT: `SET_MOVIES_COUNT`
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -21,10 +24,10 @@ export const loadPromoMovie = (movie) => ({
   payload: movie,
 });
 
-// export const showMoreMovie = (movie) => ({
-//   type: ActionType.SHOW_MORE_MOVIE,
-//   payload: movie,
-// });
+export const setMoviesCount = () => ({
+  type: ActionType.SET_MOVIES_COUNT,
+  payload: FILMS_COUNT_PER_CLICK,
+});
 
 export const loadMovieReviews = (reviews) => ({
   type: ActionType.LOAD_MOVIE_REVIEWS,

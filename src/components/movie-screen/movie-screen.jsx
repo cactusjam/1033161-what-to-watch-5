@@ -6,8 +6,10 @@ import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs";
-import {getSimilarMovies, findItemById} from "../../utils/utils";
+import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
+import {getMovies, getReviews, getMovieById} from "../../store/selectors";
+
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
@@ -99,10 +101,10 @@ MovieScreen.propTypes = {
   currentMovieId: PropTypes.string.isRequired
 };
 
-const mapStateToProps = ({MOVIES}, ownProps) => ({
-  reviews: MOVIES.reviews,
-  movies: MOVIES.movies,
-  currentMovie: findItemById(ownProps.currentMovieId, MOVIES.movies),
+const mapStateToProps = (state, ownProps) => ({
+  reviews: getReviews(state),
+  movies: getMovies(state),
+  currentMovie: getMovieById(state, ownProps.currentMovieId),
 });
 
 export default connect(mapStateToProps)(MovieScreen);

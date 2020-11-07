@@ -3,6 +3,7 @@ import {Link} from 'react-router-dom';
 import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
+import {getMovies, getReviews} from "../../store/selectors";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
@@ -111,8 +112,8 @@ AddReviewScreen.propTypes = {
 };
 
 const mapStateToProps = (state) => ({
-  movies: state.movies,
-  reviews: state.reviews
+  movies: getMovies(state),
+  reviews: getReviews(state)
 });
 
 export default connect(mapStateToProps)(AddReviewScreen);

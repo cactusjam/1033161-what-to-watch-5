@@ -1,9 +1,9 @@
 import React from "react";
 import {movieDetails} from "../../types/types";
 import {connect} from "react-redux";
-import {findItemById} from "../../utils/utils";
 import withVideoPlayer from "../../hocs/with-video-player/with-video-player";
 import VideoPlayer from "../video-player/video-player";
+import {getMovieById} from "../../store/selectors";
 
 const VideoPlayerWrapper = withVideoPlayer(VideoPlayer);
 
@@ -23,8 +23,8 @@ PlayerScreen.propTypes = {
   currentMovie: movieDetails,
 };
 
-const mapStateToProps = ({MOVIES}, ownProps) => ({
-  currentMovie: findItemById(ownProps.currentMovieId, MOVIES.movies),
+const mapStateToProps = (state, ownProps) => ({
+  currentMovie: getMovieById(state, ownProps.currentMovieId),
 });
 
 export default connect(mapStateToProps)(PlayerScreen);
