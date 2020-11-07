@@ -9,7 +9,7 @@ import GenresList from "../genres-list/genres-list";
 import {getGenresList, getFilmsByGenre} from "../../utils/utils";
 import {changeGenreFilter} from "../../store/action";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
-import {getMovies, getActiveGenre, getPromoMovie, getMoviesCount} from "../../store/selectors";
+import {getMovies, getActiveGenre, getPromoMovie} from "../../store/selectors";
 
 const MainScreen = (props) => {
   const {movies, promoMovie, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount} = props;
@@ -106,7 +106,7 @@ const mapStateToProps = (state) => ({
   genreFilter: getActiveGenre(state),
   promoMovie: getPromoMovie(state),
   movies: getMovies(state),
-  defaultFilmsCount: getMoviesCount(state)
+  // defaultFilmsCount: getMoviesCount(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

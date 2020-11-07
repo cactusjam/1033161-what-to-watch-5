@@ -27,10 +27,6 @@ const moviesData = (state = initialState, action) => {
       return extend(state, {
         reviews: action.payload
       });
-    case ActionType.SET_MOVIES_COUNT:
-      return extend(state, {
-        defaultFilmsCount: action.payload
-      });
   }
 
   return state;
