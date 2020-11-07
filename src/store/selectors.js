@@ -2,7 +2,7 @@ import {NameSpace} from "./reducers/root-reducer.js";
 import {findItemById} from "../utils/utils";
 
 export const getMovies = (state) => {
-  return state[NameSpace.MOVIES].movies;
+  return state[NameSpace.DATA].movies;
 };
 
 export const getActiveGenre = (state) => {
@@ -10,15 +10,15 @@ export const getActiveGenre = (state) => {
 };
 
 export const getPromoMovie = (state) => {
-  return state[NameSpace.MOVIES].promoMovie;
+  return state[NameSpace.DATA].promoMovie;
 };
 
 export const getReviews = (state) => {
-  return state[NameSpace.MOVIES].reviews;
+  return state[NameSpace.DATA].reviews;
 };
 
 export const getMoviesCount = (state) => {
-  return state[NameSpace.MOVIES].defaultFilmsCount;
+  return state[NameSpace.DATA].defaultFilmsCount;
 };
 
 export const getMovieById = (state, id) => {

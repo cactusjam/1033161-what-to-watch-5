@@ -4,10 +4,10 @@ import {genresData} from "./genres-data/genres-data";
 
 export const NameSpace = {
   GENRES: `GENRES`,
-  MOVIES: `MOVIES`,
+  DATA: `DATA`,
 };
 
 export default combineReducers({
-  [NameSpace.MOVIES]: moviesData,
+  [NameSpace.DATA]: moviesData,
   [NameSpace.GENRES]: genresData,
 });
