@@ -6,7 +6,8 @@ const ActionType = {
   LOAD_PROMO_MOVIE: `LOAD_PROMO_MOVIE`,
   SHOW_MORE_MOVIES: `SHOW_MORE_MOVIES`,
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
-  SET_MOVIES_COUNT: `SET_MOVIES_COUNT`
+  SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
+  REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -32,6 +33,11 @@ export const setMoviesCount = () => ({
 export const loadMovieReviews = (reviews) => ({
   type: ActionType.LOAD_MOVIE_REVIEWS,
   payload: reviews,
+});
+
+export const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRED_AUTHORIZATION,
+  payload: status,
 });
 
 export {ActionType};

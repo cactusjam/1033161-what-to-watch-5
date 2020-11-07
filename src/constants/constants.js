@@ -17,6 +17,11 @@ const GenresFilter = {
   THRILLER: `Thrillers`,
 };
 
+const AuthorizationStatus = {
+  AUTH: `AUTH`,
+  NO_AUTH: `NO_AUTH`,
+};
+
 const FILMS_COUNT_PER_CLICK = 8;
 
-export {TabName, GenresFilter, FILMS_COUNT_PER_CLICK};
+export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};
