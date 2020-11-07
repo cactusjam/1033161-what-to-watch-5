@@ -7,8 +7,9 @@ import {createAPI} from "./services/api";
 import {Provider} from "react-redux";
 import rootReducer from "./store/reducers/root-reducer";
 import {requireAuthorization} from "./store/action";
-import {fetchQuestionList, checkAuth} from "./store/api-actions";
-import {AuthorizationStatus} from "./const";
+import {fetchMoviesList, fetchPromoMovie, checkAuth} from "./store/api-actions";
+import {AuthorizationStatus} from "./constants/constants";
+import {composeWithDevTools} from "redux-devtools-extension";
 
 const api = createAPI(
     () => store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH))
@@ -16,10 +17,13 @@ const api = createAPI(
 
 const store = createStore(
     rootReducer,
-    applyMiddleware(thunk.withExtraArgument(api))
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
-store.dispatch(fetchQuestionList());
+store.dispatch(fetchMoviesList());
+store.dispatch(fetchPromoMovie());
 store.dispatch(checkAuth());
 
 ReactDOM.render(

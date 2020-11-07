@@ -3,7 +3,7 @@ import {movieDetails} from "../../types/types";
 import {Link} from "react-router-dom";
 import VideoPlayerSmall from "../video-player-small/video-player-small";
 
-const MovieCard = (props) => {
+const MovieCardSmall = (props) => {
   const {movie} = props;
 
   return (
@@ -13,15 +13,15 @@ const MovieCard = (props) => {
           movie = {movie}
         />
         <h3 className="small-movie-card__title">
-          <span className="small-movie-card__link">{movie.title}</span>
+          <span className="small-movie-card__link"></span>
         </h3>
       </Link>
     </article>
   );
 };
 
-MovieCard.propTypes = {
+MovieCardSmall.propTypes = {
   movie: movieDetails
 };
 
-export default MovieCard;
+export default MovieCardSmall;

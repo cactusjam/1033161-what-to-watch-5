@@ -2,24 +2,46 @@ import {
   changeGenreFilter,
   loadMovies,
   loadPromoMovie,
-  requireAuthorization
+  requireAuthorization,
+  loadSingleFilm
 } from "./action";
-import {AuthorizationStatus} from "../const";
+import {AuthorizationStatus, GenresFilter} from "../constants/constants";
+import {movieAdapter, moviesListAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(`/films`)
-    .then(({data}) => {
-      dispatch(loadMovies(data));
-      return {data};
+    .then(({data}) => moviesListAdapter(data))
+    .then((films) => {
+      dispatch(loadMovies(films));
+      return {films};
     })
     .then(() => {
-      dispatch(changeGenreFilter(`All`));
+      dispatch(changeGenreFilter(GenresFilter.ALL));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загрузки списка фильмов`);
     })
 );
 
+export const fetchSingleFilm = (id) => (dispatch, _getState, api) => (
+  api.get(`/films/${id}`)
+    .then((promoMovie) => {
+      dispatch(loadSingleFilm(movieAdapter(promoMovie.data)));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загруки фильма`);
+    })
+);
+
+
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(`/films/promo`)
-    .then(({data}) => dispatch(loadPromoMovie(data)))
+    .then((film) => {
+      dispatch(loadPromoMovie(movieAdapter(film.data)));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загруки промофильма`);
+    })
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (

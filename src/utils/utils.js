@@ -1,4 +1,4 @@
-import {GenresFilter} from "../constants/constants";
+import {GenresFilter, Rating, RatingLevel} from "../constants/constants";
 
 export const getRandomElements = (array)=> {
   let randomIndex = Math.floor(Math.random() * array.length);
@@ -37,4 +37,28 @@ export const getGenresList = (films)=>{
   uniqueGenres.unshift(GenresFilter.ALL);
 
   return uniqueGenres;
+};
+
+export const getRatingLevel = (score) => {
+  if (score < Rating.BAD) {
+    return RatingLevel.BAD;
+  }
+
+  if (score >= Rating.BAD && score < Rating.NORMAL) {
+    return RatingLevel.NORMAL;
+  }
+
+  if (score >= Rating.NORMAL && score < Rating.GOOD) {
+    return RatingLevel.GOOD;
+  }
+
+  if (score >= Rating.GOOD && score < Rating.VERY_GOOD) {
+    return RatingLevel.VERY_GOOD;
+  }
+
+  if (score === Rating.VERY_GOOD) {
+    return RatingLevel.AWESOME;
+  }
+
+  return ``;
 };

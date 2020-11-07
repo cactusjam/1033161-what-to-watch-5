@@ -24,4 +24,19 @@ const AuthorizationStatus = {
 
 const FILMS_COUNT_PER_CLICK = 8;
 
+export const Rating = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10,
+};
+
+export const RatingLevel = {
+  BAD: `Bad`,
+  NORMAL: `Normal`,
+  GOOD: `Good`,
+  VERY_GOOD: `Very good`,
+  AWESOME: `Awesome`,
+};
+
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};
