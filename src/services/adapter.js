@@ -5,9 +5,10 @@ export const movieAdapter = (movie) => ({
   cover: movie.poster_image,
   poster: movie.preview_image,
   background: movie.background_image,
-  // backgroundColor: movie.background_color,
+  backgroundColor: movie.background_color,
   releaseYear: movie.released,
   promo: movie.preview_video_link,
+  video: movie.video_link,
   duration: movie.run_time,
   rating: {
     score: movie.rating,

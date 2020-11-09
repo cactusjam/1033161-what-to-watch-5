@@ -18,7 +18,7 @@ const VideoPlayer = (props) => {
 
   return (
     <Fragment>
-      <video src={currentMovie.promo} className="player__video" autoPlay muted poster={currentMovie.poster} ref={videoRef}/>
+      <video src={currentMovie.video} className="player__video" autoPlay muted poster={currentMovie.poster} ref={videoRef}/>
       <Link type="button" className="player__exit" to={`/films/${currentMovie.id}`}>Exit</Link>
 
       <div className="player__controls">

@@ -1,10 +1,5 @@
 import {GenresFilter, Rating, RatingLevel} from "../constants/constants";
 
-export const getRandomElements = (array)=> {
-  let randomIndex = Math.floor(Math.random() * array.length);
-  return array[randomIndex];
-};
-
 export const getSimilarMovies = (movies, currentGenre, id) => {
   const similarMovies = movies.filter((movie) => {
     return movie.genre === currentGenre && movie.id !== id;

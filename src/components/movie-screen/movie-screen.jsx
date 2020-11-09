@@ -22,7 +22,7 @@ const MovieScreen = (props) => {
     <Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
-          <div className="movie-card__bg">
+          <div className="movie-card__bg" style={{backgroundColor: currentMovie.backgroundColor}}>
             <img src={poster} alt={title} />
           </div>
 
