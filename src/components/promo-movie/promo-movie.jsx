@@ -51,7 +51,7 @@ const PromoMovie = (props) => {
 };
 
 PromoMovie.propTypes = {
-  promoMovie: PropTypes.object,
+  promoMovie: movieDetails,
   onPlayButtonClick: PropTypes.func.isRequired
 };
 

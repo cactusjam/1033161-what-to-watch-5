@@ -39,4 +39,9 @@ export const RatingLevel = {
   AWESOME: `Awesome`,
 };
 
+export const AppRoute = {
+  LOGIN: `/login`,
+  RESULT: `/result`
+};
+
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

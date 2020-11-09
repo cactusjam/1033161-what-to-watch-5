@@ -3,9 +3,10 @@ import {
   loadMovies,
   loadPromoMovie,
   requireAuthorization,
-  loadSingleFilm
+  loadSingleFilm,
+  redirectToRoute
 } from "./action";
-import {AuthorizationStatus, GenresFilter} from "../constants/constants";
+import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
 import {movieAdapter, moviesListAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
@@ -45,7 +46,7 @@ export const fetchPromoMovie = () => (dispatch, _getState, api) => (
 );
 
 export const checkAuth = () => (dispatch, _getState, api) => (
-  api.get(`/login`)
+  api.get(AppRoute.LOGIN)
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch((err) => {
       throw err;
@@ -55,5 +56,6 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
   api.post(`/login`, {email, password})
   .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+  .then(() => dispatch(redirectToRoute(AppRoute.RESULT)))
 );
 
