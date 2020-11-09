@@ -8,7 +8,8 @@ const ActionType = {
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
   SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  LOAD_SINGLE_FILM: `LOAD_SINGLE_FILM`
+  LOAD_SINGLE_FILM: `LOAD_SINGLE_FILM`,
+  REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -44,6 +45,11 @@ export const requireAuthorization = (status) => ({
 export const loadSingleFilm = (film) => ({
   type: ActionType.LOAD_SINGLE_FILM,
   payload: film,
+});
+
+export const redirectToRoute = (url) => ({
+  type: ActionType.REDIRECT_TO_ROUTE,
+  payload: url,
 });
 
 export {ActionType};
