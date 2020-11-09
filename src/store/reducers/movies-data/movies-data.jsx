@@ -8,6 +8,7 @@ const initialState = {
   promoMovie: {},
   reviews,
   defaultFilmsCount: FILMS_COUNT_PER_CLICK,
+  filteredMovies: [],
 };
 
 const moviesData = (state = initialState, action) => {

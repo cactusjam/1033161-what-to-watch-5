@@ -1,5 +1,6 @@
 import {NameSpace} from "./reducers/root-reducer.js";
-import {findItemById} from "../utils/utils";
+import {createSelector} from 'reselect';
+import {findItemById, getFilmsByGenre} from "../utils/utils";
 
 export const getMovies = (state) => {
   return state[NameSpace.DATA].movies;
@@ -24,3 +25,12 @@ export const getMoviesCount = (state) => {
 export const getMovieById = (state, id) => {
   return findItemById(id, getMovies(state));
 };
+
+// reselect
+export const getFilteredMovies = createSelector(
+    getActiveGenre,
+    getMovies,
+    (activeGenre, movies) => {
+      return getFilmsByGenre(movies, activeGenre);
+    }
+);

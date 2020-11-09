@@ -5,16 +5,15 @@ import PropTypes from 'prop-types';
 import {movieDetails} from "../../types/types";
 import PromoMovie from "../promo-movie/promo-movie";
 import GenresList from "../genres-list/genres-list";
-import {getGenresList, getFilmsByGenre} from "../../utils/utils";
+import {getGenresList} from "../../utils/utils";
 import {changeGenreFilter} from "../../store/action";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
-import {getMovies, getActiveGenre, getMoviesCount} from "../../store/selectors";
+import {getMovies, getActiveGenre, getMoviesCount, getFilteredMovies} from "../../store/selectors";
 
 const MainScreen = (props) => {
-  const {movies, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount} = props;
+  const {movies, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount, filteredMovies} = props;
   const [visibleFilmsCount, setVisibleFilmsCount] = useState(defaultFilmsCount);
   const genres = getGenresList(movies);
-  const filteredMovies = getFilmsByGenre(movies, genreFilter);
   const moviesList = filteredMovies.slice(0, visibleFilmsCount);
 
   const handleMoreButtonClick = () => {
@@ -59,12 +58,14 @@ MainScreen.propTypes = {
   onGenreFilterChange: PropTypes.func.isRequired,
   genreFilter: PropTypes.string.isRequired,
   defaultFilmsCount: PropTypes.number.isRequired,
+  filteredMovies: PropTypes.arrayOf(movieDetails).isRequired
 };
 
 const mapStateToProps = (state) => ({
   genreFilter: getActiveGenre(state),
   movies: getMovies(state),
-  defaultFilmsCount: getMoviesCount(state)
+  defaultFilmsCount: getMoviesCount(state),
+  filteredMovies: getFilteredMovies(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({

@@ -7,7 +7,6 @@ import {getPromoMovie} from "../../store/selectors";
 
 const PromoMovie = (props) => {
   const {promoMovie, onPlayButtonClick} = props;
-  console.log('promoMovie', promoMovie);
   return (
     <section className="movie-card">
       <div className="movie-card__bg">
