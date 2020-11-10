@@ -1,4 +1,7 @@
-import {GenresFilter, Rating, RatingLevel} from "../constants/constants";
+import {GenresFilter, Rating} from "../constants/constants";
+import moment from 'moment';
+
+const MINS_IN_HOUR = 60;
 
 export const getSimilarMovies = (movies, currentGenre, id) => {
   const similarMovies = movies.filter((movie) => {
@@ -34,26 +37,32 @@ export const getGenresList = (films)=>{
   return uniqueGenres;
 };
 
-export const getRatingLevel = (score) => {
-  if (score < Rating.BAD) {
-    return RatingLevel.BAD;
+export const getRatingLevel = (rating) => {
+  if (rating <= Rating.BAD) {
+    return `Bad`;
+  } else if (rating <= Rating.NORMAL) {
+    return `Normal`;
+  } else if (rating <= Rating.GOOD) {
+    return `Good`;
+  } else if (rating < Rating.VERY_GOOD) {
+    return `Very good`;
+  } else {
+    return `Awesome`;
   }
-
-  if (score >= Rating.BAD && score < Rating.NORMAL) {
-    return RatingLevel.NORMAL;
-  }
-
-  if (score >= Rating.NORMAL && score < Rating.GOOD) {
-    return RatingLevel.GOOD;
-  }
-
-  if (score >= Rating.GOOD && score < Rating.VERY_GOOD) {
-    return RatingLevel.VERY_GOOD;
-  }
-
-  if (score === Rating.VERY_GOOD) {
-    return RatingLevel.AWESOME;
-  }
-
-  return ``;
 };
+
+// export const getMinutesByText = (duration) => {
+//   const hours = Math.floor(duration / MINS_IN_HOUR);
+//   const minutes = duration - hours * MINS_IN_HOUR;
+//   return `${hours}h ${minutes}m`;
+// };
+
+export const getMinutesByText = (date) => {
+  return moment(date).format(`HH, mm`);
+};
+
+export const formatDate = (date) => {
+  return moment(date).format(`MMMM D, YYYY`);
+};
+
+

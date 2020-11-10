@@ -31,14 +31,6 @@ export const Rating = {
   VERY_GOOD: 10,
 };
 
-export const RatingLevel = {
-  BAD: `Bad`,
-  NORMAL: `Normal`,
-  GOOD: `Good`,
-  VERY_GOOD: `Very good`,
-  AWESOME: `Awesome`,
-};
-
 export const AppRoute = {
   LOGIN: `/login`,
   RESULT: `/result`

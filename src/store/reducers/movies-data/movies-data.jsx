@@ -18,7 +18,6 @@ const moviesData = (state = initialState, action) => {
         promoMovie: action.payload
       });
     case ActionType.LOAD_MOVIES:
-      console.log('LOAD_MOVIES state and payload', state, action.payload);
       return extend(state, {
         movies: action.payload
       });

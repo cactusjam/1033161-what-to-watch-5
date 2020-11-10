@@ -12,7 +12,7 @@ const MovieOverview = (props) => {
         <div className="movie-rating__score">{score}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{getRatingLevel(score)}</span>
-          <span className="movie-rating__count">{countOfVotes}</span>
+          <span className="movie-rating__count">{countOfVotes} ratings</span>
         </p>
       </div>
 
@@ -21,7 +21,7 @@ const MovieOverview = (props) => {
 
         <p className="movie-card__director"><strong>Director: {director}</strong></p>
 
-        <p className="movie-card__starring"><strong>Starring: {starring}</strong></p>
+        <p className="movie-card__starring"><strong>Starring: {starring.join(`, `)}</strong></p>
       </div>
     </Fragment>
   );

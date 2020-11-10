@@ -23,7 +23,6 @@ export const getMoviesCount = (state) => {
 };
 
 export const getMovieById = (state, id) => {
-  console.log('sssstate', state);
   return findItemById(id, getMovies(state));
 };
 

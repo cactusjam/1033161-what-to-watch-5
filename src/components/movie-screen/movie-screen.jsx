@@ -14,7 +14,6 @@ const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
   const {onPlayButtonClick, movies, reviews, currentMovie} = props;
-  console.log(`props`, props);
   const {id, genre, poster, releaseYear, title} = currentMovie;
 
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
