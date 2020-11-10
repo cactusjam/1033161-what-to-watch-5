@@ -13,7 +13,7 @@ const MovieCardSmall = (props) => {
           movie = {movie}
         />
         <h3 className="small-movie-card__title">
-          <span className="small-movie-card__link"></span>
+          <span className="small-movie-card__link">{movie.title}</span>
         </h3>
       </Link>
     </article>

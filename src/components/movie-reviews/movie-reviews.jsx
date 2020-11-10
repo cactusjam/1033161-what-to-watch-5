@@ -1,7 +1,7 @@
 import React from "react";
 import {reviewDetails} from "../../types/types";
 import PropTypes from 'prop-types';
-import formatDate from "../../utils/utils";
+import {formatDate} from "../../utils/utils";
 
 const MovieReviews = (props) => {
   const {reviews} = props;

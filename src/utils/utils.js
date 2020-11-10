@@ -38,27 +38,24 @@ export const getGenresList = (films)=>{
 };
 
 export const getRatingLevel = (rating) => {
-  if (rating <= Rating.BAD) {
-    return `Bad`;
-  } else if (rating <= Rating.NORMAL) {
-    return `Normal`;
-  } else if (rating <= Rating.GOOD) {
-    return `Good`;
-  } else if (rating < Rating.VERY_GOOD) {
-    return `Very good`;
-  } else {
-    return `Awesome`;
+  switch (true) {
+    case rating <= Rating.BAD:
+      return `Bad`;
+    case rating <= Rating.NORMAL:
+      return `Normal`;
+    case rating <= Rating.GOOD:
+      return `Good`;
+    case rating < Rating.AWESOME:
+      return `Very good`;
+    case rating === Rating.AWESOME:
+      return `Awesome`;
+    default:
+      return `Rating is incorrect`;
   }
 };
 
-// export const getMinutesByText = (duration) => {
-//   const hours = Math.floor(duration / MINS_IN_HOUR);
-//   const minutes = duration - hours * MINS_IN_HOUR;
-//   return `${hours}h ${minutes}m`;
-// };
-
-export const getMinutesByText = (date) => {
-  return moment(date).format(`HH, mm`);
+export const getMinutesByText = (duration) => {
+  return `${Math.floor(duration / MINS_IN_HOUR)}h ${duration % MINS_IN_HOUR}m`;
 };
 
 export const formatDate = (date) => {
