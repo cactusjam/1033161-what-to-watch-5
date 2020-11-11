@@ -8,7 +8,7 @@ const ActionType = {
   LOAD_MOVIE_REVIEWS: `LOAD_MOVIE_REVIEWS`,
   SET_MOVIES_COUNT: `SET_MOVIES_COUNT`,
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
-  LOAD_SINGLE_FILM: `LOAD_SINGLE_FILM`,
+  LOAD_CURRENT_MOVIE: `LOAD_CURRENT_MOVIE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
 };
 
@@ -42,8 +42,8 @@ export const requireAuthorization = (status) => ({
   payload: status,
 });
 
-export const loadSingleFilm = (film) => ({
-  type: ActionType.LOAD_SINGLE_FILM,
+export const loadCurrentMovie = (film) => ({
+  type: ActionType.LOAD_CURRENT_MOVIE,
   payload: film,
 });
 

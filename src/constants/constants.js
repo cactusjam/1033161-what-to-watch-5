@@ -33,7 +33,9 @@ export const Rating = {
 
 export const AppRoute = {
   LOGIN: `/login`,
-  RESULT: `/result`
+  RESULT: `/result`,
+  MOVIES: `/films`,
+  MOVIES_PROMO: `/films/promo`,
 };
 
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

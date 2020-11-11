@@ -3,18 +3,17 @@ import {
   loadMovies,
   loadPromoMovie,
   requireAuthorization,
-  loadSingleFilm,
+  loadCurrentMovie,
   redirectToRoute
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
 import {movieAdapter, moviesListAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
-    .then(({data}) => moviesListAdapter(data))
-    .then((films) => {
-      dispatch(loadMovies(films));
-      return {films};
+  api.get(AppRoute.MOVIES)
+    .then(({data}) => {
+      dispatch(loadMovies(moviesListAdapter(data)));
+      return {data};
     })
     .then(() => {
       dispatch(changeGenreFilter(GenresFilter.ALL));
@@ -24,10 +23,10 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
     })
 );
 
-export const fetchSingleFilm = (id) => (dispatch, _getState, api) => (
-  api.get(`/films/${id}`)
-    .then((promoMovie) => {
-      dispatch(loadSingleFilm(movieAdapter(promoMovie.data)));
+export const fetchCurrentMovie = (id) => (dispatch, _getState, api) => (
+  api.get(AppRoute.MOVIES + `/${id}`)
+    .then(({data}) => {
+      dispatch(loadCurrentMovie(movieAdapter(data)));
     })
     .catch(() => {
       throw Error(`Ошибка загруки фильма`);
@@ -36,7 +35,7 @@ export const fetchSingleFilm = (id) => (dispatch, _getState, api) => (
 
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+  api.get(AppRoute.MOVIES_PROMO)
     .then((film) => {
       dispatch(loadPromoMovie(movieAdapter(film.data)));
     })
@@ -54,7 +53,7 @@ export const checkAuth = () => (dispatch, _getState, api) => (
 );
 
 export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
+  api.post(AppRoute.LOGIN, {email, password})
   .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
   .then(() => dispatch(redirectToRoute(AppRoute.RESULT)))
 );
