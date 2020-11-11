@@ -1,12 +1,5 @@
 import PropTypes from "prop-types";
 
-export const promoMovieDetails = PropTypes.shape({
-  id: PropTypes.number.isRequired,
-  title: PropTypes.string.isRequired,
-  genre: PropTypes.string.isRequired,
-  releaseYear: PropTypes.number.isRequired,
-});
-
 export const reviewDetails = PropTypes.shape({
   author: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
@@ -23,11 +16,10 @@ export const movieDetails = PropTypes.shape({
   promo: PropTypes.string.isRequired,
   rating: PropTypes.shape({
     score: PropTypes.number.isRequired,
-    level: PropTypes.string.isRequired,
     countOfVotes: PropTypes.number.isRequired,
   }).isRequired,
   description: PropTypes.string.isRequired,
   director: PropTypes.string.isRequired,
-  starring: PropTypes.string.isRequired,
-  duration: PropTypes.string.isRequired,
+  starring: PropTypes.array.isRequired,
+  duration: PropTypes.number.isRequired,
 }).isRequired;

@@ -1,10 +1,10 @@
 import React from "react";
-import MovieCard from '../movie-card/movie-card.jsx';
+import MovieCardSmall from '../movie-card-small/movie-card-small.jsx';
 import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
 import withActiveMovie from "../../hocs/with-active-movie/with-active-movie";
 
-const MoviesCardWrapped = withActiveMovie(MovieCard);
+const MoviesCardWrapped = withActiveMovie(MovieCardSmall);
 const MoviesList = ({movies}) => {
 
   return (

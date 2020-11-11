@@ -1,5 +1,6 @@
 import React from "react";
 import {movieDetails} from "../../types/types";
+import {getMinutesByText} from "../../utils/utils";
 
 const MovieDetails = (props) => {
   const {movie} = props;
@@ -14,14 +15,14 @@ const MovieDetails = (props) => {
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Starring</strong>
-          <span className="movie-card__details-value">{starring}</span>
+          <span className="movie-card__details-value">{starring.join(`, `)}</span>
         </p>
       </div>
 
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{duration}</span>
+          <span className="movie-card__details-value">{getMinutesByText(duration)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
