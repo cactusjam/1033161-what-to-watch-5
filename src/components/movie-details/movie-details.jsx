@@ -1,6 +1,6 @@
 import React from "react";
 import {movieDetails} from "../../types/types";
-import {getMinutesByText} from "../../utils/utils";
+import {formatDuration} from "../../utils/utils";
 
 const MovieDetails = (props) => {
   const {movie} = props;
@@ -22,7 +22,7 @@ const MovieDetails = (props) => {
       <div className="movie-card__text-col">
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Run Time</strong>
-          <span className="movie-card__details-value">{getMinutesByText(duration)}</span>
+          <span className="movie-card__details-value">{formatDuration(duration)}</span>
         </p>
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>

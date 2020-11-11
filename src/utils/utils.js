@@ -45,16 +45,16 @@ export const getRatingLevel = (rating) => {
       return `Normal`;
     case rating <= Rating.GOOD:
       return `Good`;
-    case rating < Rating.AWESOME:
+    case rating < Rating.VERY_GOOD:
       return `Very good`;
-    case rating === Rating.AWESOME:
+    case rating === Rating.VERY_GOOD:
       return `Awesome`;
     default:
       return `Rating is incorrect`;
   }
 };
 
-export const getMinutesByText = (duration) => {
+export const formatDuration = (duration) => {
   return `${Math.floor(duration / MINS_IN_HOUR)}h ${duration % MINS_IN_HOUR}m`;
 };
 
@@ -62,4 +62,5 @@ export const formatDate = (date) => {
   return moment(date).format(`MMMM D, YYYY`);
 };
 
+export const convertDateToISOString = (date) => moment(date).format().slice(0, 10);
 
