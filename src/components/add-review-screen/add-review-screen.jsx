@@ -53,7 +53,7 @@ class AddReviewScreen extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${movies.id}`} className="breadcrumbs__link">The Grand Budapest Hotel</Link>
+                  <Link to={`/films/${movies.id}`} className="breadcrumbs__link">{movies.title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -69,7 +69,7 @@ class AddReviewScreen extends PureComponent {
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218"
+            <img src={movies.poster} alt={movies.title} width="218"
               height="327" />
           </div>
         </div>
