@@ -10,6 +10,7 @@ const ActionType = {
   REQUIRED_AUTHORIZATION: `REQUIRED_AUTHORIZATION`,
   LOAD_CURRENT_MOVIE: `LOAD_CURRENT_MOVIE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
+  LOAD_USER: `LOAD_USER`,
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -50,6 +51,11 @@ export const loadCurrentMovie = (film) => ({
 export const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
+});
+
+export const loadUser = (user) => ({
+  type: ActionType.LOAD_USER,
+  payload: user,
 });
 
 export {ActionType};

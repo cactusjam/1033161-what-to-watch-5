@@ -7,11 +7,12 @@ import PromoMovie from "../promo-movie/promo-movie";
 import GenresList from "../genres-list/genres-list";
 import {getGenresList} from "../../utils/utils";
 import {changeGenreFilter} from "../../store/action";
+import Header from "../header/header";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
-import {getMovies, getActiveGenre, getMoviesCount, getFilteredMovies} from "../../store/selectors";
+import {getMovies, getActiveGenre, getMoviesCount, getFilteredMovies, getUser, getPromoMovie} from "../../store/selectors";
 
 const MainScreen = (props) => {
-  const {movies, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount, filteredMovies} = props;
+  const {movies, promoMovie, onPlayButtonClick, onGenreFilterChange, genreFilter, defaultFilmsCount, filteredMovies} = props;
   const [visibleFilmsCount, setVisibleFilmsCount] = useState(defaultFilmsCount);
   const genres = getGenresList(movies);
   const moviesList = filteredMovies.slice(0, visibleFilmsCount);
@@ -22,7 +23,14 @@ const MainScreen = (props) => {
 
   return (
     <Fragment>
-      <PromoMovie onPlayButtonClick={onPlayButtonClick} />
+      <section className="movie-card">
+
+        <Header
+          cover = {promoMovie.cover}
+          title = {promoMovie.title}
+        />
+        <PromoMovie onPlayButtonClick={onPlayButtonClick} />
+      </section>
 
       <div className="page-content">
         <section className="catalog">
@@ -54,6 +62,7 @@ const MainScreen = (props) => {
 
 MainScreen.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
+  promoMovie: movieDetails,
   onPlayButtonClick: PropTypes.func.isRequired,
   onGenreFilterChange: PropTypes.func.isRequired,
   genreFilter: PropTypes.string.isRequired,
@@ -65,7 +74,9 @@ const mapStateToProps = (state) => ({
   genreFilter: getActiveGenre(state),
   movies: getMovies(state),
   defaultFilmsCount: getMoviesCount(state),
-  filteredMovies: getFilteredMovies(state)
+  filteredMovies: getFilteredMovies(state),
+  userData: getUser(state),
+  promoMovie: getPromoMovie(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({

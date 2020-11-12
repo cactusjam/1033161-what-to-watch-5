@@ -27,7 +27,11 @@ export const getMovieById = (state, id) => {
 };
 
 export const getAuthStatus = (state) => {
-  return state.user.authorizationStatus;
+  return state[NameSpace.USER].authorizationStatus;
+};
+
+export const getUser = (state) => {
+  return state[NameSpace.USER];
 };
 
 // reselect

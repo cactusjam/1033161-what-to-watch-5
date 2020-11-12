@@ -12,7 +12,7 @@ import browserHistory from "../../browser-history";
 
 const App = () => {
   return (
-    <BrowserRouter history={browserHistory}>>
+    <BrowserRouter history={browserHistory}>
       <Switch>
         <Route
           path="/" exact render={({history}) => (

@@ -14,7 +14,7 @@ const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
   const {onPlayButtonClick, movies, reviews, currentMovie} = props;
-  const {id, genre, poster, releaseYear, title} = currentMovie;
+  const {id, genre, poster, releaseYear, title, cover} = currentMovie;
 
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
@@ -28,7 +28,10 @@ const MovieScreen = (props) => {
 
           <h1 className="visually-hidden">WTW</h1>
 
-          <Header />
+          <Header
+            cover = {cover}
+            title = {title}
+          />
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">

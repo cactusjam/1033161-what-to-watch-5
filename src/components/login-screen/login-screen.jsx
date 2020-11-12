@@ -81,8 +81,8 @@ LoginScreen.propTypes = {
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(authData) {
-    dispatch(login(authData));
+  onSubmit(userData) {
+    dispatch(login(userData));
   }
 });
 
