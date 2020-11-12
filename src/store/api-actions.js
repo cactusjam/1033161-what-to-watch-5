@@ -26,14 +26,13 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
 
 export const fetchCurrentMovie = (id) => (dispatch, _getState, api) => (
   api.get(AppRoute.MOVIES + `/${id}`)
-    .then(({data}) => {
-      dispatch(loadCurrentMovie(movieAdapter(data)));
+    .then((film) => {
+      dispatch(loadCurrentMovie(movieAdapter(film.data)));
     })
     .catch(() => {
       throw Error(`Ошибка загруки фильма`);
     })
 );
-
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(AppRoute.MOVIES_PROMO)
