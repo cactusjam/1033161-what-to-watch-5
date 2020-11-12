@@ -26,6 +26,14 @@ export const getMovieById = (state, id) => {
   return findItemById(id, getMovies(state));
 };
 
+export const getAuthStatus = (state) => {
+  return state[NameSpace.USER].authorizationStatus;
+};
+
+export const getUser = (state) => {
+  return state[NameSpace.USER];
+};
+
 // reselect
 export const getFilteredMovies = createSelector(
     getActiveGenre,

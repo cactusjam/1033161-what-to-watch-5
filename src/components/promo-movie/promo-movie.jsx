@@ -1,5 +1,4 @@
-import React from 'react';
-import Header from "../header/header";
+import React, {Fragment} from 'react';
 import {movieDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
@@ -8,15 +7,7 @@ import {getPromoMovie} from "../../store/selectors";
 const PromoMovie = (props) => {
   const {promoMovie, onPlayButtonClick} = props;
   return (
-    <section className="movie-card">
-      <div className="movie-card__bg">
-        <img src={promoMovie.cover} alt={promoMovie.title} />
-      </div>
-
-      <h1 className="visually-hidden">WTW</h1>
-
-      <Header />
-
+    <Fragment>
       <div className="movie-card__wrap">
         <div className="movie-card__info">
           <div className="movie-card__poster">
@@ -47,7 +38,8 @@ const PromoMovie = (props) => {
           </div>
         </div>
       </div>
-    </section>);
+    </Fragment>
+  );
 };
 
 PromoMovie.propTypes = {

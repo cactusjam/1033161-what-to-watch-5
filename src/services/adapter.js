@@ -22,3 +22,7 @@ export const movieAdapter = (movie) => ({
 export const moviesListAdapter = (movies) => {
   return movies.map(movieAdapter);
 };
+
+export const userDataAdapter = (userData) => ({
+  userAvatar: userData.avatar_url,
+});

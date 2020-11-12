@@ -23,3 +23,10 @@ export const movieDetails = PropTypes.shape({
   starring: PropTypes.array.isRequired,
   duration: PropTypes.number.isRequired,
 }).isRequired;
+
+export const userDetails = PropTypes.shape({
+  id: PropTypes.number.isRequired,
+  email: PropTypes.string.isRequired,
+  userAvatar: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
+});

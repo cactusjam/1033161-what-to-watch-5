@@ -3,18 +3,18 @@ import {
   loadMovies,
   loadPromoMovie,
   requireAuthorization,
-  loadSingleFilm,
-  redirectToRoute
+  loadCurrentMovie,
+  redirectToRoute,
+  loadUser
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
-import {movieAdapter, moviesListAdapter} from "../services/adapter";
+import {movieAdapter, moviesListAdapter, userDataAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
-  api.get(`/films`)
-    .then(({data}) => moviesListAdapter(data))
-    .then((films) => {
-      dispatch(loadMovies(films));
-      return {films};
+  api.get(AppRoute.MOVIES)
+    .then(({data}) => {
+      dispatch(loadMovies(moviesListAdapter(data)));
+      return {data};
     })
     .then(() => {
       dispatch(changeGenreFilter(GenresFilter.ALL));
@@ -24,19 +24,18 @@ export const fetchMoviesList = () => (dispatch, _getState, api) => (
     })
 );
 
-export const fetchSingleFilm = (id) => (dispatch, _getState, api) => (
-  api.get(`/films/${id}`)
-    .then((promoMovie) => {
-      dispatch(loadSingleFilm(movieAdapter(promoMovie.data)));
+export const fetchCurrentMovie = (id) => (dispatch, _getState, api) => (
+  api.get(AppRoute.MOVIES + `/${id}`)
+    .then((film) => {
+      dispatch(loadCurrentMovie(movieAdapter(film.data)));
     })
     .catch(() => {
       throw Error(`Ошибка загруки фильма`);
     })
 );
 
-
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
-  api.get(`/films/promo`)
+  api.get(AppRoute.MOVIES_PROMO)
     .then((film) => {
       dispatch(loadPromoMovie(movieAdapter(film.data)));
     })
@@ -47,15 +46,25 @@ export const fetchPromoMovie = () => (dispatch, _getState, api) => (
 
 export const checkAuth = () => (dispatch, _getState, api) => (
   api.get(AppRoute.LOGIN)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-    .catch((err) => {
-      throw err;
+    .then((response) => {
+      dispatch(loadUser(userDataAdapter(response.data)));
+      dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    })
+    .catch(() => {
+      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     })
 );
 
-export const login = ({login: email, password}) => (dispatch, _getState, api) => (
-  api.post(`/login`, {email, password})
-  .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
-  .then(() => dispatch(redirectToRoute(AppRoute.RESULT)))
+export const login = ({email, password}) => (dispatch, _getState, api) => (
+  api.post(AppRoute.LOGIN, {email, password})
+  .then((response) => userDataAdapter(response.data))
+  .then((data) => {
+    dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+    dispatch(loadUser(data));
+  })
+  .then(() => dispatch(redirectToRoute(`/`)))
+  .catch(() => {
+    throw Error(`Ошибка авторизации`);
+  })
 );
 
