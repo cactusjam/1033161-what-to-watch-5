@@ -26,8 +26,7 @@ export const movieDetails = PropTypes.shape({
 
 export const userDetails = PropTypes.shape({
   id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
   email: PropTypes.string.isRequired,
-  avatarUrl: PropTypes.string.isRequired,
+  userAvatar: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 });

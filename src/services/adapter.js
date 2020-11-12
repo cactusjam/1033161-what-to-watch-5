@@ -24,5 +24,5 @@ export const moviesListAdapter = (movies) => {
 };
 
 export const userDataAdapter = (userData) => ({
-  avatarUrl: userData.avatar_url,
+  userAvatar: userData.avatar_url,
 });

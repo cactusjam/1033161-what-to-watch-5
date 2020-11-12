@@ -5,8 +5,7 @@ import {extend} from "../../../utils/utils";
 const initialState = {
   id: 1,
   email: ``,
-  name: ``,
-  avatarUrl: ``,
+  userAvatar: ``,
   authorizationStatus: AuthorizationStatus.NO_AUTH,
 };
 

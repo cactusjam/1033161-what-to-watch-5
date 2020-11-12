@@ -7,12 +7,6 @@ import {getPromoMovie} from "../../store/selectors";
 const PromoMovie = (props) => {
   const {promoMovie, onPlayButtonClick} = props;
   return (
-    // <section className="movie-card">
-    //   <div className="movie-card__bg">
-    //     <img src={promoMovie.cover} alt={promoMovie.title} />
-    //   </div>
-
-    //   <h1 className="visually-hidden">WTW</h1>
     <Fragment>
       <div className="movie-card__wrap">
         <div className="movie-card__info">

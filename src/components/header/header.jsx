@@ -10,7 +10,7 @@ import PropTypes from "prop-types";
 
 const Header = (props) => {
   const {children, cover, title} = props;
-  const {authorizationStatus} = props.userData;
+  const {authorizationStatus, userAvatar} = props.userData;
   return (
     <Fragment>
       <div className="movie-card__bg">
@@ -26,7 +26,7 @@ const Header = (props) => {
           </Link>
         </div>
         {authorizationStatus === AuthorizationStatus.AUTH
-          ? <AuthUser/>
+          ? <AuthUser userAvatar = {userAvatar}/>
           : <NotAuthUser/>
         }
         {children}
