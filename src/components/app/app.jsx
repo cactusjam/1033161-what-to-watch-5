@@ -9,6 +9,8 @@ import PlayerScreen from "../player-screen/player-screen";
 import PrivateRoute from "../private-route/private-route";
 import {AppRoute} from "../../constants/constants";
 import browserHistory from "../../browser-history";
+import withLogin from "../../hocs/with-login/with-login";
+const SignInWrapped = withLogin(LoginScreen);
 
 const App = () => {
   return (
@@ -23,7 +25,7 @@ const App = () => {
         />
         <Route
           path={AppRoute.LOGIN} exact>
-          <LoginScreen/>
+          <SignInWrapped/>
         </Route>
         <PrivateRoute
           exact
