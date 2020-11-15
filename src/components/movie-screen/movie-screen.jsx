@@ -1,20 +1,21 @@
 import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails, reviewDetails} from "../../types/types";
+import {movieDetails, reviewDetails, userDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs";
 import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
-import {getMovies, getReviews, getMovieById} from "../../store/selectors";
-import {fetchCurrentMovie, fetchComments} from "../../store/api-actions";
+import {getMovies, getReviews, getCurrentMovie, getUser} from "../../store/selectors";
+import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
+import {AuthorizationStatus} from "../../constants/constants";
 
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
-  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie} = props;
+  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie, userData} = props;
 
   useEffect(() => {
     setCurrentMovie(currentMovieId);
@@ -63,7 +64,9 @@ const MovieScreen = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                {userData.authorizationStatus === AuthorizationStatus.AUTH
+                  ? <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                  : ``}
               </div>
             </div>
           </div>
@@ -116,21 +119,24 @@ MovieScreen.propTypes = {
     releaseYear: PropTypes.number,
     title: PropTypes.string,
     cover: PropTypes.string,
+    backgroundColor: PropTypes.string,
   }),
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
-  currentMovieId: PropTypes.string.isRequired
+  currentMovieId: PropTypes.string.isRequired,
+  userData: userDetails,
 };
 
 const mapStateToProps = (state, _ownProps) => ({
   reviews: getReviews(state),
   movies: getMovies(state),
-  currentMovie: getMovieById(state),
+  currentMovie: getCurrentMovie(state),
+  userData: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
   setCurrentMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
-    dispatch(fetchComments(movieId));
+    dispatch(fetchReviews(movieId));
   },
 });
 

@@ -44,9 +44,10 @@ const App = () => {
 
         <PrivateRoute
           exact
-          path={AppRoute.REVIEW}
-          render={() => (
+          path={AppRoute.CURRENT_REVIEW}
+          render={({match}) => (
             <AddReviewScreen
+              currentMovieId={match.params.id}
             />
           )}
         />

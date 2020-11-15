@@ -22,7 +22,7 @@ export const getMoviesCount = (state) => {
   return state[NameSpace.DATA].defaultFilmsCount;
 };
 
-export const getMovieById = (state) => {
+export const getCurrentMovie = (state) => {
   return state[NameSpace.DATA].currentMovie;
 };
 

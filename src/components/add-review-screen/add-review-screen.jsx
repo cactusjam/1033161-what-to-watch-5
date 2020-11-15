@@ -1,27 +1,35 @@
 import React, {Fragment, PureComponent} from "react";
 import {Link} from 'react-router-dom';
-import {movieDetails} from "../../types/types";
+// import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getMovies, getReviews} from "../../store/selectors";
+import {getCurrentMovie, getReviews} from "../../store/selectors";
+import {fetchCurrentMovie, addReview} from "../../store/api-actions";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {
       rating: `3`,
-      text: null,
+      reviewText: null,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
+  componentDidMount() {
+    this.props.setCurrentMovie(this.props.currentMovieId);
+  }
+
   handleSubmit(evt) {
     evt.preventDefault();
+    const {currentMovieId} = this.props;
+    const {rating, reviewText} = this.state;
+
+    this.props.onSubmit(currentMovieId, rating, reviewText);
   }
 
   handleFieldChange(evt) {
@@ -30,13 +38,17 @@ class AddReviewScreen extends PureComponent {
   }
 
   render() {
-    const {movies} = this.props;
+    const {currentMovie} = this.props;
+
+    if (!currentMovie) {
+      return null;
+    }
 
     return (
       <section className="movie-card movie-card--full">
         <div className="movie-card__header">
           <div className="movie-card__bg">
-            <img src={movies.poster} alt={movies.title} />
+            <img src={currentMovie.poster} alt={currentMovie.title} />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
@@ -53,7 +65,7 @@ class AddReviewScreen extends PureComponent {
             <nav className="breadcrumbs">
               <ul className="breadcrumbs__list">
                 <li className="breadcrumbs__item">
-                  <Link to={`/films/${movies.id}`} className="breadcrumbs__link">{movies.title}</Link>
+                  <Link to={`/films/${currentMovie.id}`} className="breadcrumbs__link">{currentMovie.title}</Link>
                 </li>
                 <li className="breadcrumbs__item">
                   <a className="breadcrumbs__link">Add review</a>
@@ -69,13 +81,13 @@ class AddReviewScreen extends PureComponent {
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
-            <img src={movies.poster} alt={movies.title} width="218"
+            <img src={currentMovie.poster} alt={currentMovie.title} width="218"
               height="327" />
           </div>
         </div>
 
         <div className="add-review">
-          <form action="#" className="add-review__form">
+          <form action="#" className="add-review__form" onSubmit={this.handleSubmit}>
             <div className="rating">
               <div className="rating__stars">
                 {REVIEW_RATINGS.map((rating) => {
@@ -93,7 +105,7 @@ class AddReviewScreen extends PureComponent {
             </div>
 
             <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text"
+              <textarea className="add-review__textarea" name="reviewText" id="reviewText"
                 placeholder="Review text" onChange={this.handleFieldChange}/>
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit">Post</button>
@@ -108,12 +120,33 @@ class AddReviewScreen extends PureComponent {
 }
 
 AddReviewScreen.propTypes = {
-  movies: PropTypes.arrayOf(movieDetails).isRequired
+  setCurrentMovie: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  currentMovieId: PropTypes.string.isRequired,
+  // id: PropTypes.string.isRequired,
+  currentMovie: PropTypes.shape({
+    id: PropTypes.number,
+    genre: PropTypes.string,
+    poster: PropTypes.string,
+    releaseYear: PropTypes.number,
+    title: PropTypes.string,
+    cover: PropTypes.string,
+    backgroundColor: PropTypes.string,
+  }),
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  reviews: getReviews(state)
+  currentMovie: getCurrentMovie(state),
+  reviews: getReviews(state),
 });
 
-export default connect(mapStateToProps)(AddReviewScreen);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  },
+  onSubmit(id, rating, comment) {
+    dispatch(addReview(id, rating, comment));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

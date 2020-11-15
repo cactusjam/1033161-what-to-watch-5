@@ -69,12 +69,17 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
   })
 );
 
-export const fetchComments = (id) => (dispatch, _getState, api) => (
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
   api.get(AppRoute.REVIEWS + `/${id}`)
     .then((reviews) => {
       dispatch(loadMovieReviews(reviewsAdapter(reviews.data)));
     })
-    .catch(() => {
+    .catch((_error) => {
       throw Error(`Ошибка загрузки комментариев`);
     })
+);
+
+export const addReview = (id, rating, comment) => (dispatch, _getState, api) => (
+  api.post(AppRoute.REVIEWS + `/${id}`, {rating, comment})
+    .then(() => dispatch(redirectToRoute(AppRoute.MOVIES + `/${id}`)))
 );
