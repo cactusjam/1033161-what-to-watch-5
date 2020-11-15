@@ -19,6 +19,18 @@ export const movieAdapter = (movie) => ({
   starring: movie.starring,
 });
 
+export const reviewsAdapter = (reviews) => {
+  return reviews.map((review) => {
+    return {
+      id: review.id,
+      author: review.user.name,
+      text: review.comment,
+      date: review.date,
+      rating: review.rating,
+    };
+  });
+};
+
 export const moviesListAdapter = (movies) => {
   return movies.map(movieAdapter);
 };

@@ -9,7 +9,7 @@ import {
   loadMovieReviews
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
-import {movieAdapter, moviesListAdapter, userDataAdapter} from "../services/adapter";
+import {movieAdapter, moviesListAdapter, userDataAdapter, reviewsAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(AppRoute.MOVIES)
@@ -72,7 +72,7 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
 export const fetchComments = (id) => (dispatch, _getState, api) => (
   api.get(AppRoute.REVIEWS + `/${id}`)
     .then((reviews) => {
-      dispatch(loadMovieReviews(reviews.data));
+      dispatch(loadMovieReviews(reviewsAdapter(reviews.data)));
     })
     .catch(() => {
       throw Error(`Ошибка загрузки комментариев`);

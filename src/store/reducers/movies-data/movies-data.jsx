@@ -1,13 +1,12 @@
 import {extend} from "../../../utils/utils";
 import {ActionType} from "../../action";
 import {FILMS_COUNT_PER_CLICK} from "../../../constants/constants";
-import reviews from "../../../mocks/reviews";
 
 const initialState = {
   movies: [],
   promoMovie: {},
   currentMovie: null,
-  reviews,
+  reviews: [],
   defaultFilmsCount: FILMS_COUNT_PER_CLICK,
   filteredMovies: [],
 };

@@ -9,7 +9,7 @@ import Tabs from "../tabs/tabs";
 import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 import {getMovies, getReviews, getMovieById} from "../../store/selectors";
-import {fetchCurrentMovie} from "../../store/api-actions";
+import {fetchCurrentMovie, fetchComments} from "../../store/api-actions";
 
 const TabWrapped = withActiveTab(Tabs);
 
@@ -109,7 +109,14 @@ MovieScreen.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
   setCurrentMovie: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
-  currentMovie: movieDetails,
+  currentMovie: PropTypes.shape({
+    id: PropTypes.number,
+    genre: PropTypes.string,
+    poster: PropTypes.string,
+    releaseYear: PropTypes.number,
+    title: PropTypes.string,
+    cover: PropTypes.string,
+  }),
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   currentMovieId: PropTypes.string.isRequired
 };
@@ -123,6 +130,7 @@ const mapStateToProps = (state, _ownProps) => ({
 const mapDispatchToProps = (dispatch) => ({
   setCurrentMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
+    dispatch(fetchComments(movieId));
   },
 });
 
