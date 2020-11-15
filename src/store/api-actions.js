@@ -5,7 +5,8 @@ import {
   requireAuthorization,
   loadCurrentMovie,
   redirectToRoute,
-  loadUser
+  loadUser,
+  loadMovieReviews
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
 import {movieAdapter, moviesListAdapter, userDataAdapter} from "../services/adapter";
@@ -68,3 +69,12 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
   })
 );
 
+export const fetchComments = (id) => (dispatch, _getState, api) => (
+  api.get(AppRoute.REVIEWS + `/${id}`)
+    .then((reviews) => {
+      dispatch(loadMovieReviews(reviews.data));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загрузки комментариев`);
+    })
+);

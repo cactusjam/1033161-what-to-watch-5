@@ -6,6 +6,7 @@ import reviews from "../../../mocks/reviews";
 const initialState = {
   movies: [],
   promoMovie: {},
+  currentMovie: null,
   reviews,
   defaultFilmsCount: FILMS_COUNT_PER_CLICK,
   filteredMovies: [],
@@ -20,6 +21,10 @@ const moviesData = (state = initialState, action) => {
     case ActionType.LOAD_MOVIES:
       return extend(state, {
         movies: action.payload
+      });
+    case ActionType.LOAD_CURRENT_MOVIE:
+      return extend(state, {
+        currentMovie: action.payload
       });
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {

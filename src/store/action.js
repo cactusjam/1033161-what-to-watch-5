@@ -43,9 +43,9 @@ export const requireAuthorization = (status) => ({
   payload: status,
 });
 
-export const loadCurrentMovie = (film) => ({
+export const loadCurrentMovie = (movie) => ({
   type: ActionType.LOAD_CURRENT_MOVIE,
-  payload: film,
+  payload: movie,
 });
 
 export const redirectToRoute = (url) => ({

@@ -1,4 +1,4 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
 import {movieDetails, reviewDetails} from "../../types/types";
@@ -9,13 +9,22 @@ import Tabs from "../tabs/tabs";
 import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 import {getMovies, getReviews, getMovieById} from "../../store/selectors";
+import {fetchCurrentMovie} from "../../store/api-actions";
 
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
-  const {onPlayButtonClick, movies, reviews, currentMovie} = props;
-  const {id, genre, poster, releaseYear, title, cover} = currentMovie;
+  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie} = props;
 
+  useEffect(() => {
+    setCurrentMovie(currentMovieId);
+  }, [currentMovieId]);
+
+  if (!currentMovie) {
+    return null;
+  }
+
+  const {id, genre, poster, releaseYear, title, cover} = currentMovie;
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
@@ -98,16 +107,23 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
+  setCurrentMovie: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   currentMovie: movieDetails,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   currentMovieId: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state, _ownProps) => ({
   reviews: getReviews(state),
   movies: getMovies(state),
-  currentMovie: getMovieById(state, ownProps.currentMovieId),
+  currentMovie: getMovieById(state),
 });
 
-export default connect(mapStateToProps)(MovieScreen);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieScreen);
