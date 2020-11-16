@@ -1,6 +1,5 @@
 import React, {Fragment, PureComponent} from "react";
 import {Link} from 'react-router-dom';
-// import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getCurrentMovie, getReviews} from "../../store/selectors";
@@ -12,13 +11,8 @@ const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
-    // this.state = {
-    //   rating: `3`,
-    //   reviewText: null,
-    // };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    // this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
   componentDidMount() {
@@ -28,19 +22,9 @@ class AddReviewScreen extends PureComponent {
   handleSubmit(evt) {
     evt.preventDefault();
     const {currentMovieId, rating, reviewText, onSubmit} = this.props;
-    // const {rating, reviewText} = this.state;
-    onSubmit({
-      currentMovieId,
-      rating,
-      reviewText
-    });
-  }
 
-  // handleFieldChange(evt) {
-  //   const {name, value} = evt.target;
-  //   console.log(`evt.target`, evt.target);
-  //   this.setState({[name]: value});
-  // }
+    onSubmit(currentMovieId, rating, reviewText);
+  }
 
   render() {
     const {currentMovie} = this.props;
@@ -50,8 +34,6 @@ class AddReviewScreen extends PureComponent {
     }
 
     const {isValid, onValidityCheck, onRatingChange, onReviewChange, rating} = this.props;
-
-    console.log('props in add review screen', this.props);
 
     return (
       <section className="movie-card movie-card--full">
@@ -81,7 +63,6 @@ class AddReviewScreen extends PureComponent {
                 </li>
               </ul>
             </nav>
-
             <AuthUser/>
           </header>
 
@@ -138,7 +119,6 @@ AddReviewScreen.propTypes = {
   onValidityCheck: PropTypes.func.isRequired,
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
-  // onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
   currentMovie: PropTypes.shape({
     id: PropTypes.number,
@@ -149,7 +129,7 @@ AddReviewScreen.propTypes = {
     cover: PropTypes.string,
     backgroundColor: PropTypes.string,
   }),
-  rating: PropTypes.number,
+  rating: PropTypes.string,
   reviewText: PropTypes.string,
 };
 

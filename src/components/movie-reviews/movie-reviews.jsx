@@ -5,13 +5,18 @@ import {formatDate, convertDateToISOString} from "../../utils/utils";
 
 const MovieReviews = (props) => {
   const {reviews} = props;
+
+  if (!reviews) {
+    return null;
+  }
+
   return (
     <div className="movie-card__reviews movie-card__row">
       <div className="movie-card__reviews-col">
         {reviews.map((review, index) => (
           <div key={`review.author-${index}`} className="review">
             <blockquote className="review__quote">
-              <p className="review__text">{review.text}</p>
+              <p className="review__text">{review.reviewText}</p>
 
               <footer className="review__details">
                 <cite className="review__author">{review.author}</cite>

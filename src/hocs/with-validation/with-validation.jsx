@@ -24,7 +24,7 @@ const withValidation = (Component) => {
 
       this.state = {
         isValid: false,
-        rating: 1,
+        rating: `1`,
         reviewText: ``,
       };
 
@@ -56,7 +56,7 @@ const withValidation = (Component) => {
 
     _handleRatingChange(evt) {
       this.setState({
-        rating: Number(evt.target.value),
+        rating: evt.target.value,
       });
     }
 
@@ -76,7 +76,7 @@ const withValidation = (Component) => {
   }
 
   WithValidation.propTypes = {
-    rating: PropTypes.number,
+    rating: PropTypes.string,
     reviewText: PropTypes.string,
   };
 

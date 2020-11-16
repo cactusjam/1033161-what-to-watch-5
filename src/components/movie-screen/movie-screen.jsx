@@ -126,7 +126,7 @@ MovieScreen.propTypes = {
   userData: userDetails,
 };
 
-const mapStateToProps = (state, _ownProps) => ({
+const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   movies: getMovies(state),
   currentMovie: getCurrentMovie(state),

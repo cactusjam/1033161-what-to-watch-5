@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const reviewDetails = PropTypes.shape({
   author: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  reviewText: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired
 });
