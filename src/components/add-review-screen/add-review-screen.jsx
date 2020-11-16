@@ -5,19 +5,20 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getCurrentMovie, getReviews} from "../../store/selectors";
 import {fetchCurrentMovie, addReview} from "../../store/api-actions";
+import AuthUser from "../auth-user/auth-user";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
 class AddReviewScreen extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      rating: `3`,
-      reviewText: null,
-    };
+    // this.state = {
+    //   rating: `3`,
+    //   reviewText: null,
+    // };
 
     this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
+    // this.handleFieldChange = this.handleFieldChange.bind(this);
   }
 
   componentDidMount() {
@@ -26,16 +27,20 @@ class AddReviewScreen extends PureComponent {
 
   handleSubmit(evt) {
     evt.preventDefault();
-    const {currentMovieId} = this.props;
-    const {rating, reviewText} = this.state;
-
-    this.props.onSubmit(currentMovieId, rating, reviewText);
+    const {currentMovieId, rating, reviewText, onSubmit} = this.props;
+    // const {rating, reviewText} = this.state;
+    onSubmit({
+      currentMovieId,
+      rating,
+      reviewText
+    });
   }
 
-  handleFieldChange(evt) {
-    const {name, value} = evt.target;
-    this.setState({[name]: value});
-  }
+  // handleFieldChange(evt) {
+  //   const {name, value} = evt.target;
+  //   console.log(`evt.target`, evt.target);
+  //   this.setState({[name]: value});
+  // }
 
   render() {
     const {currentMovie} = this.props;
@@ -43,6 +48,10 @@ class AddReviewScreen extends PureComponent {
     if (!currentMovie) {
       return null;
     }
+
+    const {isValid, onValidityCheck, onRatingChange, onReviewChange, rating} = this.props;
+
+    console.log('props in add review screen', this.props);
 
     return (
       <section className="movie-card movie-card--full">
@@ -73,11 +82,7 @@ class AddReviewScreen extends PureComponent {
               </ul>
             </nav>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <AuthUser/>
           </header>
 
           <div className="movie-card__poster movie-card__poster--small">
@@ -90,14 +95,17 @@ class AddReviewScreen extends PureComponent {
           <form action="#" className="add-review__form" onSubmit={this.handleSubmit}>
             <div className="rating">
               <div className="rating__stars">
-                {REVIEW_RATINGS.map((rating) => {
+                {REVIEW_RATINGS.map((reviewRating) => {
                   return (
-                    <Fragment key={rating}>
-                      <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={`${rating}`}
-                        checked={rating === this.state.rating}
-                        onChange={this.handleFieldChange}
+                    <Fragment key={reviewRating}>
+                      <input className="rating__input" id={`star-${reviewRating}`} type="radio" name="rating" value={`${reviewRating}`}
+                        checked={reviewRating === rating}
+                        onChange={(evt) => {
+                          onRatingChange(evt);
+                          onValidityCheck();
+                        }}
                       />
-                      <label className="rating__label" htmlFor={`star-${rating}`}>{`Rating ${rating}`}</label>
+                      <label className="rating__label" htmlFor={`star-${reviewRating}`}>{`Rating ${reviewRating}`}</label>
                     </Fragment>
                   );
                 })}
@@ -106,11 +114,15 @@ class AddReviewScreen extends PureComponent {
 
             <div className="add-review__text">
               <textarea className="add-review__textarea" name="reviewText" id="reviewText"
-                placeholder="Review text" onChange={this.handleFieldChange}/>
+                placeholder="Review text"
+                onChange= {(evt) => {
+                  onReviewChange(evt);
+                  onValidityCheck();
+                }}
+              />
               <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
+                <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
               </div>
-
             </div>
           </form>
         </div>
@@ -123,7 +135,11 @@ AddReviewScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   currentMovieId: PropTypes.string.isRequired,
-  // id: PropTypes.string.isRequired,
+  onValidityCheck: PropTypes.func.isRequired,
+  onReviewChange: PropTypes.func.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
+  // onRatingChange: PropTypes.func.isRequired,
+  isValid: PropTypes.bool,
   currentMovie: PropTypes.shape({
     id: PropTypes.number,
     genre: PropTypes.string,
@@ -133,6 +149,8 @@ AddReviewScreen.propTypes = {
     cover: PropTypes.string,
     backgroundColor: PropTypes.string,
   }),
+  rating: PropTypes.number,
+  reviewText: PropTypes.string,
 };
 
 const mapStateToProps = (state) => ({
@@ -144,8 +162,8 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
   },
-  onSubmit(id, rating, comment) {
-    dispatch(addReview(id, rating, comment));
+  onSubmit(id, rating, reviewText) {
+    dispatch(addReview(id, rating, reviewText));
   }
 });
 

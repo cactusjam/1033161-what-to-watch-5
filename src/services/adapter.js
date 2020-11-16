@@ -24,7 +24,7 @@ export const reviewsAdapter = (reviews) => {
     return {
       id: review.id,
       author: review.user.name,
-      text: review.comment,
+      reviewText: review.comment,
       date: review.date,
       rating: review.rating,
     };
