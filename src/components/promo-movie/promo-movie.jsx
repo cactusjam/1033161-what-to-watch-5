@@ -3,6 +3,7 @@ import {movieDetails} from "../../types/types";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import {getPromoMovie} from "../../store/selectors";
+import FavoriteButton from "../favorite-button/favorite-button";
 
 const PromoMovie = (props) => {
   const {promoMovie, onPlayButtonClick} = props;
@@ -28,12 +29,7 @@ const PromoMovie = (props) => {
                 </svg>
                 <span>Play</span>
               </button>
-              <button className="btn btn--list movie-card__button" type="button">
-                <svg viewBox="0 0 19 20" width="19" height="20">
-                  <use xlinkHref="#add"></use>
-                </svg>
-                <span>My list</span>
-              </button>
+              <FavoriteButton id={promoMovie.id} isFavorite={promoMovie.isFavorite}/>
             </div>
           </div>
         </div>

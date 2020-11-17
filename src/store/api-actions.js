@@ -6,7 +6,7 @@ import {
   loadCurrentMovie,
   redirectToRoute,
   loadUser,
-  loadMovieReviews
+  loadMovieReviews,
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
 import {movieAdapter, moviesListAdapter, userDataAdapter, reviewsAdapter} from "../services/adapter";
@@ -34,6 +34,14 @@ export const fetchCurrentMovie = (id) => (dispatch, _getState, api) => (
       throw Error(`Ошибка загруки фильма`);
     })
 );
+
+export const addFavoriteMovie = (id, status) => (dispatch, _getState, api) => {
+  return api.post(`${AppRoute.FAVORITE}/${id}/${status}`)
+  .then((response) => {
+    dispatch(loadPromoMovie(movieAdapter(response.data)));
+    dispatch(loadCurrentMovie(movieAdapter(response.data)));
+  });
+};
 
 export const fetchPromoMovie = () => (dispatch, _getState, api) => (
   api.get(AppRoute.MOVIES_PROMO)

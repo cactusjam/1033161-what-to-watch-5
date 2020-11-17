@@ -17,6 +17,7 @@ export const movieAdapter = (movie) => ({
   description: movie.description,
   director: movie.director,
   starring: movie.starring,
+  isFavorite: movie.is_favorite,
 });
 
 export const reviewsAdapter = (reviews) => {

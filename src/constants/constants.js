@@ -41,6 +41,7 @@ export const AppRoute = {
   CURRENT_REVIEW: `/films/:id/review`,
   CURRENT_MOVIE: `/films/:id`,
   CURRENT_PLAYER: `/player/:id`,
+  FAVORITE: `/favorite`,
 };
 
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

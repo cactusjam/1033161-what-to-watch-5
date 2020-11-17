@@ -11,6 +11,7 @@ import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 import {getMovies, getReviews, getCurrentMovie, getUser} from "../../store/selectors";
 import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
 import {AuthorizationStatus} from "../../constants/constants";
+import FavoriteButton from "../favorite-button/favorite-button";
 
 const TabWrapped = withActiveTab(Tabs);
 
@@ -25,7 +26,7 @@ const MovieScreen = (props) => {
     return null;
   }
 
-  const {id, genre, poster, releaseYear, title, cover} = currentMovie;
+  const {id, genre, poster, releaseYear, title, cover, isFavorite} = currentMovie;
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
@@ -58,12 +59,7 @@ const MovieScreen = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <FavoriteButton id={id} isFavorite={isFavorite}/>
                 {userData.authorizationStatus === AuthorizationStatus.AUTH
                   ? <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
                   : ``}
@@ -120,6 +116,7 @@ MovieScreen.propTypes = {
     title: PropTypes.string,
     cover: PropTypes.string,
     backgroundColor: PropTypes.string,
+    isFavorite: PropTypes.bool,
   }),
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   currentMovieId: PropTypes.string.isRequired,
