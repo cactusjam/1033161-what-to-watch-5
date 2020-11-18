@@ -42,6 +42,10 @@ export const dataSendingError = (state) => {
   return state[NameSpace.DATA].isDataSendError;
 };
 
+export const getFavorite = (state) => {
+  return state[NameSpace.DATA].favorites;
+};
+
 // reselect
 export const getFilteredMovies = createSelector(
     getActiveGenre,

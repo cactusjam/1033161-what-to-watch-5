@@ -13,6 +13,7 @@ const ActionType = {
   LOAD_USER: `LOAD_USER`,
   SET_DATA_IS_SENDING: `SET_DATA_IS_SENDING`,
   SET_DATA_SEND_ERROR: `SET_DATA_SEND_ERROR`,
+  LOAD_FAVORITES: `LOAD_FAVORITES`,
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -69,5 +70,11 @@ export const setDataSendError = (bool) => ({
   type: ActionType.SET_DATA_SEND_ERROR,
   payload: bool
 });
+
+export const loadFavorites = (favorites) => ({
+  type: ActionType.LOAD_FAVORITES,
+  payload: favorites,
+});
+
 
 export {ActionType};

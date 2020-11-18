@@ -11,6 +11,7 @@ const initialState = {
   filteredMovies: [],
   isDataSending: false,
   isDataSendError: false,
+  favorites: []
 };
 
 const moviesData = (state = initialState, action) => {
@@ -38,6 +39,10 @@ const moviesData = (state = initialState, action) => {
     case ActionType.SET_DATA_SEND_ERROR:
       return extend(state, {
         isDataSendError: action.payload,
+      });
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
       });
   }
 
