@@ -11,6 +11,8 @@ const ActionType = {
   LOAD_CURRENT_MOVIE: `LOAD_CURRENT_MOVIE`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   LOAD_USER: `LOAD_USER`,
+  SET_DATA_IS_SENDING: `SET_DATA_IS_SENDING`,
+  SET_DATA_SEND_ERROR: `SET_DATA_SEND_ERROR`,
 };
 
 export const changeGenreFilter = (genre) => ({
@@ -56,6 +58,16 @@ export const redirectToRoute = (url) => ({
 export const loadUser = (user) => ({
   type: ActionType.LOAD_USER,
   payload: user,
+});
+
+export const setDataIsSending = (bool) => ({
+  type: ActionType.SET_DATA_IS_SENDING,
+  payload: bool
+});
+
+export const setDataSendError = (bool) => ({
+  type: ActionType.SET_DATA_SEND_ERROR,
+  payload: bool
 });
 
 export {ActionType};

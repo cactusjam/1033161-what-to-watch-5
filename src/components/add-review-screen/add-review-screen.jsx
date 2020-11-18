@@ -2,14 +2,28 @@ import React, {Fragment, useEffect} from "react";
 import {Link} from 'react-router-dom';
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getCurrentMovie, getReviews} from "../../store/selectors";
+import {getCurrentMovie, getReviews, dataSending, dataSendingError} from "../../store/selectors";
 import {fetchCurrentMovie, addReview} from "../../store/api-actions";
 import AuthUser from "../auth-user/auth-user";
+import {setDataIsSending} from "../../store/action";
+import {movieProp} from "../../types/types";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
 const AddReviewScreen = (props) => {
-  const {currentMovieId, setCurrentMovie, rating, reviewText, onSubmit, currentMovie, isValid, onReviewChange, onRatingChange, errorMessage} = props;
+  const {
+    currentMovieId,
+    setCurrentMovie,
+    rating,
+    reviewText,
+    onSubmit,
+    currentMovie,
+    isValid,
+    onReviewChange,
+    onRatingChange,
+    isDataSending,
+    isDataSendError
+  } = props;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -23,6 +37,19 @@ const AddReviewScreen = (props) => {
   if (!currentMovie) {
     return null;
   }
+
+  const getMessage = () => {
+    if (isDataSending) {
+      return (
+        <p>Sending your review...</p>
+      );
+    } else if (isDataSendError) {
+      return (
+        <p className="movie-card__text" style={{color: `#F5001D`}}>Error! Please, try again later...</p>
+      );
+    }
+    return ``;
+  };
 
   return (
     <section className="movie-card movie-card--full">
@@ -62,7 +89,7 @@ const AddReviewScreen = (props) => {
       </div>
 
       <div className="add-review">
-        {errorMessage ? <p className="movie-card__text">Error occurred. Please try again later.</p> : ``}
+        {getMessage()}
         <form action="#" className="add-review__form" onSubmit={handleSubmit}>
           <div className="rating">
             <div className="rating__stars">
@@ -72,6 +99,7 @@ const AddReviewScreen = (props) => {
                     <input className="rating__input" id={`star-${reviewRating}`} type="radio" name="rating" value={`${reviewRating}`}
                       checked={reviewRating === rating}
                       onChange={onRatingChange}
+                      disabled={isDataSending}
                     />
                     <label className="rating__label" htmlFor={`star-${reviewRating}`}>{`Rating ${reviewRating}`}</label>
                   </Fragment>
@@ -84,9 +112,10 @@ const AddReviewScreen = (props) => {
             <textarea className="add-review__textarea" name="reviewText" id="reviewText"
               placeholder="Review text"
               onChange={onReviewChange}
+              disabled={isDataSending}
             />
             <div className="add-review__submit">
-              <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
+              <button className="add-review__btn" type="submit" disabled={(!isValid || isDataSending)}>Post</button>
             </div>
           </div>
         </form>
@@ -102,23 +131,18 @@ AddReviewScreen.propTypes = {
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
-  currentMovie: PropTypes.shape({
-    id: PropTypes.number,
-    genre: PropTypes.string,
-    poster: PropTypes.string,
-    releaseYear: PropTypes.number,
-    title: PropTypes.string,
-    cover: PropTypes.string,
-    backgroundColor: PropTypes.string,
-  }),
+  currentMovie: movieProp,
   rating: PropTypes.string,
   reviewText: PropTypes.string,
-  errorMessage: PropTypes.string
+  isDataSending: PropTypes.bool.isRequired,
+  isDataSendError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   currentMovie: getCurrentMovie(state),
   reviews: getReviews(state),
+  isDataSending: dataSending(state),
+  isDataSendError: dataSendingError(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -126,6 +150,7 @@ const mapDispatchToProps = (dispatch) => ({
     dispatch(fetchCurrentMovie(movieId));
   },
   onSubmit(id, rating, reviewText) {
+    dispatch(setDataIsSending(true));
     dispatch(addReview(id, rating, reviewText));
   }
 });

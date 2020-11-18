@@ -7,6 +7,8 @@ import {
   redirectToRoute,
   loadUser,
   loadMovieReviews,
+  setDataIsSending,
+  setDataSendError
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
 import {movieAdapter, moviesListAdapter, userDataAdapter, reviewsAdapter} from "../services/adapter";
@@ -89,5 +91,12 @@ export const fetchReviews = (id) => (dispatch, _getState, api) => (
 
 export const addReview = (id, rating, comment) => (dispatch, _getState, api) => (
   api.post(AppRoute.REVIEWS + `/${id}`, {rating, comment})
-    .then(() => dispatch(redirectToRoute(AppRoute.MOVIES + `/${id}`)))
+    .then(() => {
+      dispatch(redirectToRoute(AppRoute.MOVIES + `/${id}`))
+      dispatch(setDataIsSending(false));
+    })
+    .catch(() => {
+      dispatch(setDataIsSending(false));
+      dispatch(setDataSendError(true));
+    })
 );

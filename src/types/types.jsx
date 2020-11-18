@@ -30,3 +30,14 @@ export const userDetails = PropTypes.shape({
   userAvatar: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
 });
+
+
+export const movieProp = PropTypes.shape({
+  id: PropTypes.number,
+  genre: PropTypes.string,
+  poster: PropTypes.string,
+  releaseYear: PropTypes.number,
+  title: PropTypes.string,
+  cover: PropTypes.string,
+  backgroundColor: PropTypes.string,
+});

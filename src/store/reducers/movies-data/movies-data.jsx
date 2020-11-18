@@ -9,6 +9,8 @@ const initialState = {
   reviews: [],
   defaultFilmsCount: FILMS_COUNT_PER_CLICK,
   filteredMovies: [],
+  isDataSending: false,
+  isDataSendError: false,
 };
 
 const moviesData = (state = initialState, action) => {
@@ -28,6 +30,14 @@ const moviesData = (state = initialState, action) => {
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         reviews: action.payload
+      });
+    case ActionType.SET_DATA_IS_SENDING:
+      return extend(state, {
+        isDataSending: action.payload,
+      });
+    case ActionType.SET_DATA_SEND_ERROR:
+      return extend(state, {
+        isDataSendError: action.payload,
       });
   }
 

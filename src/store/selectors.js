@@ -34,6 +34,14 @@ export const getUser = (state) => {
   return state[NameSpace.USER];
 };
 
+export const dataSending = (state) => {
+  return state[NameSpace.DATA].isDataSending;
+};
+
+export const dataSendingError = (state) => {
+  return state[NameSpace.DATA].isDataSendError;
+};
+
 // reselect
 export const getFilteredMovies = createSelector(
     getActiveGenre,
