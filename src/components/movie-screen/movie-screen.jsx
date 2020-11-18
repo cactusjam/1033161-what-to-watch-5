@@ -1,22 +1,21 @@
 import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails, reviewDetails, userDetails, movieProp} from "../../types/types";
+import {movieDetails, reviewDetails, movieProp} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs";
 import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
-import {getMovies, getReviews, getCurrentMovie, getUser} from "../../store/selectors";
+import {getMovies, getReviews, getCurrentMovie} from "../../store/selectors";
 import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
-import {AuthorizationStatus} from "../../constants/constants";
 import FavoriteButton from "../favorite-button/favorite-button";
 
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
-  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie, userData} = props;
+  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie} = props;
 
   useEffect(() => {
     setCurrentMovie(currentMovieId);
@@ -26,7 +25,7 @@ const MovieScreen = (props) => {
     return null;
   }
 
-  const {id, genre, poster, releaseYear, title, cover, isFavorite} = currentMovie;
+  const {id, genre, poster, releaseYear, title, cover, isFavorite, userAvatar} = currentMovie;
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
@@ -42,6 +41,7 @@ const MovieScreen = (props) => {
           <Header
             cover = {cover}
             title = {title}
+            userAvatar = {userAvatar}
           />
 
           <div className="movie-card__wrap">
@@ -60,9 +60,8 @@ const MovieScreen = (props) => {
                   <span>Play</span>
                 </button>
                 <FavoriteButton id={id} isFavorite={isFavorite}/>
-                {userData.authorizationStatus === AuthorizationStatus.AUTH
-                  ? <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
-                  : ``}
+                <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                <Link to={`/mylist`} className="btn movie-card__button">My List</Link>
               </div>
             </div>
           </div>
@@ -112,14 +111,12 @@ MovieScreen.propTypes = {
   isFavorite: PropTypes.bool,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   currentMovieId: PropTypes.string.isRequired,
-  userData: userDetails,
 };
 
 const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   movies: getMovies(state),
   currentMovie: getCurrentMovie(state),
-  userData: getUser(state),
 });
 
 const mapDispatchToProps = (dispatch) => ({
