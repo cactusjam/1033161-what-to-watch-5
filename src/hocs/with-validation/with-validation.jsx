@@ -1,13 +1,6 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
-
-const Review = {
-  MIN_RATING: 1,
-  TEXT: {
-    MIN_LENGTH: 50,
-    MAX_LENGTH: 400,
-  },
-};
+import {Review} from "../../constants/constants";
 
 const validateText = (reviewText) => {
   return reviewText.length >= Review.TEXT.MIN_LENGTH && reviewText.length <= Review.TEXT.MAX_LENGTH;
@@ -31,8 +24,6 @@ const withValidation = (Component) => {
 
       this._handleReviewChange = this._handleReviewChange.bind(this);
       this._handleRatingChange = this._handleRatingChange.bind(this);
-      // this._handleError = this._handleError.bind(this);
-      // this._handleErrorClose = this._handleErrorClose.bind(this);
     }
 
     _isValid(rating, reviewText) {
@@ -60,18 +51,6 @@ const withValidation = (Component) => {
         isValid
       });
     }
-
-    // _handleError(message) {
-    //   this.setState({
-    //     errorMessage: message,
-    //   });
-    // }
-
-    // _handleErrorClose() {
-    //   this.setState({
-    //     errorMessage: null,
-    //   });
-    // }
 
     render() {
       const {isValid, rating, reviewText, errorMessage} = this.state;

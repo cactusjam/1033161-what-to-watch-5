@@ -51,4 +51,12 @@ export const HttpCode = {
   SERVER_ERROR: 500,
 };
 
+export const Review = {
+  MIN_RATING: 1,
+  TEXT: {
+    MIN_LENGTH: 50,
+    MAX_LENGTH: 400,
+  },
+};
+
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

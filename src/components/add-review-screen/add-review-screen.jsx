@@ -13,16 +13,16 @@ const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 const AddReviewScreen = (props) => {
   const {
     currentMovieId,
-    setCurrentMovie,
-    rating,
-    reviewText,
-    onSubmit,
     currentMovie,
-    isValid,
+    onSubmit,
     onReviewChange,
     onRatingChange,
     isDataSending,
-    isDataSendError
+    isDataSendError,
+    isValid,
+    rating,
+    reviewText,
+    setCurrentMovie,
   } = props;
 
   const handleSubmit = (evt) => {
