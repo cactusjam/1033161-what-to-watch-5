@@ -1,7 +1,7 @@
 import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails, reviewDetails, userDetails} from "../../types/types";
+import {movieDetails, reviewDetails, userDetails, movieProp} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
@@ -108,16 +108,8 @@ MovieScreen.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
   setCurrentMovie: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
-  currentMovie: PropTypes.shape({
-    id: PropTypes.number,
-    genre: PropTypes.string,
-    poster: PropTypes.string,
-    releaseYear: PropTypes.number,
-    title: PropTypes.string,
-    cover: PropTypes.string,
-    backgroundColor: PropTypes.string,
-    isFavorite: PropTypes.bool,
-  }),
+  currentMovie: movieProp,
+  isFavorite: PropTypes.bool,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
   currentMovieId: PropTypes.string.isRequired,
   userData: userDetails,
