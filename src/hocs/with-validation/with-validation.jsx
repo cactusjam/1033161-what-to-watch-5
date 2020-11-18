@@ -24,39 +24,37 @@ const withValidation = (Component) => {
 
       this.state = {
         isValid: false,
-        rating: `1`,
+        rating: ``,
         reviewText: ``,
       };
 
-      this._handleValidation = this._handleValidation.bind(this);
       this._handleReviewChange = this._handleReviewChange.bind(this);
       this._handleRatingChange = this._handleRatingChange.bind(this);
     }
 
-    _handleValidation() {
-      const {rating, reviewText} = this.state;
-
-      if (validateRating(rating) && validateText(reviewText)) {
-        this.setState({
-          isValid: true,
-        });
-        return;
-      }
-
-      this.setState({
-        isValid: false,
-      });
+    _isValid(rating, reviewText) {
+      return validateRating(rating) && validateText(reviewText);
     }
 
     _handleReviewChange(evt) {
+      const {rating} = this.state;
+      const reviewText = evt.target.value;
+      const isValid = this._isValid(rating, reviewText);
+
       this.setState({
-        reviewText: evt.target.value,
+        reviewText,
+        isValid
       });
     }
 
     _handleRatingChange(evt) {
+      const {reviewText} = this.state;
+      const rating = evt.target.value;
+      const isValid = this._isValid(rating, reviewText);
+
       this.setState({
-        rating: evt.target.value,
+        rating,
+        isValid
       });
     }
 
@@ -69,8 +67,8 @@ const withValidation = (Component) => {
         rating={rating}
         reviewText={reviewText}
         onReviewChange={this._handleReviewChange}
-        onValidityCheck={this._handleValidation}
         onRatingChange={this._handleRatingChange}
+        // onValidityCheck={this._handleValidation}
       />;
     }
   }

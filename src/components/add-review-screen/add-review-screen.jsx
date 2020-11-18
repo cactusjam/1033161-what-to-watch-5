@@ -33,7 +33,7 @@ class AddReviewScreen extends PureComponent {
       return null;
     }
 
-    const {isValid, onValidityCheck, onRatingChange, onReviewChange, rating} = this.props;
+    const {isValid, onRatingChange, onReviewChange, rating} = this.props;
 
     return (
       <section className="movie-card movie-card--full">
@@ -81,10 +81,7 @@ class AddReviewScreen extends PureComponent {
                     <Fragment key={reviewRating}>
                       <input className="rating__input" id={`star-${reviewRating}`} type="radio" name="rating" value={`${reviewRating}`}
                         checked={reviewRating === rating}
-                        onChange={(evt) => {
-                          onRatingChange(evt);
-                          onValidityCheck();
-                        }}
+                        onChange={onRatingChange}
                       />
                       <label className="rating__label" htmlFor={`star-${reviewRating}`}>{`Rating ${reviewRating}`}</label>
                     </Fragment>
@@ -96,10 +93,7 @@ class AddReviewScreen extends PureComponent {
             <div className="add-review__text">
               <textarea className="add-review__textarea" name="reviewText" id="reviewText"
                 placeholder="Review text"
-                onChange= {(evt) => {
-                  onReviewChange(evt);
-                  onValidityCheck();
-                }}
+                onChange={onReviewChange}
               />
               <div className="add-review__submit">
                 <button className="add-review__btn" type="submit" disabled={!isValid}>Post</button>
@@ -116,7 +110,6 @@ AddReviewScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
   currentMovieId: PropTypes.string.isRequired,
-  onValidityCheck: PropTypes.func.isRequired,
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
