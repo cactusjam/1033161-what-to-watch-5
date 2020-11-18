@@ -15,7 +15,7 @@ const FavoriteButton = (props) => {
     if (userData.authorizationStatus === AuthorizationStatus.NO_AUTH) {
       return onUnauthorizedClick(AppRoute.LOGIN);
     }
-    onFavoriteClick(id, !isFavorite ? 1 : 0);
+    return onFavoriteClick(id, !isFavorite ? 1 : 0);
   };
 
   return (

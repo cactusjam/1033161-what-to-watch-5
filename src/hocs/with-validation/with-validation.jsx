@@ -26,10 +26,13 @@ const withValidation = (Component) => {
         isValid: false,
         rating: ``,
         reviewText: ``,
+        errorMessage: null
       };
 
       this._handleReviewChange = this._handleReviewChange.bind(this);
       this._handleRatingChange = this._handleRatingChange.bind(this);
+      // this._handleError = this._handleError.bind(this);
+      // this._handleErrorClose = this._handleErrorClose.bind(this);
     }
 
     _isValid(rating, reviewText) {
@@ -58,8 +61,20 @@ const withValidation = (Component) => {
       });
     }
 
+    // _handleError(message) {
+    //   this.setState({
+    //     errorMessage: message,
+    //   });
+    // }
+
+    // _handleErrorClose() {
+    //   this.setState({
+    //     errorMessage: null,
+    //   });
+    // }
+
     render() {
-      const {isValid, rating, reviewText} = this.state;
+      const {isValid, rating, reviewText, errorMessage} = this.state;
 
       return <Component
         {...this.props}
@@ -68,7 +83,7 @@ const withValidation = (Component) => {
         reviewText={reviewText}
         onReviewChange={this._handleReviewChange}
         onRatingChange={this._handleRatingChange}
-        // onValidityCheck={this._handleValidation}
+        errorMessage = {errorMessage}
       />;
     }
   }
