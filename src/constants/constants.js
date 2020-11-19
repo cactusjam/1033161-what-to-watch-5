@@ -42,6 +42,7 @@ export const AppRoute = {
   CURRENT_MOVIE: `/films/:id`,
   CURRENT_PLAYER: `/player/:id`,
   FAVORITE: `/favorite`,
+  ROOT: `/`
 };
 
 export const HttpCode = {
