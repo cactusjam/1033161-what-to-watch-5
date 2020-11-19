@@ -1,12 +1,13 @@
 import React, {PureComponent} from "react";
 import {connect} from "react-redux";
 import {Link} from "react-router-dom";
-import {userDetails} from "../../types/types";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from "prop-types";
 import {fetchFavorites} from "../../store/api-actions";
 import {getFavorite, getUser} from "../../store/selectors";
 import {movieDetails} from "../../types/types";
+import UserBlock from "../user-block/user-block";
+import LogoHeader from "../logo-header/logo-header";
 
 class MyListScreen extends PureComponent {
   constructor(props) {
@@ -26,26 +27,13 @@ class MyListScreen extends PureComponent {
 
   render() {
     const {moviesList} = this.props;
-    const {userAvatar} = this.props.userData;
 
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
-          <div className="logo">
-            <Link to='/' className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
-
+          <LogoHeader/>
           <h1 className="page-title user-page__title">My list</h1>
-
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src={userAvatar} alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock/>
         </header>
 
         <section className="catalog">
@@ -72,13 +60,11 @@ class MyListScreen extends PureComponent {
 }
 
 MyListScreen.propTypes = {
-  userData: userDetails,
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
   loadFavoriteList: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  userData: getUser(state),
   moviesList: getFavorite(state),
 });
 

@@ -42,6 +42,7 @@ const MainScreen = (props) => {
         <div className="movie-card__bg">
           <img src={promoMovie.cover} alt={promoMovie.title} />
         </div>
+
         <header className="page-header movie-card__head">
           <div className="logo">
             <a className="logo__link">
@@ -52,7 +53,6 @@ const MainScreen = (props) => {
           </div>
 
           <UserBlock />
-
         </header>
         <PromoMovie onPlayButtonClick={onPlayButtonClick} />
       </section>
