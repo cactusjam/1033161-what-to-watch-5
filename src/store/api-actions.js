@@ -94,13 +94,17 @@ export const addReview = (id, rating, comment) => (dispatch, _getState, api) => 
     })
 );
 
-export const addFavoriteMovie = (id, status) => (dispatch, _getState, api) => {
-  return api.post(`${AppRoute.FAVORITE}/${id}/${status}`)
+export const addFavoriteMovie = (id, status) => (dispatch, _getState, api) => (
+  api.post(`${AppRoute.FAVORITE}/${id}/${status}`)
   .then((response) => {
     dispatch(loadPromoMovie(movieAdapter(response.data)));
     dispatch(loadCurrentMovie(movieAdapter(response.data)));
-  });
-};
+  })
+  .catch(() => {
+    dispatch(setDataIsSending(false));
+    dispatch(setDataSendError(true));
+  })
+);
 
 export const fetchFavorites = () => (dispatch, _getState, api) => (
   api.get(`${AppRoute.FAVORITE}`)
