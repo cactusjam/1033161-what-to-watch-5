@@ -1,14 +1,17 @@
 import {extend} from "../../../utils/utils";
 import {ActionType} from "../../action";
 import {FILMS_COUNT_PER_CLICK} from "../../../constants/constants";
-import reviews from "../../../mocks/reviews";
 
 const initialState = {
   movies: [],
   promoMovie: {},
-  reviews,
+  currentMovie: null,
+  reviews: [],
   defaultFilmsCount: FILMS_COUNT_PER_CLICK,
   filteredMovies: [],
+  isDataSending: false,
+  isDataSendError: false,
+  favorites: []
 };
 
 const moviesData = (state = initialState, action) => {
@@ -21,9 +24,25 @@ const moviesData = (state = initialState, action) => {
       return extend(state, {
         movies: action.payload
       });
+    case ActionType.LOAD_CURRENT_MOVIE:
+      return extend(state, {
+        currentMovie: action.payload
+      });
     case ActionType.LOAD_MOVIE_REVIEWS:
       return extend(state, {
         reviews: action.payload
+      });
+    case ActionType.SET_DATA_IS_SENDING:
+      return extend(state, {
+        isDataSending: action.payload,
+      });
+    case ActionType.SET_DATA_SEND_ERROR:
+      return extend(state, {
+        isDataSendError: action.payload,
+      });
+    case ActionType.LOAD_FAVORITES:
+      return extend(state, {
+        favorites: action.payload,
       });
   }
 

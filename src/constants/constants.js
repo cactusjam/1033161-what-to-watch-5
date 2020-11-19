@@ -37,9 +37,26 @@ export const AppRoute = {
   MOVIES: `/films`,
   MOVIES_PROMO: `/films/promo`,
   MY_LIST: `/mylist`,
-  REVIEW: `/films/:id/review`,
+  REVIEWS: `/comments`,
+  CURRENT_REVIEW: `/films/:id/review`,
   CURRENT_MOVIE: `/films/:id`,
-  CURRENT_PLAYER: `/player/:id`
+  CURRENT_PLAYER: `/player/:id`,
+  FAVORITE: `/favorite`,
+};
+
+export const HttpCode = {
+  OK: 200,
+  BAD_REQUEST: 400,
+  UNAUTHORIZED: 401,
+  SERVER_ERROR: 500,
+};
+
+export const Review = {
+  MIN_RATING: 1,
+  TEXT: {
+    MIN_LENGTH: 50,
+    MAX_LENGTH: 400,
+  },
 };
 
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

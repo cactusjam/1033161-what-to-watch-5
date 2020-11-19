@@ -1,119 +1,158 @@
-import React, {Fragment, PureComponent} from "react";
+import React, {Fragment, useEffect} from "react";
 import {Link} from 'react-router-dom';
-import {movieDetails} from "../../types/types";
 import PropTypes from "prop-types";
 import {connect} from "react-redux";
-import {getMovies, getReviews} from "../../store/selectors";
+import {getCurrentMovie, getReviews, dataSending, dataSendingError} from "../../store/selectors";
+import {fetchCurrentMovie, addReview} from "../../store/api-actions";
+import AuthUser from "../auth-user/auth-user";
+import {setDataIsSending} from "../../store/action";
+import {movieProp} from "../../types/types";
 
 const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
 
-class AddReviewScreen extends PureComponent {
-  constructor(props) {
-    super(props);
+const AddReviewScreen = (props) => {
+  const {
+    currentMovieId,
+    currentMovie,
+    onSubmit,
+    onReviewChange,
+    onRatingChange,
+    isDataSending,
+    isDataSendError,
+    isValid,
+    rating,
+    reviewText,
+    setCurrentMovie,
+  } = props;
 
-    this.state = {
-      rating: `3`,
-      text: null,
-    };
-
-    this.handleSubmit = this.handleSubmit.bind(this);
-    this.handleFieldChange = this.handleFieldChange.bind(this);
-  }
-
-  handleSubmit(evt) {
+  const handleSubmit = (evt) => {
     evt.preventDefault();
+    onSubmit(currentMovieId, rating, reviewText);
+  };
+
+  useEffect(() => {
+    setCurrentMovie(currentMovieId);
+  }, [currentMovieId]);
+
+  if (!currentMovie) {
+    return null;
   }
 
-  handleFieldChange(evt) {
-    const {name, value} = evt.target;
-    this.setState({[name]: value});
-  }
+  const getMessage = () => {
+    if (isDataSending) {
+      return (
+        <p>Sending your review...</p>
+      );
+    } else if (isDataSendError) {
+      return (
+        <p className="movie-card__text" style={{color: `#F5001D`}}>Error! Please, try again later...</p>
+      );
+    }
+    return ``;
+  };
 
-  render() {
-    const {movies} = this.props;
-
-    return (
-      <section className="movie-card movie-card--full">
-        <div className="movie-card__header">
-          <div className="movie-card__bg">
-            <img src={movies.poster} alt={movies.title} />
-          </div>
-
-          <h1 className="visually-hidden">WTW</h1>
-
-          <header className="page-header">
-            <div className="logo">
-              <Link to='/' className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </Link>
-            </div>
-
-            <nav className="breadcrumbs">
-              <ul className="breadcrumbs__list">
-                <li className="breadcrumbs__item">
-                  <Link to={`/films/${movies.id}`} className="breadcrumbs__link">{movies.title}</Link>
-                </li>
-                <li className="breadcrumbs__item">
-                  <a className="breadcrumbs__link">Add review</a>
-                </li>
-              </ul>
-            </nav>
-
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
-          </header>
-
-          <div className="movie-card__poster movie-card__poster--small">
-            <img src={movies.poster} alt={movies.title} width="218"
-              height="327" />
-          </div>
+  return (
+    <section className="movie-card movie-card--full">
+      <div className="movie-card__header">
+        <div className="movie-card__bg">
+          <img src={currentMovie.poster} alt={currentMovie.title} />
         </div>
 
-        <div className="add-review">
-          <form action="#" className="add-review__form">
-            <div className="rating">
-              <div className="rating__stars">
-                {REVIEW_RATINGS.map((rating) => {
-                  return (
-                    <Fragment key={rating}>
-                      <input className="rating__input" id={`star-${rating}`} type="radio" name="rating" value={`${rating}`}
-                        checked={rating === this.state.rating}
-                        onChange={this.handleFieldChange}
-                      />
-                      <label className="rating__label" htmlFor={`star-${rating}`}>{`Rating ${rating}`}</label>
-                    </Fragment>
-                  );
-                })}
-              </div>
-            </div>
+        <h1 className="visually-hidden">WTW</h1>
 
-            <div className="add-review__text">
-              <textarea className="add-review__textarea" name="review-text" id="review-text"
-                placeholder="Review text" onChange={this.handleFieldChange}/>
-              <div className="add-review__submit">
-                <button className="add-review__btn" type="submit">Post</button>
-              </div>
+        <header className="page-header">
+          <div className="logo">
+            <Link to='/' className="logo__link">
+              <span className="logo__letter logo__letter--1">W</span>
+              <span className="logo__letter logo__letter--2">T</span>
+              <span className="logo__letter logo__letter--3">W</span>
+            </Link>
+          </div>
 
-            </div>
-          </form>
+          <nav className="breadcrumbs">
+            <ul className="breadcrumbs__list">
+              <li className="breadcrumbs__item">
+                <Link to={`/films/${currentMovie.id}`} className="breadcrumbs__link">{currentMovie.title}</Link>
+              </li>
+              <li className="breadcrumbs__item">
+                <a className="breadcrumbs__link">Add review</a>
+              </li>
+            </ul>
+          </nav>
+          <AuthUser/>
+        </header>
+
+        <div className="movie-card__poster movie-card__poster--small">
+          <img src={currentMovie.poster} alt={currentMovie.title} width="218"
+            height="327" />
         </div>
-      </section>
-    );
-  }
-}
+      </div>
+
+      <div className="add-review">
+        {getMessage()}
+        <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+          <div className="rating">
+            <div className="rating__stars">
+              {REVIEW_RATINGS.map((reviewRating) => {
+                return (
+                  <Fragment key={reviewRating}>
+                    <input className="rating__input" id={`star-${reviewRating}`} type="radio" name="rating" value={`${reviewRating}`}
+                      checked={reviewRating === rating}
+                      onChange={onRatingChange}
+                      disabled={isDataSending}
+                    />
+                    <label className="rating__label" htmlFor={`star-${reviewRating}`}>{`Rating ${reviewRating}`}</label>
+                  </Fragment>
+                );
+              })}
+            </div>
+          </div>
+
+          <div className="add-review__text">
+            <textarea className="add-review__textarea" name="reviewText" id="reviewText"
+              placeholder="Review text"
+              onChange={onReviewChange}
+              disabled={isDataSending}
+            />
+            <div className="add-review__submit">
+              <button className="add-review__btn" type="submit" disabled={(!isValid || isDataSending)}>Post</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </section>
+  );
+};
 
 AddReviewScreen.propTypes = {
-  movies: PropTypes.arrayOf(movieDetails).isRequired
+  setCurrentMovie: PropTypes.func.isRequired,
+  onSubmit: PropTypes.func.isRequired,
+  currentMovieId: PropTypes.string.isRequired,
+  onReviewChange: PropTypes.func.isRequired,
+  onRatingChange: PropTypes.func.isRequired,
+  isValid: PropTypes.bool,
+  currentMovie: movieProp,
+  rating: PropTypes.string,
+  reviewText: PropTypes.string,
+  isDataSending: PropTypes.bool.isRequired,
+  isDataSendError: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state) => ({
-  movies: getMovies(state),
-  reviews: getReviews(state)
+  currentMovie: getCurrentMovie(state),
+  reviews: getReviews(state),
+  isDataSending: dataSending(state),
+  isDataSendError: dataSendingError(state)
 });
 
-export default connect(mapStateToProps)(AddReviewScreen);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  },
+  onSubmit(id, rating, reviewText) {
+    dispatch(setDataIsSending(true));
+    dispatch(addReview(id, rating, reviewText));
+  }
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);

@@ -5,10 +5,14 @@ import {
   requireAuthorization,
   loadCurrentMovie,
   redirectToRoute,
-  loadUser
+  loadUser,
+  loadMovieReviews,
+  setDataIsSending,
+  setDataSendError,
+  loadFavorites
 } from "./action";
 import {AuthorizationStatus, GenresFilter, AppRoute} from "../constants/constants";
-import {movieAdapter, moviesListAdapter, userDataAdapter} from "../services/adapter";
+import {movieAdapter, moviesListAdapter, userDataAdapter, reviewsAdapter} from "../services/adapter";
 
 export const fetchMoviesList = () => (dispatch, _getState, api) => (
   api.get(AppRoute.MOVIES)
@@ -68,3 +72,42 @@ export const login = ({email, password}) => (dispatch, _getState, api) => (
   })
 );
 
+export const fetchReviews = (id) => (dispatch, _getState, api) => (
+  api.get(AppRoute.REVIEWS + `/${id}`)
+    .then((reviews) => {
+      dispatch(loadMovieReviews(reviewsAdapter(reviews.data)));
+    })
+    .catch((_error) => {
+      throw Error(`Ошибка загрузки комментариев`);
+    })
+);
+
+export const addReview = (id, rating, comment) => (dispatch, _getState, api) => (
+  api.post(AppRoute.REVIEWS + `/${id}`, {rating, comment})
+    .then(() => {
+      dispatch(redirectToRoute(AppRoute.MOVIES + `/${id}`));
+      dispatch(setDataIsSending(false));
+    })
+    .catch(() => {
+      dispatch(setDataIsSending(false));
+      dispatch(setDataSendError(true));
+    })
+);
+
+export const addFavoriteMovie = (id, status) => (dispatch, _getState, api) => {
+  return api.post(`${AppRoute.FAVORITE}/${id}/${status}`)
+  .then((response) => {
+    dispatch(loadPromoMovie(movieAdapter(response.data)));
+    dispatch(loadCurrentMovie(movieAdapter(response.data)));
+  });
+};
+
+export const fetchFavorites = () => (dispatch, _getState, api) => (
+  api.get(`${AppRoute.FAVORITE}`)
+    .then((favorite) => {
+      dispatch(loadFavorites(moviesListAdapter(favorite.data)));
+    })
+    .catch(() => {
+      throw Error(`Ошибка загрузки любимых фильмов`);
+    })
+);

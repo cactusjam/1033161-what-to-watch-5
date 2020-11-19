@@ -1,14 +1,23 @@
-import React from "react";
-import {movieDetails} from "../../types/types";
+import React, {useEffect} from "react";
+import PropTypes from 'prop-types';
 import {connect} from "react-redux";
 import withVideoPlayer from "../../hocs/with-video-player/with-video-player";
 import VideoPlayer from "../video-player/video-player";
-import {getMovieById} from "../../store/selectors";
+import {getCurrentMovie} from "../../store/selectors";
+import {fetchCurrentMovie} from "../../store/api-actions";
 
 const VideoPlayerWrapper = withVideoPlayer(VideoPlayer);
 
 const PlayerScreen = (props) => {
-  const {currentMovie} = props;
+  const {setCurrentMovie, currentMovieId, currentMovie} = props;
+
+  useEffect(() => {
+    setCurrentMovie(currentMovieId);
+  }, [currentMovieId]);
+
+  if (!currentMovie) {
+    return null;
+  }
 
   return (
     <div className="player">
@@ -20,11 +29,27 @@ const PlayerScreen = (props) => {
 };
 
 PlayerScreen.propTypes = {
-  currentMovie: movieDetails,
+  setCurrentMovie: PropTypes.func.isRequired,
+  currentMovieId: PropTypes.string.isRequired,
+  currentMovie: PropTypes.shape({
+    id: PropTypes.number,
+    genre: PropTypes.string,
+    poster: PropTypes.string,
+    releaseYear: PropTypes.number,
+    title: PropTypes.string,
+    cover: PropTypes.string,
+    backgroundColor: PropTypes.string,
+  }),
 };
 
-const mapStateToProps = (state, ownProps) => ({
-  currentMovie: getMovieById(state, ownProps.currentMovieId),
+const mapStateToProps = (state) => ({
+  currentMovie: getCurrentMovie(state),
 });
 
-export default connect(mapStateToProps)(PlayerScreen);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerScreen);

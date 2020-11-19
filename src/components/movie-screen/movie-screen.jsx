@@ -1,21 +1,31 @@
-import React, {Fragment} from "react";
+import React, {Fragment, useEffect} from "react";
 import {connect} from "react-redux";
 import MoviesList from "../movies-list/movies-list";
-import {movieDetails, reviewDetails} from "../../types/types";
+import {movieDetails, reviewDetails, movieProp} from "../../types/types";
 import PropTypes from 'prop-types';
 import {Link} from "react-router-dom";
 import Header from "../header/header";
 import Tabs from "../tabs/tabs";
 import {getSimilarMovies} from "../../utils/utils";
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
-import {getMovies, getReviews, getMovieById} from "../../store/selectors";
+import {getMovies, getReviews, getCurrentMovie} from "../../store/selectors";
+import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
+import FavoriteButton from "../favorite-button/favorite-button";
 
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
-  const {onPlayButtonClick, movies, reviews, currentMovie} = props;
-  const {id, genre, poster, releaseYear, title, cover} = currentMovie;
+  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie} = props;
 
+  useEffect(() => {
+    setCurrentMovie(currentMovieId);
+  }, [currentMovieId]);
+
+  if (!currentMovie) {
+    return null;
+  }
+
+  const {id, genre, poster, releaseYear, title, cover, isFavorite, userAvatar} = currentMovie;
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (
@@ -31,6 +41,7 @@ const MovieScreen = (props) => {
           <Header
             cover = {cover}
             title = {title}
+            userAvatar = {userAvatar}
           />
 
           <div className="movie-card__wrap">
@@ -48,13 +59,9 @@ const MovieScreen = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add" />
-                  </svg>
-                  <span>My list</span>
-                </button>
+                <FavoriteButton id={id} isFavorite={isFavorite}/>
                 <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
+                <Link to={`/mylist`} className="btn movie-card__button">My List</Link>
               </div>
             </div>
           </div>
@@ -98,16 +105,25 @@ const MovieScreen = (props) => {
 
 MovieScreen.propTypes = {
   onPlayButtonClick: PropTypes.func.isRequired,
+  setCurrentMovie: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
-  currentMovie: movieDetails,
+  currentMovie: movieProp,
+  isFavorite: PropTypes.bool,
   reviews: PropTypes.arrayOf(reviewDetails).isRequired,
-  currentMovieId: PropTypes.string.isRequired
+  currentMovieId: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state, ownProps) => ({
+const mapStateToProps = (state) => ({
   reviews: getReviews(state),
   movies: getMovies(state),
-  currentMovie: getMovieById(state, ownProps.currentMovieId),
+  currentMovie: getCurrentMovie(state),
 });
 
-export default connect(mapStateToProps)(MovieScreen);
+const mapDispatchToProps = (dispatch) => ({
+  setCurrentMovie(movieId) {
+    dispatch(fetchCurrentMovie(movieId));
+    dispatch(fetchReviews(movieId));
+  },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(MovieScreen);

@@ -9,6 +9,10 @@ import PlayerScreen from "../player-screen/player-screen";
 import PrivateRoute from "../private-route/private-route";
 import {AppRoute} from "../../constants/constants";
 import browserHistory from "../../browser-history";
+import withLogin from "../../hocs/with-login/with-login";
+import withValidation from "../../hocs/with-validation/with-validation";
+const SignInWrapped = withLogin(LoginScreen);
+const AddReviewWrapper = withValidation(AddReviewScreen);
 
 const App = () => {
   return (
@@ -23,7 +27,7 @@ const App = () => {
         />
         <Route
           path={AppRoute.LOGIN} exact>
-          <LoginScreen/>
+          <SignInWrapped/>
         </Route>
         <PrivateRoute
           exact
@@ -42,9 +46,10 @@ const App = () => {
 
         <PrivateRoute
           exact
-          path={AppRoute.REVIEW}
-          render={() => (
-            <AddReviewScreen
+          path={AppRoute.CURRENT_REVIEW}
+          render={({match}) => (
+            <AddReviewWrapper
+              currentMovieId={match.params.id}
             />
           )}
         />

@@ -1,8 +1,10 @@
 import React from "react";
-import PropTypes from "prop-types";
+import {userDetails} from "../../types/types";
+import {connect} from "react-redux";
+import {getUser} from "../../store/selectors";
 
 const AuthUser = (props) => {
-  const {userAvatar} = props;
+  const {userAvatar} = props.userData;
 
   return (
     <div className="user-block">
@@ -14,7 +16,11 @@ const AuthUser = (props) => {
 };
 
 AuthUser.propTypes = {
-  userAvatar: PropTypes.string.isRequired,
+  userData: userDetails,
 };
 
-export default AuthUser;
+const mapStateToProps = (state) => ({
+  userData: getUser(state),
+});
+
+export default connect(mapStateToProps)(AuthUser);

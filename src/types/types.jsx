@@ -2,7 +2,7 @@ import PropTypes from "prop-types";
 
 export const reviewDetails = PropTypes.shape({
   author: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
+  reviewText: PropTypes.string.isRequired,
   date: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired
 });
@@ -29,4 +29,15 @@ export const userDetails = PropTypes.shape({
   email: PropTypes.string.isRequired,
   userAvatar: PropTypes.string.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+});
+
+
+export const movieProp = PropTypes.shape({
+  id: PropTypes.number,
+  genre: PropTypes.string,
+  poster: PropTypes.string,
+  releaseYear: PropTypes.number,
+  title: PropTypes.string,
+  cover: PropTypes.string,
+  backgroundColor: PropTypes.string,
 });
