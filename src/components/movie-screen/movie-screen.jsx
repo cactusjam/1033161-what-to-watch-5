@@ -16,7 +16,14 @@ import Footer from "../footer/footer";
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
-  const {onPlayButtonClick, movies, reviews, setCurrentMovie, currentMovieId, currentMovie} = props;
+  const {
+    onPlayButtonClick,
+    movies,
+    reviews,
+    setCurrentMovie,
+    currentMovieId,
+    currentMovie
+  } = props;
 
   useEffect(() => {
     setCurrentMovie(currentMovieId);
@@ -26,7 +33,16 @@ const MovieScreen = (props) => {
     return null;
   }
 
-  const {id, genre, cover, releaseYear, title, background, isFavorite} = currentMovie;
+  const {
+    background,
+    cover,
+    genre,
+    isFavorite,
+    id,
+    releaseYear,
+    title
+  } = currentMovie;
+
   const similarMovies = getSimilarMovies(movies, genre, id).slice(0, 4);
 
   return (

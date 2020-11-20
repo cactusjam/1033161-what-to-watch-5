@@ -1,0 +1,71 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`GenresList Should GenresList render correctly 1`] = `
+Array [
+  <ul
+    className="catalog__genres-list"
+  >
+    <li
+      className="catalog__genres-item catalog__genres-item--active"
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        All genres
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        
+      </a>
+    </li>
+  </ul>,
+  ",",
+]
+`;

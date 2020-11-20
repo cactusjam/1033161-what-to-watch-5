@@ -30,7 +30,11 @@ const PlayerScreen = (props) => {
 
 PlayerScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
-  currentMovieId: PropTypes.string.isRequired,
+  currentMovieId: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
   currentMovie: PropTypes.shape({
     id: PropTypes.number,
     genre: PropTypes.string,

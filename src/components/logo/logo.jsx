@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 import {AppRoute} from "../../constants/constants";
 
 const Logo = (props) => {
-  const {isFooter = false} = props;
+  const {
+    isFooter = false
+  } = props;
   return (
     <div className="logo">
       <Link to={AppRoute.ROOT} className={`logo__link ${isFooter ? `logo__link--light` : ``}`}>

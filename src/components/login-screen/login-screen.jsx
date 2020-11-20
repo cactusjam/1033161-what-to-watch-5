@@ -6,7 +6,12 @@ import Logo from "../logo/logo";
 import Footer from "../footer/footer";
 
 const LoginScreen = (props) => {
-  const {onSubmit, handleChange, email, password} = props;
+  const {
+    email,
+    handleChange,
+    onSubmit,
+    password
+  } = props;
 
   const handleSubmit = (evt) => {
     evt.preventDefault();

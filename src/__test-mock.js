@@ -28,23 +28,24 @@ export const TEST_MOCK_COMMENT = {
     id: 1,
     name: ``,
   },
-  rating: 1,
-  comment: ``
+  rating: ``,
+  reviewText: ``,
+  date: ``
 };
 
 export const TEST_MOCKS = {
   id: 1,
   noop: () => {},
+  match: {
+    params: {
+      id: `1`,
+    },
+  },
   movie: TEST_MOCK_MOVIE,
   movies: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
   genresFilter: [`All genres`, ``, ``, ``, ``, ``],
   genreFilter: `All genres`,
   comment: TEST_MOCK_COMMENT,
-  match: {
-    params: {
-      id: `1`
-    }
-  },
   userData: {
     id: 1,
     email: ``,
@@ -61,7 +62,6 @@ export const TEST_MOCK_STORE = {
   [NameSpace.USER]: {
     id: 1,
     email: ``,
-    name: ``,
     authorizationStatus: `AUTH`,
     userAvatar: ``,
   },
@@ -69,13 +69,13 @@ export const TEST_MOCK_STORE = {
     activeFilterGenre: `Adventure`
   },
   [NameSpace.DATA]: {
-    authorizationStatus: `TRUE`,
     movies: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
-    filteredMovies: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
     reviews: [],
     currentMovie: TEST_MOCK_MOVIE,
     promoMovie: TEST_MOCK_MOVIE,
     favorites: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
-    defaultFilmsCount: 8
+    defaultFilmsCount: 8,
+    isDataSending: false,
+    isDataSendError: false
   },
 };

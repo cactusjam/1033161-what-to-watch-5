@@ -4,7 +4,11 @@ import UserBlock from "../user-block/user-block";
 import Logo from "../logo/logo";
 
 const Header = (props) => {
-  const {children, background, title} = props;
+  const {
+    background,
+    children,
+    title
+  } = props;
   return (
     <Fragment>
       <div className="movie-card__bg">

@@ -54,7 +54,7 @@ const AddReviewScreen = (props) => {
   return (
     <section className="movie-card movie-card--full"style={{backgroundColor: currentMovie.backgroundColor}}>
       <div className="movie-card__header">
-        <Header cover={currentMovie.cover} title={currentMovie.title}>
+        <Header background={currentMovie.background} title={currentMovie.title}>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -113,7 +113,11 @@ const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  currentMovieId: PropTypes.string.isRequired,
+  currentMovieId: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
