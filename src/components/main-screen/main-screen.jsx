@@ -9,7 +9,7 @@ import {getGenresList} from "../../utils/utils";
 import {changeGenreFilter} from "../../store/action";
 import UserBlock from "../user-block/user-block";
 import MoreMoviesButton from "../more-movies-button/more-movies-button";
-import FooterScreen from "../footer-screen/footer-screen";
+import Footer from "../footer/footer";
 import {
   getMovies,
   getActiveGenre,
@@ -67,7 +67,7 @@ const MainScreen = (props) => {
           {filteredMovies.length > moviesList.length ? <MoreMoviesButton handleMoreButtonClick={handleMoreButtonClick} /> : ``}
         </section>
 
-        <FooterScreen/>
+        <Footer/>
       </div>
     </Fragment>
   );

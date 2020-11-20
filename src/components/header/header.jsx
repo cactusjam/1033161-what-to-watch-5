@@ -1,7 +1,7 @@
 import React, {Fragment} from "react";
 import PropTypes from "prop-types";
 import UserBlock from "../user-block/user-block";
-import LogoHeader from "../logo-header/logo-header";
+import Logo from "../logo/logo";
 
 const Header = (props) => {
   const {children, background, title} = props;
@@ -12,7 +12,7 @@ const Header = (props) => {
       </div>
       <h1 className="visually-hidden">WTW</h1>
       <header className="page-header movie-card__head">
-        <LogoHeader/>
+        <Logo/>
         {children}
         <UserBlock/>
       </header>

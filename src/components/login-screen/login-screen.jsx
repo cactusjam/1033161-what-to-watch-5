@@ -2,8 +2,8 @@ import React from "react";
 import PropTypes from 'prop-types';
 import {login} from "../../store/api-actions";
 import {connect} from "react-redux";
-import LogoHeader from "../logo-header/logo-header";
-import FooterScreen from "../footer-screen/footer-screen";
+import Logo from "../logo/logo";
+import Footer from "../footer/footer";
 
 const LoginScreen = (props) => {
   const {onSubmit, handleChange, email, password} = props;
@@ -20,7 +20,7 @@ const LoginScreen = (props) => {
   return (
     <div className="user-page">
       <header className="page-header user-page__head">
-        <LogoHeader/>
+        <Logo/>
         <h1 className="page-title user-page__title">Sign in</h1>
       </header>
 
@@ -42,7 +42,7 @@ const LoginScreen = (props) => {
         </form>
       </div>
 
-      <FooterScreen/>
+      <Footer/>
     </div>
   );
 };

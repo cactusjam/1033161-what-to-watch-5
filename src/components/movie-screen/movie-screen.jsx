@@ -11,7 +11,7 @@ import withActiveTab from '../../hocs/with-active-tab/with-active-tab';
 import {getMovies, getReviews, getCurrentMovie} from "../../store/selectors";
 import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
 import FavoriteButton from "../favorite-button/favorite-button";
-import FooterScreen from "../footer-screen/footer-screen";
+import Footer from "../footer/footer";
 
 const TabWrapped = withActiveTab(Tabs);
 
@@ -76,7 +76,7 @@ const MovieScreen = (props) => {
           <MoviesList movies={similarMovies} onClick={onPlayButtonClick}/>
         </section>
 
-        <FooterScreen/>
+        <Footer/>
       </div>
     </Fragment>
   );

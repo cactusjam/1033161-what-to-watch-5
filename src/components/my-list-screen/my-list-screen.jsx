@@ -4,10 +4,10 @@ import {Link} from "react-router-dom";
 import MoviesList from "../movies-list/movies-list";
 import PropTypes from "prop-types";
 import {fetchFavorites} from "../../store/api-actions";
-import {getFavorite, getUser} from "../../store/selectors";
+import {getFavorite} from "../../store/selectors";
 import {movieDetails} from "../../types/types";
 import UserBlock from "../user-block/user-block";
-import LogoHeader from "../logo-header/logo-header";
+import Logo from "../logo/logo";
 
 class MyListScreen extends PureComponent {
   constructor(props) {
@@ -31,7 +31,7 @@ class MyListScreen extends PureComponent {
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
-          <LogoHeader/>
+          <Logo/>
           <h1 className="page-title user-page__title">My list</h1>
           <UserBlock/>
         </header>
