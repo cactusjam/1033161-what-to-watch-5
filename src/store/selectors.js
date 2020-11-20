@@ -7,6 +7,7 @@ export const getMovies = (state) => {
 };
 
 export const getActiveGenre = (state) => {
+  console.log('state in getActiveGenre', state);
   return state[NameSpace.GENRES].activeFilterGenre;
 };
 
