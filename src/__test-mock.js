@@ -24,11 +24,8 @@ export const TEST_MOCK_MOVIE = {
 
 export const TEST_MOCK_COMMENT = {
   id: 1,
-  user: {
-    id: 1,
-    name: ``,
-  },
-  rating: ``,
+  author: ``,
+  rating: 22,
   reviewText: ``,
   date: ``
 };
@@ -45,7 +42,7 @@ export const TEST_MOCKS = {
   movies: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
   genresFilter: [`All genres`, ``, ``, ``, ``, ``],
   genreFilter: `All genres`,
-  comment: TEST_MOCK_COMMENT,
+  review: TEST_MOCK_COMMENT,
   userData: {
     id: 1,
     email: ``,
@@ -53,7 +50,7 @@ export const TEST_MOCKS = {
     authorizationStatus: ``,
     userAvatar: ``,
   },
-  comments: [TEST_MOCK_COMMENT, TEST_MOCK_COMMENT, TEST_MOCK_COMMENT],
+  reviews: [TEST_MOCK_COMMENT, TEST_MOCK_COMMENT, TEST_MOCK_COMMENT],
   authorizationStatusTrue: `AUTH`,
   authorizationStatusFalse: `NO_AUTH`,
 };

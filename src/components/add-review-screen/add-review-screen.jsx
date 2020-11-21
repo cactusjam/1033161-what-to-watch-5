@@ -113,11 +113,7 @@ const AddReviewScreen = (props) => {
 AddReviewScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
-  currentMovieId: PropTypes.shape({
-    params: PropTypes.shape({
-      id: PropTypes.string,
-    }),
-  }).isRequired,
+  currentMovieId: PropTypes.string.isRequired,
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,

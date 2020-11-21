@@ -16,7 +16,7 @@ describe(`AddReviewScreen`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <AddReviewScreen
-              currentMovieId ={TEST_MOCKS.match}
+              currentMovieId ={`1`}
               currentMovie ={TEST_MOCKS.MOVIE}
               onSubmit ={TEST_MOCKS.noop}
               onReviewChange ={TEST_MOCKS.noop}
