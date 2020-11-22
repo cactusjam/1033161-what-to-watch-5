@@ -8,7 +8,7 @@ import {setDataIsSending} from "../../store/action";
 import {movieProp} from "../../types/types";
 import Header from "../header/header";
 
-const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
+const REVIEW_RATINGS = [1, 2, 3, 4, 5];
 
 const AddReviewScreen = (props) => {
   const {

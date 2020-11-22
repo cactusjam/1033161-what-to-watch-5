@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`VideoPlayerSmall Should VideoPlayerSmall render correctly 1`] = `
+Array [
+  <div
+    className="small-movie-card__image"
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+  >
+    <video
+      autoPlay={false}
+      height="175"
+      muted={true}
+      poster=""
+      src=""
+      width="280"
+    />
+  </div>,
+  ",",
+]
+`;

@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`AuthUser Should AuthUser render correctly 1`] = `
+Array [
+  <a
+    href="/mylist"
+    onClick={[Function]}
+  >
+    <div
+      className="user-block__avatar"
+    >
+      <img
+        alt="User avatar"
+        height="63"
+        src=""
+        width="63"
+      />
+    </div>
+  </a>,
+  ",",
+]
+`;

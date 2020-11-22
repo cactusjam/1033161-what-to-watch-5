@@ -17,7 +17,6 @@ describe(`PromoMovie`, () => {
           <MemoryRouter>
             <PromoMovie
               promoMovie={TEST_MOCKS.movie}
-              onPlayButtonClick={TEST_MOCKS.noop}
             />,
           </MemoryRouter>
         </Provider>

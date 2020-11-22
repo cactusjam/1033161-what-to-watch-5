@@ -62,7 +62,7 @@ const VideoPlayer = (props) => {
 
   const changeElapsedTime = () => {
     const elapsed = videoRef.current.duration - videoRef.current.currentTime;
-    elapsedTimeRef.current.textContent = new Date(elapsed * VIDEO_INTERVAL).toISOString().substr(SubstringElapsed.END, SubstringElapsed.START);
+    elapsedTimeRef.current.textContent = new Date(elapsed * 1000).toISOString().substr(SubstringElapsed.END, SubstringElapsed.START);
   };
 
   const changeProgressBar = () => {
@@ -108,15 +108,7 @@ const VideoPlayer = (props) => {
 };
 
 VideoPlayer.propTypes = {
-  currentMovie: movieDetails,
-  // isPlaying: PropTypes.bool.isRequired,
-  // videoRef: PropTypes.object.isRequired,
-  // progressRef: PropTypes.object.isRequired,
-  // pinProgressRef: PropTypes.object.isRequired,
-  // elapsedTimeRef: PropTypes.object.isRequired,
-  // onPlayPauseClick: PropTypes.func.isRequired,
-  // onFullscreenClick: PropTypes.func.isRequired,
-  // duration: PropTypes.number.isRequired
+  currentMovie: movieDetails
 };
 
 export default VideoPlayer;

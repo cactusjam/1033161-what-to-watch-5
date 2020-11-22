@@ -16,7 +16,6 @@ describe(`MovieScreen`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <MovieScreen
-              onPlayButtonClick={TEST_MOCKS.noop}
               movies={TEST_MOCKS.movies}
               reviews={[]}
               setCurrentMovie={TEST_MOCKS.noop}

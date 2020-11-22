@@ -20,7 +20,6 @@ describe(`MainScreen`, () => {
               filteredMovies={TEST_MOCKS.movies}
               genreFilter={TEST_MOCKS.genreFilter}
               movies={TEST_MOCKS.movies}
-              onPlayButtonClick={TEST_MOCKS.noop}
               onGenreFilterChange={TEST_MOCKS.noop}
               promoMovie={TEST_MOCKS.movie}
             />,

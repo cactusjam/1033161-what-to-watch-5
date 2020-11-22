@@ -24,7 +24,6 @@ const MainScreen = (props) => {
     filteredMovies,
     genreFilter,
     movies,
-    onPlayButtonClick,
     onGenreFilterChange,
     promoMovie,
   } = props;
@@ -54,7 +53,7 @@ const MainScreen = (props) => {
 
           <UserBlock />
         </header>
-        <PromoMovie onPlayButtonClick={onPlayButtonClick} />
+        <PromoMovie/>
       </section>
 
       <div className="page-content">
@@ -63,7 +62,7 @@ const MainScreen = (props) => {
 
           <GenresList genres={genres} onFilterChange={onGenreFilterChange} activeFilter={genreFilter}/>
 
-          <MoviesList movies={moviesList} onClick={onPlayButtonClick}/>
+          <MoviesList movies={moviesList}/>
           {filteredMovies.length > moviesList.length ? <MoreMoviesButton handleMoreButtonClick={handleMoreButtonClick} /> : ``}
         </section>
 
@@ -76,7 +75,6 @@ const MainScreen = (props) => {
 MainScreen.propTypes = {
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   promoMovie: movieDetails,
-  onPlayButtonClick: PropTypes.func.isRequired,
   onGenreFilterChange: PropTypes.func.isRequired,
   genreFilter: PropTypes.string.isRequired,
   defaultFilmsCount: PropTypes.number.isRequired,

@@ -12,12 +12,12 @@ import {getMovies, getReviews, getCurrentMovie} from "../../store/selectors";
 import {fetchCurrentMovie, fetchReviews} from "../../store/api-actions";
 import FavoriteButton from "../favorite-button/favorite-button";
 import Footer from "../footer/footer";
+import ButtonPlay from "../button-play/button-play";
 
 const TabWrapped = withActiveTab(Tabs);
 
 const MovieScreen = (props) => {
   const {
-    onPlayButtonClick,
     movies,
     reviews,
     setCurrentMovie,
@@ -61,12 +61,9 @@ const MovieScreen = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button" onClick={() => onPlayButtonClick(currentMovie.id)}>
-                  <svg viewBox="0 0 19 19" width="19" height="19">
-                    <use xlinkHref="#play-s" />
-                  </svg>
-                  <span>Play</span>
-                </button>
+
+                <ButtonPlay id = {currentMovie.id}/>
+
                 <FavoriteButton id={id} isFavorite={isFavorite}/>
                 <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>
               </div>
@@ -89,7 +86,7 @@ const MovieScreen = (props) => {
       <div className="page-content">
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
-          <MoviesList movies={similarMovies} onClick={onPlayButtonClick}/>
+          <MoviesList movies={similarMovies}/>
         </section>
 
         <Footer/>
@@ -99,7 +96,6 @@ const MovieScreen = (props) => {
 };
 
 MovieScreen.propTypes = {
-  onPlayButtonClick: PropTypes.func.isRequired,
   setCurrentMovie: PropTypes.func.isRequired,
   movies: PropTypes.arrayOf(movieDetails).isRequired,
   currentMovie: movieProp,

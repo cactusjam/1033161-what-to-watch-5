@@ -33,11 +33,6 @@ export const TEST_MOCK_COMMENT = {
 export const TEST_MOCKS = {
   id: 1,
   noop: () => {},
-  match: {
-    params: {
-      id: `1`,
-    },
-  },
   movie: TEST_MOCK_MOVIE,
   movies: [TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE, TEST_MOCK_MOVIE],
   genresFilter: [`All genres`, ``, ``, ``, ``, ``],
