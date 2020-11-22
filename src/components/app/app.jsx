@@ -58,7 +58,6 @@ const App = () => {
           path={AppRoute.CURRENT_PLAYER} exact render={({match}) => (
             <PlayerScreen
               currentMovieId={match.params.id}
-              isPlaying={false}
             />
           )}
         />

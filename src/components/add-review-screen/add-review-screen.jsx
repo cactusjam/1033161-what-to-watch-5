@@ -118,7 +118,7 @@ AddReviewScreen.propTypes = {
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
   currentMovie: movieProp,
-  rating: PropTypes.string,
+  rating: PropTypes.number,
   reviewText: PropTypes.string,
   isDataSending: PropTypes.bool.isRequired,
   isDataSendError: PropTypes.bool.isRequired,

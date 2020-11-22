@@ -48,7 +48,7 @@ Array [
         <div
           className="player__time-value"
         >
-          0
+          1
         </div>
       </div>
       <div

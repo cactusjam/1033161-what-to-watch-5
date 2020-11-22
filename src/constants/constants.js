@@ -57,4 +57,6 @@ export const Review = {
   },
 };
 
+export const VIDEO_INTERVAL = 1000;
+
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

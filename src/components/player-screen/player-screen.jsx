@@ -1,12 +1,9 @@
 import React, {useEffect} from "react";
 import PropTypes from 'prop-types';
 import {connect} from "react-redux";
-import withVideoPlayer from "../../hocs/with-video-player/with-video-player";
 import VideoPlayer from "../video-player/video-player";
 import {getCurrentMovie} from "../../store/selectors";
 import {fetchCurrentMovie} from "../../store/api-actions";
-
-const VideoPlayerWrapper = withVideoPlayer(VideoPlayer);
 
 const PlayerScreen = (props) => {
   const {setCurrentMovie, currentMovieId, currentMovie} = props;
@@ -21,9 +18,9 @@ const PlayerScreen = (props) => {
 
   return (
     <div className="player">
-      <VideoPlayerWrapper
+      <VideoPlayer
         currentMovie = {currentMovie}>
-      </VideoPlayerWrapper>
+      </VideoPlayer>
     </div>
   );
 };
