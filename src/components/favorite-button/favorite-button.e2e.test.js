@@ -9,7 +9,6 @@ Enzyme.configure({
 });
 
 it(`Should FavoriteButton be pressed`, () => {
-  // const handleButtonClick = jest.fn();
   const handleFavoriteClick = jest.fn();
   const handleUnauthorizedClick = jest.fn();
 
@@ -31,7 +30,6 @@ it(`Should FavoriteButton be pressed`, () => {
 });
 
 it(`Should FavoriteButton be pressed and user will be redirected to log-in page`, () => {
-  // const handleButtonClick = jest.fn();
   const handleFavoriteClick = jest.fn();
   const handleUnauthorizedClick = jest.fn();
 
