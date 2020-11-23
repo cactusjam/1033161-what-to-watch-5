@@ -8,13 +8,8 @@ describe(`Footer`, () => {
     const tree = renderer
     .create(
         <MemoryRouter>
-          <Footer/>,
+          <Footer/>
         </MemoryRouter>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

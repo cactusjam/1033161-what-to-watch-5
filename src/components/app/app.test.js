@@ -22,11 +22,6 @@ describe(`App`, () => {
             />,
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

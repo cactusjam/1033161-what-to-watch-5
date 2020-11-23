@@ -2,9 +2,9 @@ import React from "react";
 import renderer from "react-test-renderer";
 import Header from "./header";
 import {TEST_MOCK_STORE} from "../../__test-mock.js";
-import {MemoryRouter} from "react-router-dom";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
+import {MemoryRouter} from "react-router-dom";
 
 const mockStore = configureMockStore();
 const store = mockStore(TEST_MOCK_STORE);
@@ -21,11 +21,6 @@ describe(`Header`, () => {
             />,
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

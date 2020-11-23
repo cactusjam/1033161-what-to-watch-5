@@ -25,11 +25,6 @@ describe(`MainScreen`, () => {
             />,
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

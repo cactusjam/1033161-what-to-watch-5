@@ -8,7 +8,7 @@ describe(`NotAuthUser`, () => {
     const tree = renderer
     .create(
         <MemoryRouter>
-          <NotAuthUser/>,
+          <NotAuthUser/>
         </MemoryRouter>
     )
   .toJSON();

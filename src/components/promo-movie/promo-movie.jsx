@@ -43,4 +43,5 @@ const mapStateToProps = (state) => ({
   promoMovie: getPromoMovie(state),
 });
 
+export {PromoMovie};
 export default connect(mapStateToProps)(PromoMovie);

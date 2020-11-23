@@ -62,7 +62,7 @@ const VideoPlayer = (props) => {
 
   const changeElapsedTime = () => {
     const elapsed = videoRef.current.duration - videoRef.current.currentTime;
-    elapsedTimeRef.current.textContent = new Date(elapsed * 1000).toISOString().substr(SubstringElapsed.END, SubstringElapsed.START);
+    elapsedTimeRef.current.textContent = new Date(elapsed * VIDEO_INTERVAL).toISOString().substr(SubstringElapsed.END, SubstringElapsed.START);
   };
 
   const changeProgressBar = () => {

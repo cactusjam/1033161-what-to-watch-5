@@ -1,89 +1,86 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`PromoMovie Should PromoMovie render correctly 1`] = `
-Array [
+<div
+  className="movie-card__wrap"
+>
   <div
-    className="movie-card__wrap"
+    className="movie-card__info"
   >
     <div
-      className="movie-card__info"
+      className="movie-card__poster"
     >
-      <div
-        className="movie-card__poster"
+      <img
+        alt=" poster"
+        height="327"
+        src=""
+        width="218"
+      />
+    </div>
+    <div
+      className="movie-card__desc"
+    >
+      <h2
+        className="movie-card__title"
       >
-        <img
-          alt=" poster"
-          height="327"
-          src=""
-          width="218"
-        />
-      </div>
-      <div
-        className="movie-card__desc"
+        
+      </h2>
+      <p
+        className="movie-card__meta"
       >
-        <h2
-          className="movie-card__title"
+        <span
+          className="movie-card__genre"
         >
           
-        </h2>
-        <p
-          className="movie-card__meta"
+        </span>
+        <span
+          className="movie-card__year"
         >
-          <span
-            className="movie-card__genre"
-          >
-            
-          </span>
-          <span
-            className="movie-card__year"
-          >
-            1
-          </span>
-        </p>
-        <div
-          className="movie-card__buttons"
+          1
+        </span>
+      </p>
+      <div
+        className="movie-card__buttons"
+      >
+        <a
+          className="btn btn--play movie-card__button"
+          href="/player/1"
+          onClick={[Function]}
+          type="button"
         >
-          <a
-            className="btn btn--play movie-card__button"
-            href="/player/1"
-            onClick={[Function]}
-            type="button"
+          <svg
+            height="19"
+            viewBox="0 0 19 19"
+            width="19"
           >
-            <svg
-              height="19"
-              viewBox="0 0 19 19"
-              width="19"
-            >
-              <use
-                xlinkHref="#play-s"
-              />
-            </svg>
-            <span>
-              Play
-            </span>
-          </a>
-          <button
-            className="btn btn--list movie-card__button"
-            onClick={[Function]}
-            type="button"
+            <use
+              xlinkHref="#play-s"
+            />
+          </svg>
+          <span>
+            Play
+          </span>
+        </a>
+        <button
+          className="btn btn--list movie-card__button"
+          onClick={[Function]}
+          type="button"
+        >
+          <svg
+            height="20"
+            viewBox="0 0 19 20"
+            width="19"
           >
-            <svg
-              height="20"
-              viewBox="0 0 19 20"
-              width="19"
-            >
-              <use
-                xlinkHref="#in-list"
-              />
-            </svg>
-            <span>
-              My list
-            </span>
-          </button>
-        </div>
+            <use
+              xlinkHref="#in-list"
+            />
+          </svg>
+          <span>
+            My list
+          </span>
+        </button>
       </div>
     </div>
-  </div>,
-  ",",
-]
+  </div>
+</div>
 `;

@@ -24,11 +24,6 @@ describe(`MovieScreen`, () => {
             />,
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

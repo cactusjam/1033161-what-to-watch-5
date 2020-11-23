@@ -17,14 +17,9 @@ describe(`MovieCardSmall`, () => {
           <MemoryRouter>
             <MovieCardSmall
               movie={TEST_MOCKS.movie}
-            />,
+            />
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

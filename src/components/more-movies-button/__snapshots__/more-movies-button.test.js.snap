@@ -1,18 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MoreMoviesButton Should MoreMoviesButton render correctly 1`] = `
-Array [
-  <div
-    className="catalog__more"
+<div
+  className="catalog__more"
+>
+  <button
+    className="catalog__button"
+    onClick={[Function]}
+    type="button"
   >
-    <button
-      className="catalog__button"
-      onClick={[Function]}
-      type="button"
-    >
-      Show more
-    </button>
-  </div>,
-  ",",
-]
+    Show more
+  </button>
+</div>
 `;

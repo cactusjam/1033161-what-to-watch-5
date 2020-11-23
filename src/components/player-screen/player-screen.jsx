@@ -49,4 +49,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {PlayerScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerScreen);

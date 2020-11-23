@@ -23,11 +23,6 @@ describe(`LoginScreen`, () => {
             />,
           </MemoryRouter>
         </Provider>
-        , {
-          createNodeMock: () => {
-            return {};
-          }
-        }
     )
   .toJSON();
 

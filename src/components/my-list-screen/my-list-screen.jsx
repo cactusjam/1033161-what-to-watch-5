@@ -44,7 +44,7 @@ const MyListScreen = (props) => {
       </footer>
     </div>
   );
-}
+};
 
 MyListScreen.propTypes = {
   moviesList: PropTypes.arrayOf(movieDetails).isRequired,
@@ -61,4 +61,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {MyListScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(MyListScreen);

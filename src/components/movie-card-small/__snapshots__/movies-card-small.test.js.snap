@@ -1,41 +1,38 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`MovieCardSmall Should MovieCardSmall render correctly 1`] = `
-Array [
-  <article
-    className="small-movie-card catalog__movies-card"
-    id={1}
+<article
+  className="small-movie-card catalog__movies-card"
+  id={1}
+>
+  <a
+    className="small-movie-card__link"
+    href="/films/1"
+    onClick={[Function]}
   >
-    <a
-      className="small-movie-card__link"
-      href="/films/1"
-      onClick={[Function]}
+    <div
+      className="small-movie-card__image"
+      onMouseEnter={[Function]}
+      onMouseLeave={[Function]}
     >
-      <div
-        className="small-movie-card__image"
-        onMouseEnter={[Function]}
-        onMouseLeave={[Function]}
+      <video
+        autoPlay={false}
+        height="175"
+        muted={true}
+        poster=""
+        src=""
+        width="280"
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <span
+        className="small-movie-card__link"
       >
-        <video
-          autoPlay={false}
-          height="175"
-          muted={true}
-          poster=""
-          src=""
-          width="280"
-        />
-      </div>
-      <h3
-        className="small-movie-card__title"
-      >
-        <span
-          className="small-movie-card__link"
-        >
-          
-        </span>
-      </h3>
-    </a>
-  </article>,
-  ",",
-]
+        
+      </span>
+    </h3>
+  </a>
+</article>
 `;

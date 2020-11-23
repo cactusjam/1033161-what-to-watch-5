@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
 import withActiveTab from "./with-active-tab";
-import {TEST_MOCKS} from "../../__test-mock.js";
+import {TabName} from "../../constants/constants";
 
 const MockComponent = (props) => {
   const {children} = props;
@@ -26,7 +26,7 @@ const MockComponentWrapped = withActiveTab(MockComponent);
 it(`withActiveTab is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
-      movie={TEST_MOCKS.movie}
+      activeTab={TabName.OVERVIEW}
     >
       <React.Fragment />
     </MockComponentWrapped>

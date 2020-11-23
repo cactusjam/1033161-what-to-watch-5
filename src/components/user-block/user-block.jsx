@@ -27,4 +27,5 @@ const mapStateToProps = (state) => ({
   userData: getUser(state),
 });
 
+export {UserBlock};
 export default connect(mapStateToProps)(UserBlock);

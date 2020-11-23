@@ -65,4 +65,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {LoginScreen};
 export default connect(null, mapDispatchToProps)(LoginScreen);
