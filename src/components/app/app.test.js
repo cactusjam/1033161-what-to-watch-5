@@ -17,7 +17,7 @@ describe(`App`, () => {
           <MemoryRouter>
             <App
               onPlayButtonClick={TEST_MOCKS.noop}
-              currentMovieId={`1`}
+              currentMovieId={TEST_MOCKS.id}
               isPlaying={false}
             />,
           </MemoryRouter>

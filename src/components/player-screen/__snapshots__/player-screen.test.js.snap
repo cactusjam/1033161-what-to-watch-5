@@ -9,8 +9,8 @@ Array [
       autoPlay={true}
       className="player__video"
       muted={true}
-      poster=""
-      src=""
+      poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
+      src="http://media.xiph.org/mango/tears_of_steel_1080p.webm"
     />
     <a
       className="player__exit"
@@ -48,7 +48,7 @@ Array [
         <div
           className="player__time-value"
         >
-          1
+          92
         </div>
       </div>
       <div
@@ -75,7 +75,7 @@ Array [
         <div
           className="player__name"
         >
-          
+          Bronson
         </div>
         <button
           className="player__full-screen"

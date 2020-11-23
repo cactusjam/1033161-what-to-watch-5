@@ -48,7 +48,7 @@ exports[`Tabs Should Tabs render correctly 1`] = `
     <div
       className="movie-rating__score"
     >
-      1
+      3.6
     </div>
     <p
       className="movie-rating__meta"
@@ -56,12 +56,12 @@ exports[`Tabs Should Tabs render correctly 1`] = `
       <span
         className="movie-rating__level"
       >
-        Bad
+        Normal
       </span>
       <span
         className="movie-rating__count"
       >
-        1
+        109661
          ratings
       </span>
     </p>
@@ -70,14 +70,14 @@ exports[`Tabs Should Tabs render correctly 1`] = `
     className="movie-card__text"
   >
     <p>
-      
+      A young man who was sentenced to seven years in prison for robbing a post office ends up spending three decades in solitary confinement. During this time, his own personality is supplanted by his alter-ego, Charles Bronson.
     </p>
     <p
       className="movie-card__director"
     >
       <strong>
         Director: 
-        
+        Nicolas Winding Refn
       </strong>
     </p>
     <p
@@ -85,7 +85,7 @@ exports[`Tabs Should Tabs render correctly 1`] = `
     >
       <strong>
         Starring: 
-        
+        Tom Hardy, Kelly Adams, Luing Andrews
       </strong>
     </p>
   </div>

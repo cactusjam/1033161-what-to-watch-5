@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import AuthUser from "./auth-user";
-import {TEST_MOCK_STORE} from "../../__test-mock.js";
+import {TEST_MOCK_STORE, TEST_MOCK_USER} from "../../__test-mock.js";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
@@ -16,7 +16,7 @@ describe(`AuthUser`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <AuthUser
-              userAvatar={``}
+              userAvatar={TEST_MOCK_USER.userAvatar}
             />,
           </MemoryRouter>
         </Provider>

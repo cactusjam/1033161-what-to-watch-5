@@ -18,7 +18,7 @@ exports[`MovieDetails Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        
+        Nicolas Winding Refn
       </span>
     </p>
     <p
@@ -32,7 +32,7 @@ exports[`MovieDetails Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        
+        Tom Hardy, Kelly Adams, Luing Andrews
       </span>
     </p>
   </div>
@@ -50,7 +50,7 @@ exports[`MovieDetails Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        0h 1m
+        1h 32m
       </span>
     </p>
     <p
@@ -64,7 +64,7 @@ exports[`MovieDetails Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        
+        Action
       </span>
     </p>
     <p
@@ -78,7 +78,7 @@ exports[`MovieDetails Should MovieDetails render correctly 1`] = `
       <span
         className="movie-card__details-value"
       >
-        1
+        2008
       </span>
     </p>
   </div>

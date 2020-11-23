@@ -6,8 +6,8 @@ Array [
     className="movie-card__bg"
   >
     <img
-      alt=""
-      src=""
+      alt="Bronson"
+      src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
     />
   </div>,
   <h1
@@ -56,7 +56,7 @@ Array [
           <img
             alt="User avatar"
             height="63"
-            src=""
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/9.jpg"
             width="63"
           />
         </div>

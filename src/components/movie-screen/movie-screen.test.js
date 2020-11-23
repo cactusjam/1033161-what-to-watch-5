@@ -17,7 +17,7 @@ describe(`MovieScreen`, () => {
           <MemoryRouter>
             <MovieScreen
               movies={TEST_MOCKS.movies}
-              reviews={[]}
+              reviews={TEST_MOCKS.reviews}
               setCurrentMovie={TEST_MOCKS.noop}
               currentMovieId={`1`}
               currentMovie={TEST_MOCKS.movie}

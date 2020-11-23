@@ -62,7 +62,7 @@ const MovieScreen = (props) => {
 
               <div className="movie-card__buttons">
 
-                <ButtonPlay id = {currentMovie.id}/>
+                <ButtonPlay id={currentMovie.id}/>
 
                 <FavoriteButton id={id} isFavorite={isFavorite}/>
                 <Link to={`/films/${id}/review`} className="btn movie-card__button">Add review</Link>

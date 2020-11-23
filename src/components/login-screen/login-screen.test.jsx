@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import LoginScreen from "./login-screen";
-import {TEST_MOCK_STORE, TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCK_STORE, TEST_MOCKS, TEST_MOCK_USER} from "../../__test-mock.js";
 import {MemoryRouter} from "react-router-dom";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
@@ -16,10 +16,10 @@ describe(`LoginScreen`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <LoginScreen
-              email={``}
+              email={TEST_MOCK_USER.email}
               handleChange={TEST_MOCKS.noop}
               onSubmit={TEST_MOCKS.noop}
-              password={``}
+              password={TEST_MOCK_USER.password}
             />,
           </MemoryRouter>
         </Provider>

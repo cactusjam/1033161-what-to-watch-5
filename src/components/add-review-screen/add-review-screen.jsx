@@ -52,7 +52,7 @@ const AddReviewScreen = (props) => {
   };
 
   return (
-    <section className="movie-card movie-card--full"style={{backgroundColor: currentMovie.backgroundColor}}>
+    <section className="movie-card movie-card--full" style={{backgroundColor: currentMovie.backgroundColor}}>
       <div className="movie-card__header">
         <Header background={currentMovie.background} title={currentMovie.title}>
 

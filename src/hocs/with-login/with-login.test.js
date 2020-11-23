@@ -2,7 +2,7 @@ import React from "react";
 import renderer from "react-test-renderer";
 import PropTypes from "prop-types";
 import withLogin from "./with-login";
-import {TEST_MOCKS} from "../../__test-mock.js";
+import {TEST_MOCKS, TEST_MOCK_USER} from "../../__test-mock.js";
 
 const MockComponent = (props) => {
   const {children} = props;
@@ -26,8 +26,8 @@ const MockComponentWrapped = withLogin(MockComponent);
 it(`withLogin is rendered correctly`, () => {
   const tree = renderer.create((
     <MockComponentWrapped
-      email={TEST_MOCKS.userData}
-      password={``}
+      email={TEST_MOCK_USER.email}
+      password={TEST_MOCK_USER.password}
       handleChange={TEST_MOCKS.noop}
     >
       <React.Fragment />

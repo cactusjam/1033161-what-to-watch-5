@@ -11,9 +11,9 @@ exports[`PromoMovie Should PromoMovie render correctly 1`] = `
       className="movie-card__poster"
     >
       <img
-        alt=" poster"
+        alt="Bronson poster"
         height="327"
-        src=""
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
         width="218"
       />
     </div>
@@ -23,7 +23,7 @@ exports[`PromoMovie Should PromoMovie render correctly 1`] = `
       <h2
         className="movie-card__title"
       >
-        
+        Bronson
       </h2>
       <p
         className="movie-card__meta"
@@ -31,12 +31,12 @@ exports[`PromoMovie Should PromoMovie render correctly 1`] = `
         <span
           className="movie-card__genre"
         >
-          
+          Action
         </span>
         <span
           className="movie-card__year"
         >
-          1
+          2008
         </span>
       </p>
       <div

@@ -10,9 +10,9 @@ const GenresList = (props) => {
 
   return (
     <ul className="catalog__genres-list">
-      {genres.map((genre, index) =>
+      {genres.map((genre) =>
         <li
-          key={`genre-${index}`}
+          key={`genre-${genre}`}
           onClick={(evt) => {
             evt.preventDefault();
             onFilterChange(genre);

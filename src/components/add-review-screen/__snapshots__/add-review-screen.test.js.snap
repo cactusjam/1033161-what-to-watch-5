@@ -6,7 +6,7 @@ Array [
     className="movie-card movie-card--full"
     style={
       Object {
-        "backgroundColor": "",
+        "backgroundColor": "#73B39A",
       }
     }
   >
@@ -17,8 +17,8 @@ Array [
         className="movie-card__bg"
       >
         <img
-          alt=""
-          src=""
+          alt="Bronson"
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/background/bronson.jpg"
         />
       </div>
       <h1
@@ -68,7 +68,7 @@ Array [
                 href="/films/1"
                 onClick={[Function]}
               >
-                
+                Bronson
               </a>
             </li>
             <li
@@ -95,7 +95,7 @@ Array [
               <img
                 alt="User avatar"
                 height="63"
-                src=""
+                src="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/9.jpg"
                 width="63"
               />
             </div>
@@ -106,9 +106,9 @@ Array [
         className="movie-card__poster movie-card__poster--small"
       >
         <img
-          alt=""
+          alt="Bronson"
           height="327"
-          src=""
+          src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
           width="218"
         />
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
 import Header from "./header";
-import {TEST_MOCK_STORE} from "../../__test-mock.js";
+import {TEST_MOCK_STORE, TEST_MOCK_MOVIE} from "../../__test-mock.js";
 import configureMockStore from "redux-mock-store";
 import {Provider} from "react-redux";
 import {MemoryRouter} from "react-router-dom";
@@ -16,8 +16,8 @@ describe(`Header`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <Header
-              background={``}
-              title={``}
+              background={TEST_MOCK_MOVIE.background}
+              title={TEST_MOCK_MOVIE.title}
             />,
           </MemoryRouter>
         </Provider>

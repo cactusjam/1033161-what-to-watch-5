@@ -22,7 +22,7 @@ Array [
       <a
         className="catalog__genres-link"
       >
-        
+        Action
       </a>
     </li>
     <li
@@ -32,7 +32,7 @@ Array [
       <a
         className="catalog__genres-link"
       >
-        
+        Adventure
       </a>
     </li>
     <li
@@ -42,7 +42,7 @@ Array [
       <a
         className="catalog__genres-link"
       >
-        
+        Comedy
       </a>
     </li>
     <li
@@ -52,7 +52,7 @@ Array [
       <a
         className="catalog__genres-link"
       >
-        
+        Crime
       </a>
     </li>
     <li
@@ -62,7 +62,27 @@ Array [
       <a
         className="catalog__genres-link"
       >
-        
+        Drama
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        Fantasy
+      </a>
+    </li>
+    <li
+      className="catalog__genres-item "
+      onClick={[Function]}
+    >
+      <a
+        className="catalog__genres-link"
+      >
+        Thriller
       </a>
     </li>
   </ul>,

@@ -27,6 +27,7 @@ const MainScreen = (props) => {
     onGenreFilterChange,
     promoMovie,
   } = props;
+
   const [visibleFilmsCount, setVisibleFilmsCount] = useState(defaultFilmsCount);
   const genres = getGenresList(movies);
   const moviesList = filteredMovies.slice(0, visibleFilmsCount);

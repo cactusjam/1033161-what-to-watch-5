@@ -8,8 +8,14 @@ configure({adapter: new Adapter()});
 const MockComponent = () => <div />;
 const MockComponentWrapped = withActiveMovie(MockComponent);
 
-it.skip(`Should`, () => {
-  const wrapper = shallow(<MockComponentWrapped />);
+describe(`interactions with activeMovie`, () => {
+  it(`Should change activeMovie`, () => {
+    const wrapper = shallow(<MockComponentWrapped />);
+    const newActiveMovieId = 42;
 
-  expect(wrapper.state().activeMovie).toEqual(-1);
+    expect(wrapper.state().activeMovie).toEqual(-1);
+
+    wrapper.instance().handleActiveMovieChange(newActiveMovieId);
+    expect(wrapper.state().activeMovie).toEqual(newActiveMovieId);
+  });
 });

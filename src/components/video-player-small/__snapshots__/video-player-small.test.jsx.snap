@@ -10,8 +10,8 @@ exports[`VideoPlayerSmall Should VideoPlayerSmall render correctly 1`] = `
     autoPlay={false}
     height="175"
     muted={true}
-    poster=""
-    src=""
+    poster="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
+    src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
     width="280"
   />
 </div>

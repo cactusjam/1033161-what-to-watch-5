@@ -9,8 +9,8 @@ Array [
       className="movie-card__bg"
     >
       <img
-        alt=""
-        src=""
+        alt="Bronson"
+        src="https://assets.htmlacademy.ru/intensives/javascript-3/film/poster/bronson.jpg"
       />
     </div>
     <header
@@ -52,7 +52,7 @@ Array [
             <img
               alt="User avatar"
               height="63"
-              src=""
+              src="https://assets.htmlacademy.ru/intensives/javascript-3/avatar/9.jpg"
               width="63"
             />
           </div>
@@ -69,9 +69,9 @@ Array [
           className="movie-card__poster"
         >
           <img
-            alt=" poster"
+            alt="Bronson poster"
             height="327"
-            src=""
+            src="https://assets.htmlacademy.ru/intensives/javascript-3/film/preview/bronson.jpg"
             width="218"
           />
         </div>
@@ -81,7 +81,7 @@ Array [
           <h2
             className="movie-card__title"
           >
-            
+            Bronson
           </h2>
           <p
             className="movie-card__meta"
@@ -89,12 +89,12 @@ Array [
             <span
               className="movie-card__genre"
             >
-              
+              Action
             </span>
             <span
               className="movie-card__year"
             >
-              1
+              2008
             </span>
           </p>
           <div
@@ -173,7 +173,7 @@ Array [
           <a
             className="catalog__genres-link"
           >
-            
+            Action
           </a>
         </li>
       </ul>
