@@ -8,10 +8,10 @@ const withActiveTab = (Component) => {
       this.state = {
         activeTab: TabName.OVERVIEW
       };
-      this.handleActiveTabChange = this.handleActiveTabChange.bind(this);
+      this._handleActiveTabChange = this._handleActiveTabChange.bind(this);
     }
 
-    handleActiveTabChange(tabName) {
+    _handleActiveTabChange(tabName) {
       this.setState({
         activeTab: tabName,
       });
@@ -24,7 +24,7 @@ const withActiveTab = (Component) => {
         <Component
           {...this.props}
           activeTab={activeTab}
-          onActiveMovieChange={this.handleActiveTabChange}
+          onActiveMovieChange={this._handleActiveTabChange}
         />
       );
     }

@@ -15,7 +15,7 @@ describe(`interactions with activeMovie`, () => {
 
     expect(wrapper.state().activeMovie).toEqual(-1);
 
-    wrapper.instance().handleActiveMovieChange(newActiveMovieId);
+    wrapper.instance()._handleActiveMovieChange(newActiveMovieId);
     expect(wrapper.state().activeMovie).toEqual(newActiveMovieId);
   });
 });

@@ -14,7 +14,7 @@ const AddReviewScreen = (props) => {
   const {
     currentMovieId,
     currentMovie,
-    onSubmit,
+    onFormSubmit,
     onReviewChange,
     onRatingChange,
     isDataSending,
@@ -25,9 +25,9 @@ const AddReviewScreen = (props) => {
     setCurrentMovie,
   } = props;
 
-  const handleSubmit = (evt) => {
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
-    onSubmit(currentMovieId, rating, reviewText);
+    onFormSubmit(currentMovieId, rating, reviewText);
   };
 
   useEffect(() => {
@@ -76,7 +76,7 @@ const AddReviewScreen = (props) => {
 
       <div className="add-review">
         {getMessage()}
-        <form action="#" className="add-review__form" onSubmit={handleSubmit}>
+        <form action="#" className="add-review__form" onFormSubmit={handleFormSubmit}>
           <div className="rating">
             <div className="rating__stars">
               {REVIEW_RATINGS.map((reviewRating) => {
@@ -112,7 +112,7 @@ const AddReviewScreen = (props) => {
 
 AddReviewScreen.propTypes = {
   setCurrentMovie: PropTypes.func.isRequired,
-  onSubmit: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   currentMovieId: PropTypes.string.isRequired,
   onReviewChange: PropTypes.func.isRequired,
   onRatingChange: PropTypes.func.isRequired,
@@ -135,7 +135,7 @@ const mapDispatchToProps = (dispatch) => ({
   setCurrentMovie(movieId) {
     dispatch(fetchCurrentMovie(movieId));
   },
-  onSubmit(id, rating, reviewText) {
+  onFormSubmit(id, rating, reviewText) {
     dispatch(setDataIsSending(true));
     dispatch(addReview(id, rating, reviewText));
   }

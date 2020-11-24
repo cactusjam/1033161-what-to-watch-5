@@ -28,7 +28,7 @@ it(`withLogin is rendered correctly`, () => {
     <MockComponentWrapped
       email={TEST_MOCK_USER.email}
       password={TEST_MOCK_USER.password}
-      handleChange={TEST_MOCKS.noop}
+      handleInputChange={TEST_MOCKS.noop}
     >
       <React.Fragment />
     </MockComponentWrapped>

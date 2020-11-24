@@ -8,15 +8,15 @@ import Footer from "../footer/footer";
 const LoginScreen = (props) => {
   const {
     email,
-    handleChange,
-    onSubmit,
+    handleInputChange,
+    onFormSubmit,
     password
   } = props;
 
-  const handleSubmit = (evt) => {
+  const handleFormSubmit = (evt) => {
     evt.preventDefault();
 
-    onSubmit({
+    onFormSubmit({
       email,
       password
     });
@@ -30,14 +30,14 @@ const LoginScreen = (props) => {
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onSubmit={handleSubmit}>
+        <form action="#" className="sign-in__form" onFormSubmit={handleFormSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
-              <input onChange={handleChange} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
+              <input onChange={handleInputChange} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />
               <label className="sign-in__label visually-hidden" htmlFor="user-email">Email address</label>
             </div>
             <div className="sign-in__field">
-              <input onChange={handleChange} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
+              <input onChange={handleInputChange} className="sign-in__input" type="password" placeholder="Password" name="user-password" id="user-password" />
               <label className="sign-in__label visually-hidden" htmlFor="user-password">Password</label>
             </div>
           </div>
@@ -53,14 +53,14 @@ const LoginScreen = (props) => {
 };
 
 LoginScreen.propTypes = {
-  onSubmit: PropTypes.func.isRequired,
-  handleChange: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
+  handleInputChange: PropTypes.func.isRequired,
   email: PropTypes.string.isRequired,
   password: PropTypes.string.isRequired
 };
 
 const mapDispatchToProps = (dispatch) => ({
-  onSubmit(userData) {
+  onFormSubmit(userData) {
     dispatch(login(userData));
   }
 });

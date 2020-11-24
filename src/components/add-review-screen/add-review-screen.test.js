@@ -18,7 +18,7 @@ describe(`AddReviewScreen`, () => {
             <AddReviewScreen
               currentMovieId ={`1`}
               currentMovie ={TEST_MOCKS.MOVIE}
-              onSubmit ={TEST_MOCKS.noop}
+              onFormSubmit ={TEST_MOCKS.noop}
               onReviewChange ={TEST_MOCKS.noop}
               onRatingChange ={TEST_MOCKS.noop}
               isDataSending={false}

@@ -10,10 +10,10 @@ const withLogin = (Component) => {
         password: ``
       };
 
-      this._handleChange = this._handleChange.bind(this);
+      this._handleInputChange = this._handleInputChange.bind(this);
     }
 
-    _handleChange(evt) {
+    _handleInputChange(evt) {
       if (evt.target.name.includes(`email`)) {
         this.setState({
           email: evt.target.value
@@ -32,7 +32,7 @@ const withLogin = (Component) => {
         <Component {...this.props}
           email={email}
           password={password}
-          handleChange={this._handleChange}
+          handleInputChange={this._handleInputChange}
         />
       );
     }

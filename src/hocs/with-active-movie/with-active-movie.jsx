@@ -7,10 +7,10 @@ const withActiveMovie = (Component) => {
       this.state = {
         activeMovie: -1,
       };
-      this.handleActiveMovieChange = this.handleActiveMovieChange.bind(this);
+      this._handleActiveMovieChange = this._handleActiveMovieChange.bind(this);
     }
 
-    handleActiveMovieChange(index) {
+    _handleActiveMovieChange(index) {
       this.setState({
         activeMovie: index,
       });
@@ -22,7 +22,7 @@ const withActiveMovie = (Component) => {
       return <Component
         {...this.props}
         activeMovie={activeMovie}
-        onActiveMovieChange={this.handleActiveMovieChange}
+        onActiveMovieChange={this._handleActiveMovieChange}
       />;
     }
   }

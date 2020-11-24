@@ -17,8 +17,8 @@ describe(`LoginScreen`, () => {
           <MemoryRouter>
             <LoginScreen
               email={TEST_MOCK_USER.email}
-              handleChange={TEST_MOCKS.noop}
-              onSubmit={TEST_MOCKS.noop}
+              handleInputChange={TEST_MOCKS.noop}
+              onFormSubmit={TEST_MOCKS.noop}
               password={TEST_MOCK_USER.password}
             />,
           </MemoryRouter>

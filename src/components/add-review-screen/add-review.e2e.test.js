@@ -17,7 +17,7 @@ it(`Should value input and textarea review was change`, () => {
       <AddReviewScreen
         currentMovieId ={`1`}
         currentMovie ={TEST_MOCKS.movie}
-        onSubmit ={TEST_MOCKS.noop}
+        onFormSubmit ={TEST_MOCKS.noop}
         onReviewChange ={handleReviewChange}
         onRatingChange ={handleRatingChange}
         isDataSending={false}
@@ -40,13 +40,13 @@ it(`Should value input and textarea review was change`, () => {
 
 
 it(`Should review form was submit`, () => {
-  const handleSubmit = jest.fn();
+  const handleFormSubmit = jest.fn();
 
   const wrapper = shallow(
       <AddReviewScreen
         currentMovieId ={`1`}
         currentMovie ={TEST_MOCKS.movie}
-        onSubmit ={handleSubmit}
+        onFormSubmit ={handleFormSubmit}
         onReviewChange ={TEST_MOCKS.noop}
         onRatingChange ={TEST_MOCKS.noop}
         isDataSending={false}
@@ -61,5 +61,5 @@ it(`Should review form was submit`, () => {
   const formReview = wrapper.find(`form.add-review__form`);
 
   formReview.simulate(`submit`, {preventDefault() {}});
-  expect(handleSubmit).toHaveBeenCalledTimes(1);
+  expect(handleFormSubmit).toHaveBeenCalledTimes(1);
 });
