@@ -47,6 +47,9 @@ Array [
         className="sign-in__form"
         onSubmit={[Function]}
       >
+        <p>
+          
+        </p>
         <div
           className="sign-in__fields"
         >
@@ -92,6 +95,7 @@ Array [
         >
           <button
             className="sign-in__btn"
+            disabled=""
             type="submit"
           >
             Sign in

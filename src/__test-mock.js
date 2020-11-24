@@ -35,7 +35,9 @@ export const TEST_MOCK_USER = {
   email: `qqq@gmail.com`,
   userAvatar: `https://assets.htmlacademy.ru/intensives/javascript-3/avatar/9.jpg`,
   authorizationStatus: `AUTH`,
-  password: `666`
+  password: `666`,
+  errorEmail: ``,
+  errorPassword: ``
 };
 
 export const TEST_MOCKS = {

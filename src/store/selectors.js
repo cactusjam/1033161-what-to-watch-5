@@ -1,6 +1,7 @@
 import {NameSpace} from "./reducers/root-reducer.js";
 import {createSelector} from 'reselect';
 import {getFilmsByGenre} from "../utils/utils";
+import {AuthorizationStatus} from "../constants/constants";
 
 export const getMovies = (state) => {
   return state[NameSpace.DATA].movies;

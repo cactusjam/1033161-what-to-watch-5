@@ -16,10 +16,12 @@ describe(`LoginScreen`, () => {
         <Provider store={store}>
           <MemoryRouter>
             <LoginScreen
-              email={TEST_MOCK_USER.email}
               handleInputChange={TEST_MOCKS.noop}
-              onFormSubmit={TEST_MOCKS.noop}
-              password={TEST_MOCK_USER.password}
+              authorizationStatus={`NO_AUTH`}
+              onSuccessAuthorization={TEST_MOCKS.noop}
+              errorEmail={TEST_MOCK_USER.errorEmail}
+              errorPassword={TEST_MOCK_USER.errorPassword}
+              handleFormSubmit={TEST_MOCKS.noop}
             />,
           </MemoryRouter>
         </Provider>
