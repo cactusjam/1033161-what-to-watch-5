@@ -85,6 +85,7 @@ export const fetchReviews = (id) => (dispatch, _getState, api) => (
 export const addReview = (id, rating, comment) => (dispatch, _getState, api) => (
   api.post(AppRoute.REVIEWS + `/${id}`, {rating, comment})
     .then(() => {
+      dispatch(setDataSendError(false));
       dispatch(redirectToRoute(AppRoute.MOVIES + `/${id}`));
       dispatch(setDataIsSending(false));
     })
@@ -97,6 +98,7 @@ export const addReview = (id, rating, comment) => (dispatch, _getState, api) => 
 export const addFavoriteMovie = (id, status) => (dispatch, _getState, api) => (
   api.post(`${AppRoute.FAVORITE}/${id}/${status}`)
   .then((response) => {
+    dispatch(setDataSendError(false));
     dispatch(loadPromoMovie(movieAdapter(response.data)));
     dispatch(loadCurrentMovie(movieAdapter(response.data)));
   })
