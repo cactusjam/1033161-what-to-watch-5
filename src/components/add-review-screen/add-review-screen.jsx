@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getCurrentMovie, getReviews, dataSending, dataSendingError} from "../../store/selectors";
 import {fetchCurrentMovie, addReview} from "../../store/api-actions";
-import {setDataIsSending, setDataSendError} from "../../store/action";
+import {setDataIsSending} from "../../store/action";
 import {movieProp} from "../../types/types";
 import Header from "../header/header";
 
