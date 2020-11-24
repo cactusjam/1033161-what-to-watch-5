@@ -35,6 +35,7 @@ export const AppRoute = {
   LOGIN: `/login`,
   RESULT: `/result`,
   MOVIES: `/films`,
+  PLAYER: `/player`,
   MOVIES_PROMO: `/films/promo`,
   MY_LIST: `/mylist`,
   REVIEWS: `/comments`,
@@ -42,13 +43,11 @@ export const AppRoute = {
   CURRENT_MOVIE: `/films/:id`,
   CURRENT_PLAYER: `/player/:id`,
   FAVORITE: `/favorite`,
+  ROOT: `/`
 };
 
 export const HttpCode = {
-  OK: 200,
-  BAD_REQUEST: 400,
-  UNAUTHORIZED: 401,
-  SERVER_ERROR: 500,
+  UNAUTHORIZED: 401
 };
 
 export const Review = {
@@ -58,5 +57,7 @@ export const Review = {
     MAX_LENGTH: 400,
   },
 };
+
+export const VIDEO_INTERVAL = 1000;
 
 export {TabName, GenresFilter, AuthorizationStatus, FILMS_COUNT_PER_CLICK};

@@ -9,9 +9,9 @@ const MoviesList = ({movies}) => {
 
   return (
     <div className="catalog__movies-list">
-      {movies.map((movie) => {
-        const {id, poster, promo} = movie;
-        return <MoviesCardWrapped key={id} movie={movie} src={promo} poster={poster}
+      {movies.map((movie, index) => {
+        const {poster, promo} = movie;
+        return <MoviesCardWrapped key={movie + index} movie={movie} src={promo} poster={poster}
         />;
       })}
     </div>

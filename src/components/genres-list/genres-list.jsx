@@ -2,7 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const GenresList = (props) => {
-  const {onFilterChange, activeFilter, genres} = props;
+  const {
+    activeFilter,
+    genres,
+    onFilterChange
+  } = props;
 
   return (
     <ul className="catalog__genres-list">

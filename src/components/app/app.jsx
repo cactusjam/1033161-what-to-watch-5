@@ -19,12 +19,10 @@ const App = () => {
     <BrowserRouter history={browserHistory}>
       <Switch>
         <Route
-          path="/" exact render={({history}) => (
-            <MainScreen
-              onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
-            />
-          )}
-        />
+          path="/" exact>
+          <MainScreen
+          />
+        </Route>
         <Route
           path={AppRoute.LOGIN} exact>
           <SignInWrapped/>
@@ -36,10 +34,9 @@ const App = () => {
         />
 
         <Route
-          path={AppRoute.CURRENT_MOVIE} exact render={({match, history}) => (
+          path={AppRoute.CURRENT_MOVIE} exact render={({match}) => (
             <MovieScreen
               currentMovieId={match.params.id}
-              onPlayButtonClick={(movieId) => history.push(`/player/` + movieId)}
             />
           )}
         />
@@ -58,7 +55,6 @@ const App = () => {
           path={AppRoute.CURRENT_PLAYER} exact render={({match}) => (
             <PlayerScreen
               currentMovieId={match.params.id}
-              isPlaying={false}
             />
           )}
         />

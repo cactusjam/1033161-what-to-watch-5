@@ -9,7 +9,13 @@ import {userDetails} from "../../types/types";
 import {getUser} from "../../store/selectors";
 
 const FavoriteButton = (props) => {
-  const {id, isFavorite, onFavoriteClick, onUnauthorizedClick, userData} = props;
+  const {
+    id,
+    isFavorite,
+    onFavoriteClick,
+    onUnauthorizedClick,
+    userData
+  } = props;
 
   const handleButtonClick = () => {
     if (userData.authorizationStatus === AuthorizationStatus.NO_AUTH) {
@@ -52,4 +58,5 @@ const mapDispatchToProps = (dispatch) => ({
   },
 });
 
+export {FavoriteButton};
 export default connect(mapStateToProps, mapDispatchToProps)(FavoriteButton);

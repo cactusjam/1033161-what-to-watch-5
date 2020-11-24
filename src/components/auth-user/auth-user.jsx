@@ -1,26 +1,22 @@
 import React from "react";
-import {userDetails} from "../../types/types";
-import {connect} from "react-redux";
-import {getUser} from "../../store/selectors";
+import PropTypes from "prop-types";
+import {Link} from "react-router-dom";
+import {AppRoute} from "../../constants/constants";
 
 const AuthUser = (props) => {
-  const {userAvatar} = props.userData;
+  const {userAvatar} = props;
 
   return (
-    <div className="user-block">
+    <Link to={AppRoute.MY_LIST}>
       <div className="user-block__avatar">
         <img src={userAvatar} alt="User avatar" width="63" height="63"/>
       </div>
-    </div>
+    </Link>
   );
 };
 
 AuthUser.propTypes = {
-  userData: userDetails,
+  userAvatar: PropTypes.string.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  userData: getUser(state),
-});
-
-export default connect(mapStateToProps)(AuthUser);
+export default AuthUser;

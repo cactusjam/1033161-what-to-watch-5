@@ -4,11 +4,11 @@ import PropTypes from "prop-types";
 import {connect} from "react-redux";
 import {getCurrentMovie, getReviews, dataSending, dataSendingError} from "../../store/selectors";
 import {fetchCurrentMovie, addReview} from "../../store/api-actions";
-import AuthUser from "../auth-user/auth-user";
 import {setDataIsSending} from "../../store/action";
 import {movieProp} from "../../types/types";
+import Header from "../header/header";
 
-const REVIEW_RATINGS = [`1`, `2`, `3`, `4`, `5`];
+const REVIEW_RATINGS = [1, 2, 3, 4, 5];
 
 const AddReviewScreen = (props) => {
   const {
@@ -52,22 +52,9 @@ const AddReviewScreen = (props) => {
   };
 
   return (
-    <section className="movie-card movie-card--full">
+    <section className="movie-card movie-card--full" style={{backgroundColor: currentMovie.backgroundColor}}>
       <div className="movie-card__header">
-        <div className="movie-card__bg">
-          <img src={currentMovie.poster} alt={currentMovie.title} />
-        </div>
-
-        <h1 className="visually-hidden">WTW</h1>
-
-        <header className="page-header">
-          <div className="logo">
-            <Link to='/' className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </Link>
-          </div>
+        <Header background={currentMovie.background} title={currentMovie.title}>
 
           <nav className="breadcrumbs">
             <ul className="breadcrumbs__list">
@@ -79,8 +66,7 @@ const AddReviewScreen = (props) => {
               </li>
             </ul>
           </nav>
-          <AuthUser/>
-        </header>
+        </Header>
 
         <div className="movie-card__poster movie-card__poster--small">
           <img src={currentMovie.poster} alt={currentMovie.title} width="218"
@@ -132,7 +118,7 @@ AddReviewScreen.propTypes = {
   onRatingChange: PropTypes.func.isRequired,
   isValid: PropTypes.bool,
   currentMovie: movieProp,
-  rating: PropTypes.string,
+  rating: PropTypes.number,
   reviewText: PropTypes.string,
   isDataSending: PropTypes.bool.isRequired,
   isDataSendError: PropTypes.bool.isRequired,
@@ -155,4 +141,5 @@ const mapDispatchToProps = (dispatch) => ({
   }
 });
 
+export {AddReviewScreen};
 export default connect(mapStateToProps, mapDispatchToProps)(AddReviewScreen);
