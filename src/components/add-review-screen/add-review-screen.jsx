@@ -76,7 +76,7 @@ const AddReviewScreen = (props) => {
 
       <div className="add-review">
         {getMessage()}
-        <form action="#" className="add-review__form" onFormSubmit={handleFormSubmit}>
+        <form action="#" className="add-review__form" onSubmit={handleFormSubmit}>
           <div className="rating">
             <div className="rating__stars">
               {REVIEW_RATINGS.map((reviewRating) => {

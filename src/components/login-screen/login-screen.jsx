@@ -30,7 +30,7 @@ const LoginScreen = (props) => {
       </header>
 
       <div className="sign-in user-page__content">
-        <form action="#" className="sign-in__form" onFormSubmit={handleFormSubmit}>
+        <form action="#" className="sign-in__form" onSubmit={handleFormSubmit}>
           <div className="sign-in__fields">
             <div className="sign-in__field">
               <input onChange={handleInputChange} className="sign-in__input" type="email" placeholder="Email address" name="user-email" id="user-email" />

@@ -116,11 +116,11 @@ Array [
     <div
       className="add-review"
     >
-
+      
       <form
         action="#"
         className="add-review__form"
-        onFormSubmit={[Function]}
+        onSubmit={[Function]}
       >
         <div
           className="rating"

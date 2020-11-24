@@ -40,7 +40,7 @@ const MainScreen = (props) => {
     <Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src={promoMovie.cover} alt={promoMovie.title} />
+          <img src={promoMovie.background} alt={promoMovie.title} />
         </div>
 
         <header className="page-header movie-card__head">
